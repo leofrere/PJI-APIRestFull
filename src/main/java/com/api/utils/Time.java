@@ -30,7 +30,8 @@ public class Time {
                     }
 
                     s = ts2 - ts1;
-                    return String.format("%d:%d:%f", h, m, s);
+                    s += m * 60 + h * 3600;
+                    return String.format("%fs", s);
     }
 
 }
