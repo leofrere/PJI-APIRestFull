@@ -40,6 +40,27 @@ public class LogController {
         
     }
 
+    @GetMapping("/log/creates")
+    public void addLogOfJenkinsBuild(@RequestParam(value="pj") String projectName){
+        JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
+        try {
+            int lastBuild = ReaderBuild.lastBuild(jenkinsBuild);
+            for (int i = 1; i <= lastBuild; i++) {
+                if(!logService.buildAlreadyExist(projectName, i)){
+                    try{
+                        BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, i));
+                        logService.addLog(reader, i);
+                    } catch (NullPointerException e) {
+                        System.out.println("Build not Exist");
+                    }
+                    
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @GetMapping("/log")
     public Log getLog(@RequestParam(value="id") Long id) {
         return logService.getLogById(id);
