@@ -22,4 +22,8 @@ public class CompileService {
         return compileRepository.save(new Compile(reader));
     }
 
+    public void deleteCompile(long id) {
+        compileRepository.deleteById(id);
+    }
+
 }

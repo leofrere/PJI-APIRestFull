@@ -66,4 +66,15 @@ public class LogService {
         return false;
     }
 
+    public void deleteLog(long id) {
+        Log log = logRepository.findById(id).get();
+        long compileId = log.getCompile().getId();
+        long testId = log.getTest().getId();
+        long packageId = log.getPackag().getId();
+        logRepository.deleteById(id);
+        compileService.deleteCompile(compileId);
+        testService.deleteTest(testId);
+        packageService.deletePackage(packageId);
+    }
+
 }

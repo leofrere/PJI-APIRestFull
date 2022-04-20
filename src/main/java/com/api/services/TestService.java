@@ -22,4 +22,8 @@ public class TestService {
         return testRepository.save(new Test(reader));
     }
 
+    public void deleteTest(long id) {
+        testRepository.deleteById(id);
+    }
+
 }

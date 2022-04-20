@@ -36,4 +36,9 @@ public class JenkinsBuildService {
         jenkinsBuildRepository.save(jenkinsBuild);
     }
 
+    public void deleteJenkinsBuildByProjectName(String projectName) {
+        JenkinsBuild jenkinsBuild = getJenkinsBuildByProjectName(projectName);
+        jenkinsBuildRepository.delete(jenkinsBuild);
+    }
+
 }

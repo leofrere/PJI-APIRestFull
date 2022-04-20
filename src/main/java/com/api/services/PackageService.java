@@ -22,4 +22,8 @@ public class PackageService {
         return packageRepository.save(new Package(reader));
     }
 
+    public void deletePackage(long id) {
+        packageRepository.deleteById(id);
+    }
+
 }
