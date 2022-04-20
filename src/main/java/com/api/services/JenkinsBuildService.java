@@ -32,4 +32,8 @@ public class JenkinsBuildService {
         return jenkinsBuildRepository.findAll();
     }
 
+    public void addJenkinsBuild(JenkinsBuild jenkinsBuild) {
+        jenkinsBuildRepository.save(jenkinsBuild);
+    }
+
 }

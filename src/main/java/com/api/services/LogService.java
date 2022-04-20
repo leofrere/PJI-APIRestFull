@@ -56,4 +56,14 @@ public class LogService {
         logRepository.save(new Log("mavenGL", buildNumber, compile, test, package1));
     }
 
+    public boolean buildAlreadyExist(String project, int buildNumber) {
+        List<Log> list = logRepository.findAll();
+        for (Log log : list) {
+            if (log.getProject().equals(project) && log.getBuild() == buildNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
