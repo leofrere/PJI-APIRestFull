@@ -19,4 +19,9 @@ public class JenkinsBuildController {
         jenkinsBuildService.addJenkinsBuild(new JenkinsBuild(url, projectName, username, password));
     }
 
+    @GetMapping("/jenkins/build/delete")
+    public void deleteJenkinsBuild(@RequestParam(value="pj") String projectName) {
+        jenkinsBuildService.deleteJenkinsBuildByProjectName(projectName);
+    }
+
 }

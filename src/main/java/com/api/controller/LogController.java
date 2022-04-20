@@ -71,4 +71,9 @@ public class LogController {
         return logService.getLogByProject(project);
     }
 
+    @GetMapping("/log/delete")
+    public void deleteLog(@RequestParam(value="id") Long id) {
+        logService.deleteLog(id);
+    }
+    
 }
