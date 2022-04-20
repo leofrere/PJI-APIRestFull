@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-//import com.api.utils.Time;
+import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
@@ -36,14 +36,13 @@ public class Compile {
     public Compile(BufferedReader reader){
         String line = null;
         status = "ko";
-        int tmp = 1;
         boolean secondErrorLine = false;
-        //String time1 = "";
+        String time1 = "";
         try {
             // pass validate phase
             while ((line = reader.readLine()) != null) {
                 if(line.contains("--- maven-resources-plugin:")){
-                    //time1 = line.split(" ")[0];
+                    time1 = line.split(" ")[0];
                     break;
                 }
             }
@@ -51,7 +50,7 @@ public class Compile {
             while ((line = reader.readLine()) != null) {
 
                 if(line.contains("--- maven-resources-plugin:")){
-                    //time = Time.differenceBetween(time1, line.split(" ")[0]);
+                    time = Time.differenceBetween(time1, line.split(" ")[0]);
                     status = "ok";
                     break;
                 }
@@ -67,7 +66,7 @@ public class Compile {
 
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
-                    numberOfClasses = Integer.parseInt(parts[3 - tmp]);
+                    numberOfClasses = Integer.parseInt(parts[3]);
                     continue;
                 }
             }

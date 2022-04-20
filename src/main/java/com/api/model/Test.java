@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-//import com.api.utils.Time;
+import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
@@ -48,14 +48,13 @@ public class Test {
     public Test(BufferedReader reader){
         String line = null;
         status = "ko";
-        int tmp = 1;
         boolean secondErrorLine = false;
-        //String time1 = "";
+        String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
 
                 if(line.contains("--- maven-jar-plugin:")){
-                   // time = Time.differenceBetween(time1, line.split(" ")[0]);
+                    time = Time.differenceBetween(time1, line.split(" ")[0]);
                    status = "ok";
                     break;
                 }
@@ -71,8 +70,8 @@ public class Test {
 
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
-                    //time1 = parts[0];
-                    numberOfTestClasses = Integer.parseInt(parts[3 - tmp]);
+                    time1 = parts[0];
+                    numberOfTestClasses = Integer.parseInt(parts[3]);
                     continue;
                 }
 
