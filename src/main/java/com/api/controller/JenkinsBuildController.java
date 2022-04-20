@@ -24,4 +24,25 @@ public class JenkinsBuildController {
         jenkinsBuildService.deleteJenkinsBuildByProjectName(projectName);
     }
 
+    @GetMapping("/jenkins/build/update/password")
+    public void updateJenkinsBuildPassword(@RequestParam(value="pj") String projectName, @RequestParam(value="pass") String password) {
+        jenkinsBuildService.updateJenkinsBuildPassword(projectName, password);
+    }
+
+    @GetMapping("/jenkins/build/update/username")
+    public void updateJenkinsBuildUsername(@RequestParam(value="pj") String projectName, @RequestParam(value="user") String username) {
+        jenkinsBuildService.updateJenkinsBuildUsername(projectName, username);
+    }
+
+    @GetMapping("/jenkins/build/update/url")
+    public void updateJenkinsBuildUrl(@RequestParam(value="pj") String projectName, @RequestParam(value="url") String url) {
+        jenkinsBuildService.updateJenkinsBuildUrl(projectName, url);
+    }
+
+    @GetMapping("/jenkins/build/update/project")
+    public void updateJenkinsBuildProject(@RequestParam(value="pj") String projectName, @RequestParam(value="newpj") String newProjectName) {
+        jenkinsBuildService.updateJenkinsBuildProjectName(projectName, newProjectName);
+    }
+
+
 }
