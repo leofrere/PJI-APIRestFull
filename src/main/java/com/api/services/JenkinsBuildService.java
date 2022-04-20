@@ -41,4 +41,28 @@ public class JenkinsBuildService {
         jenkinsBuildRepository.delete(jenkinsBuild);
     }
 
+    public void updateJenkinsBuildPassword(String projectName, String password) {
+        JenkinsBuild jenkinsBuild = getJenkinsBuildByProjectName(projectName);
+        jenkinsBuild.setPassword(password);
+        jenkinsBuildRepository.save(jenkinsBuild);
+    }
+
+    public void updateJenkinsBuildUrl(String projectName, String url) {
+        JenkinsBuild jenkinsBuild = getJenkinsBuildByProjectName(projectName);
+        jenkinsBuild.setUrl(url);
+        jenkinsBuildRepository.save(jenkinsBuild);
+    }
+
+    public void updateJenkinsBuildUsername(String projectName, String username) {
+        JenkinsBuild jenkinsBuild = getJenkinsBuildByProjectName(projectName);
+        jenkinsBuild.setUsername(username);
+        jenkinsBuildRepository.save(jenkinsBuild);
+    }
+
+    public void updateJenkinsBuildProjectName(String projectName, String newProjectName) {
+        JenkinsBuild jenkinsBuild = getJenkinsBuildByProjectName(projectName);
+        jenkinsBuild.setProjectName(newProjectName);
+        jenkinsBuildRepository.save(jenkinsBuild);
+    }
+
 }
