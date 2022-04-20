@@ -30,6 +30,8 @@ public class Test {
 
     private int numberOfTestClasses;
 
+    private String errorsTrace = "";
+
     public Test() {
     }
 
@@ -47,13 +49,24 @@ public class Test {
         String line = null;
         status = "ko";
         int tmp = 1;
+        boolean secondErrorLine = false;
         //String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
 
                 if(line.contains("--- maven-jar-plugin:")){
                    // time = Time.differenceBetween(time1, line.split(" ")[0]);
+                   status = "ok";
                     break;
+                }
+
+                if(line.contains("[ERROR] ")){
+                    if(secondErrorLine && errorsTrace.length() == 0){
+                        errorsTrace = line;
+                        continue;
+                    }
+                    secondErrorLine = true;
+                    continue;
                 }
 
                 if(line.contains("[INFO] Compiling")){
@@ -77,7 +90,6 @@ public class Test {
                 }
                 
             }
-            status = "ok";
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -147,6 +159,12 @@ public class Test {
         this.numberOfTestClasses = numberOfTestClasses;
     }
 
+    public String getErrorsTrace() {
+        return errorsTrace;
+    }
 
+    public void setErrorsTrace(String errorsTrace) {
+        this.errorsTrace = errorsTrace;
+    }
 
 }

@@ -22,6 +22,8 @@ public class Package {
 
     private String jarPath;
 
+    private String errorsTrace = "";
+
     public Package() {
     }
 
@@ -35,20 +37,31 @@ public class Package {
         String line = null;
         status = "ko";
         int tmp = 1;
+        boolean secondErrorLine = false;
         //String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
                 if(line.contains("--- maven-install-plugin:")){
                     //time = Time.differenceBetween(time1, line.split(" ")[0]);
+                    status = "ok";
                     break;
                 }
+
+                if(line.contains("[ERROR] ")){
+                    if(secondErrorLine && errorsTrace.length() == 0){
+                        errorsTrace = line;
+                        continue;
+                    }
+                    secondErrorLine = true;
+                    continue;
+                }
+
                 if (line.contains("Building jar:")) {
                     //time1 = line.split(" ")[0];
                     jarPath = line.split(" ")[4 - tmp];
                     continue;
                 }
             }
-            status = "ok";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +97,14 @@ public class Package {
 
     public void setJarPath(String jarPath) {
         this.jarPath = jarPath;
+    }
+
+    public String getErrorsTrace() {
+        return errorsTrace;
+    }
+
+    public void setErrorsTrace(String errorsTrace) {
+        this.errorsTrace = errorsTrace;
     }
 
 }

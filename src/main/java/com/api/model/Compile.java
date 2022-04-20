@@ -22,6 +22,8 @@ public class Compile {
 
     private int numberOfClasses;
 
+    private String errorsTrace = "";
+
     public Compile() {
     }
 
@@ -35,6 +37,7 @@ public class Compile {
         String line = null;
         status = "ko";
         int tmp = 1;
+        boolean secondErrorLine = false;
         //String time1 = "";
         try {
             // pass validate phase
@@ -49,7 +52,17 @@ public class Compile {
 
                 if(line.contains("--- maven-resources-plugin:")){
                     //time = Time.differenceBetween(time1, line.split(" ")[0]);
+                    status = "ok";
                     break;
+                }
+
+                if(line.contains("[ERROR] ")){
+                    if(secondErrorLine && errorsTrace.length() == 0){
+                        errorsTrace = line;
+                        continue;
+                    }
+                    secondErrorLine = true;
+                    continue;
                 }
 
                 if(line.contains("[INFO] Compiling")){
@@ -58,7 +71,6 @@ public class Compile {
                     continue;
                 }
             }
-            status = "ok";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,6 +106,14 @@ public class Compile {
 
     public void setNumberOfClasses(int numberOfClasses) {
         this.numberOfClasses = numberOfClasses;
+    }
+
+    public String getErrorsTrace() {
+        return errorsTrace;
+    }
+
+    public void setErrorsTrace(String errorsTrace) {
+        this.errorsTrace = errorsTrace;
     }
 
 }
