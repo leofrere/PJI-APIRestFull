@@ -14,6 +14,9 @@ public class Log {
     @NotNull
     private String project;
 
+    @NotNull
+    private int build;
+
     @ManyToOne
 	@JoinColumn(name = "compile_id")
 	private Compile compile;
@@ -29,8 +32,9 @@ public class Log {
     public Log() {
     }
 
-    public Log(String project, Compile compile, Test test, Package packag) {
+    public Log(String project, int build, Compile compile, Test test, Package packag) {
         this.project = project;
+        this.build = build;
         this.compile = compile;
         this.test = test;
         this.packag = packag;
@@ -74,6 +78,14 @@ public class Log {
 
     public void setPackag(Package packag) {
         this.packag = packag;
+    }
+
+    public int getBuild() {
+        return build;
+    }
+
+    public void setBuild(int build) {
+        this.build = build;
     }
 
 }

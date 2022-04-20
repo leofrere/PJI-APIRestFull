@@ -34,6 +34,7 @@ public class Compile {
     public Compile(BufferedReader reader){
         String line = null;
         status = "ko";
+        int tmp = 1;
         //String time1 = "";
         try {
             // pass validate phase
@@ -53,7 +54,7 @@ public class Compile {
 
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
-                    numberOfClasses = Integer.parseInt(parts[3]);
+                    numberOfClasses = Integer.parseInt(parts[3 - tmp]);
                     continue;
                 }
             }

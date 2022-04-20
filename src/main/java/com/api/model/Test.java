@@ -46,6 +46,7 @@ public class Test {
     public Test(BufferedReader reader){
         String line = null;
         status = "ko";
+        int tmp = 1;
         //String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
@@ -58,7 +59,7 @@ public class Test {
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
                     //time1 = parts[0];
-                    numberOfTestClasses = Integer.parseInt(parts[3]);
+                    numberOfTestClasses = Integer.parseInt(parts[3 - tmp]);
                     continue;
                 }
 

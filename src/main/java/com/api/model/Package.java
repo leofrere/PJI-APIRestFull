@@ -34,6 +34,7 @@ public class Package {
     public Package(BufferedReader reader){
         String line = null;
         status = "ko";
+        int tmp = 1;
         //String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
@@ -43,7 +44,7 @@ public class Package {
                 }
                 if (line.contains("Building jar:")) {
                     //time1 = line.split(" ")[0];
-                    jarPath = line.split(" ")[4];
+                    jarPath = line.split(" ")[4 - tmp];
                     continue;
                 }
             }

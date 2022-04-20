@@ -15,6 +15,7 @@ public class JenkinsBuild {
     private String url;
 
     @NotNull
+    @Column(unique=true)
     private String projectName;
 
     @NotNull
