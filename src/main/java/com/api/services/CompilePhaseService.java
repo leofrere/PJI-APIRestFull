@@ -9,20 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompileService {
+public class CompilePhaseService {
     
     @Autowired
     private CompileRepository compileRepository;
 
-    public CompilePhase getCompileById(long id) {
+    public CompilePhase getCompilePhaseById(long id) {
         return compileRepository.findById(id).get();
     }
 
-    public CompilePhase addCompile(BufferedReader reader) {
+    public CompilePhase addCompilePhase(BufferedReader reader) {
         return compileRepository.save(new CompilePhase(reader));
     }
 
-    public void deleteCompile(long id) {
+    public void deleteCompilePhase(long id) {
         compileRepository.deleteById(id);
     }
 

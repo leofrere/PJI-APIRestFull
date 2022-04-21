@@ -19,15 +19,15 @@ public class Log {
 
     @ManyToOne
 	@JoinColumn(name = "compile_id")
-	private CompilePhase compile;
+	private CompilePhase compilePhase;
 
     @ManyToOne
 	@JoinColumn(name = "test_id")
-	private TestPhase test;
+	private TestPhase testPhase;
 
     @ManyToOne
 	@JoinColumn(name = "package_id")
-	private PackagePhase packag;
+	private PackagePhase packagePhase;
 
     public Log(int build) {
         this.build = build;
@@ -36,9 +36,9 @@ public class Log {
     public Log(String project, int build, CompilePhase compile, TestPhase test, PackagePhase packag) {
         this.project = project;
         this.build = build;
-        this.compile = compile;
-        this.test = test;
-        this.packag = packag;
+        this.compilePhase = compile;
+        this.testPhase = test;
+        this.packagePhase = packag;
     }
 
     public long getId() {
@@ -57,28 +57,28 @@ public class Log {
         this.project = project;
     }
 
-    public CompilePhase getCompile() {
-        return compile;
+    public CompilePhase getCompilePhase() {
+        return compilePhase;
     }
 
-    public void setCompile(CompilePhase compile) {
-        this.compile = compile;
+    public void setCompilePhase(CompilePhase compile) {
+        this.compilePhase = compile;
     }
 
-    public TestPhase getTest() {
-        return test;
+    public TestPhase getTestPhase() {
+        return testPhase;
     }
 
-    public void setTest(TestPhase test) {
-        this.test = test;
+    public void setTestPhase(TestPhase test) {
+        this.testPhase = test;
     }
 
-    public PackagePhase getPackag() {
-        return packag;
+    public PackagePhase getPackagePhase() {
+        return packagePhase;
     }
 
-    public void setPackag(PackagePhase packag) {
-        this.packag = packag;
+    public void setPackagePhase(PackagePhase packag) {
+        this.packagePhase = packag;
     }
 
     public int getBuild() {

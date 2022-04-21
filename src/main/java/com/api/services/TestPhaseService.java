@@ -9,20 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TestService {
+public class TestPhaseService {
     
     @Autowired
     private TestRepository testRepository;
 
-    public TestPhase getTestById(long id) {
+    public TestPhase getTestByIdPhase(long id) {
         return testRepository.findById(id).get();
     }
 
-    public TestPhase addTest(BufferedReader reader) {
+    public TestPhase addTestPhase(BufferedReader reader) {
         return testRepository.save(new TestPhase(reader));
     }
 
-    public void deleteTest(long id) {
+    public void deleteTestPhase(long id) {
         testRepository.deleteById(id);
     }
 

@@ -9,20 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PackageService {
+public class PackagePhaseService {
     
     @Autowired
     private PackageRepository packageRepository;
 
-    public PackagePhase getPackageById(long id) {
+    public PackagePhase getPackagePhaseById(long id) {
         return packageRepository.findById(id).get();
     }
 
-    public PackagePhase addPackage(BufferedReader reader) {
+    public PackagePhase addPackagePhase(BufferedReader reader) {
         return packageRepository.save(new PackagePhase(reader));
     }
 
-    public void deletePackage(long id) {
+    public void deletePackagePhase(long id) {
         packageRepository.deleteById(id);
     }
 

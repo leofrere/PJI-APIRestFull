@@ -20,13 +20,13 @@ public class LogService {
     private LogRepository logRepository;
 
     @Autowired
-    private CompileService compileService;
+    private CompilePhaseService compileService;
 
     @Autowired
-    private TestService testService;
+    private TestPhaseService testService;
 
     @Autowired
-    private PackageService packageService;
+    private PackagePhaseService packageService;
 
     public Log getLogById(long id) {
         return logRepository.findById(id).get();
@@ -50,10 +50,10 @@ public class LogService {
     }
 
     public void addLog(BufferedReader reader, int buildNumber) {
-        CompilePhase compile = compileService.addCompile(reader);
-        TestPhase test = testService.addTest(reader);
-        PackagePhase package1 = packageService.addPackage(reader);
-        logRepository.save(new Log("mavenGL", buildNumber, compile, test, package1));
+        CompilePhase compilePhase = compileService.addCompilePhase(reader);
+        TestPhase testPhase = testService.addTestPhase(reader);
+        PackagePhase packagePhase = packageService.addPackagePhase(reader);
+        logRepository.save(new Log("mavenGL", buildNumber, compilePhase, testPhase, packagePhase));
     }
 
     public boolean buildAlreadyExist(String project, int buildNumber) {
@@ -68,13 +68,13 @@ public class LogService {
 
     public void deleteLog(long id) {
         Log log = logRepository.findById(id).get();
-        long compileId = log.getCompile().getId();
-        long testId = log.getTest().getId();
-        long packageId = log.getPackag().getId();
+        long compileId = log.getCompilePhase().getId();
+        long testId = log.getTestPhase().getId();
+        long packageId = log.getPackagePhase().getId();
         logRepository.deleteById(id);
-        compileService.deleteCompile(compileId);
-        testService.deleteTest(testId);
-        packageService.deletePackage(packageId);
+        compileService.deleteCompilePhase(compileId);
+        testService.deleteTestPhase(testId);
+        packageService.deletePackagePhase(packageId);
     }
 
 }
