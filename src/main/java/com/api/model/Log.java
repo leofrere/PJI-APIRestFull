@@ -1,7 +1,8 @@
 package com.api.model;
 
+import java.util.List;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "logs")
@@ -11,34 +12,14 @@ public class Log {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    private String project;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Order> logs;
 
-    @NotNull
-    private int build;
-
-    @ManyToOne
-	@JoinColumn(name = "compile_id")
-	private CompilePhase compilePhase;
-
-    @ManyToOne
-	@JoinColumn(name = "test_id")
-	private TestPhase testPhase;
-
-    @ManyToOne
-	@JoinColumn(name = "package_id")
-	private PackagePhase packagePhase;
-
-    public Log(int build) {
-        this.build = build;
+    public Log() {
     }
 
-    public Log(String project, int build, CompilePhase compile, TestPhase test, PackagePhase packag) {
-        this.project = project;
-        this.build = build;
-        this.compilePhase = compile;
-        this.testPhase = test;
-        this.packagePhase = packag;
+    public Log(List<Order> logs) {
+        this.logs = logs;
     }
 
     public long getId() {
@@ -49,44 +30,12 @@ public class Log {
         this.id = id;
     }
 
-    public String getProject() {
-        return project;
+    public List<Order> getLogs() {
+        return logs;
     }
 
-    public void setProject(String project) {
-        this.project = project;
-    }
-
-    public CompilePhase getCompilePhase() {
-        return compilePhase;
-    }
-
-    public void setCompilePhase(CompilePhase compile) {
-        this.compilePhase = compile;
-    }
-
-    public TestPhase getTestPhase() {
-        return testPhase;
-    }
-
-    public void setTestPhase(TestPhase test) {
-        this.testPhase = test;
-    }
-
-    public PackagePhase getPackagePhase() {
-        return packagePhase;
-    }
-
-    public void setPackagePhase(PackagePhase packag) {
-        this.packagePhase = packag;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
+    public void setLogs(List<Order> logs) {
+        this.logs = logs;
     }
 
 }
