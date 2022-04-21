@@ -19,21 +19,21 @@ public class Log {
 
     @ManyToOne
 	@JoinColumn(name = "compile_id")
-	private Compile compile;
+	private CompilePhase compile;
 
     @ManyToOne
 	@JoinColumn(name = "test_id")
-	private Test test;
+	private TestPhase test;
 
     @ManyToOne
 	@JoinColumn(name = "package_id")
-	private Package packag;
+	private PackagePhase packag;
 
     public Log(int build) {
         this.build = build;
     }
 
-    public Log(String project, int build, Compile compile, Test test, Package packag) {
+    public Log(String project, int build, CompilePhase compile, TestPhase test, PackagePhase packag) {
         this.project = project;
         this.build = build;
         this.compile = compile;
@@ -57,27 +57,27 @@ public class Log {
         this.project = project;
     }
 
-    public Compile getCompile() {
+    public CompilePhase getCompile() {
         return compile;
     }
 
-    public void setCompile(Compile compile) {
+    public void setCompile(CompilePhase compile) {
         this.compile = compile;
     }
 
-    public Test getTest() {
+    public TestPhase getTest() {
         return test;
     }
 
-    public void setTest(Test test) {
+    public void setTest(TestPhase test) {
         this.test = test;
     }
 
-    public Package getPackag() {
+    public PackagePhase getPackag() {
         return packag;
     }
 
-    public void setPackag(Package packag) {
+    public void setPackag(PackagePhase packag) {
         this.packag = packag;
     }
 

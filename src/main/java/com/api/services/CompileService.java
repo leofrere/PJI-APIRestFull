@@ -2,7 +2,7 @@ package com.api.services;
 
 import java.io.BufferedReader;
 
-import com.api.model.Compile;
+import com.api.model.CompilePhase;
 import com.api.repository.CompileRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ public class CompileService {
     @Autowired
     private CompileRepository compileRepository;
 
-    public Compile getCompileById(long id) {
+    public CompilePhase getCompileById(long id) {
         return compileRepository.findById(id).get();
     }
 
-    public Compile addCompile(BufferedReader reader) {
-        return compileRepository.save(new Compile(reader));
+    public CompilePhase addCompile(BufferedReader reader) {
+        return compileRepository.save(new CompilePhase(reader));
     }
 
     public void deleteCompile(long id) {

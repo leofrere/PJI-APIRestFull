@@ -9,7 +9,7 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "packages")
-public class Package {
+public class PackagePhase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +24,16 @@ public class Package {
 
     private String errorsTrace = "";
 
-    public Package() {
+    public PackagePhase() {
     }
 
-    public Package(String status, String time, String jarPath) {
+    public PackagePhase(String status, String time, String jarPath) {
         this.status = status;
         this.time = time;
         this.jarPath = jarPath;
     }
 
-    public Package(BufferedReader reader){
+    public PackagePhase(BufferedReader reader){
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;

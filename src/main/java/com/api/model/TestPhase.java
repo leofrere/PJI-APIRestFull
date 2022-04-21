@@ -9,7 +9,7 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class Test {
+public class TestPhase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +32,10 @@ public class Test {
 
     private String errorsTrace = "";
 
-    public Test() {
+    public TestPhase() {
     }
 
-    public Test(String status, String time, int testsRun, int testsFailed, int testsSkipped, int testsPassed, int testsError, int numberOfTestClasses) {
+    public TestPhase(String status, String time, int testsRun, int testsFailed, int testsSkipped, int testsPassed, int testsError, int numberOfTestClasses) {
         this.status = status;
         this.time = time;
         this.testsRun = testsRun;
@@ -45,7 +45,7 @@ public class Test {
         this.numberOfTestClasses = numberOfTestClasses;
     }
 
-    public Test(BufferedReader reader){
+    public TestPhase(BufferedReader reader){
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;

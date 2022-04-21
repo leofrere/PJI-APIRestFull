@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.api.model.Compile;
+import com.api.model.CompilePhase;
 import com.api.model.Log;
-import com.api.model.Test;
-import com.api.model.Package;
+import com.api.model.TestPhase;
+import com.api.model.PackagePhase;
 import com.api.repository.LogRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +50,9 @@ public class LogService {
     }
 
     public void addLog(BufferedReader reader, int buildNumber) {
-        Compile compile = compileService.addCompile(reader);
-        Test test = testService.addTest(reader);
-        Package package1 = packageService.addPackage(reader);
+        CompilePhase compile = compileService.addCompile(reader);
+        TestPhase test = testService.addTest(reader);
+        PackagePhase package1 = packageService.addPackage(reader);
         logRepository.save(new Log("mavenGL", buildNumber, compile, test, package1));
     }
 

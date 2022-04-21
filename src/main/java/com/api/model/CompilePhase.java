@@ -9,7 +9,7 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
-public class Compile {
+public class CompilePhase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +24,16 @@ public class Compile {
 
     private String errorsTrace = "";
 
-    public Compile() {
+    public CompilePhase() {
     }
 
-    public Compile(String status, String time, int numberOfClasses) {
+    public CompilePhase(String status, String time, int numberOfClasses) {
         this.status = status;
         this.time = time;
         this.numberOfClasses = numberOfClasses;
     }
 
-    public Compile(BufferedReader reader){
+    public CompilePhase(BufferedReader reader){
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;

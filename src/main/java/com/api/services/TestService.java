@@ -2,7 +2,7 @@ package com.api.services;
 
 import java.io.BufferedReader;
 
-import com.api.model.Test;
+import com.api.model.TestPhase;
 import com.api.repository.TestRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ public class TestService {
     @Autowired
     private TestRepository testRepository;
 
-    public Test getTestById(long id) {
+    public TestPhase getTestById(long id) {
         return testRepository.findById(id).get();
     }
 
-    public Test addTest(BufferedReader reader) {
-        return testRepository.save(new Test(reader));
+    public TestPhase addTest(BufferedReader reader) {
+        return testRepository.save(new TestPhase(reader));
     }
 
     public void deleteTest(long id) {
