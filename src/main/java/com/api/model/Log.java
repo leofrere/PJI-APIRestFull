@@ -29,7 +29,8 @@ public class Log {
 	@JoinColumn(name = "package_id")
 	private Package packag;
 
-    public Log() {
+    public Log(int build) {
+        this.build = build;
     }
 
     public Log(String project, int build, Compile compile, Test test, Package packag) {
