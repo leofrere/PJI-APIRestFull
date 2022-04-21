@@ -1,5 +1,7 @@
 package com.api.utils;
 
+import java.text.DecimalFormat;
+
 public class Time {
     
     public static String differenceBetween(String time1, String time2){
@@ -31,7 +33,8 @@ public class Time {
 
                     s = ts2 - ts1;
                     s += m * 60 + h * 3600;
-                    return String.format("%fs", s);
+                    DecimalFormat dfSharp = new DecimalFormat("#.##");
+                    return dfSharp.format(s)+"s";
     }
 
 }
