@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.LinkedList;
 
 import com.api.PJIApplication;
-import com.api.model.Order;
+import com.api.model.Log;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,14 +16,14 @@ public class LogSortTest {
     
     @Test
     void sortTest(){
-        Order log1 = new Order(3);
-        Order log2 = new Order(8);
-        Order log3 = new Order(1);
-        Order log4 = new Order(4);
-        Order log5 = new Order(14);
-        Order log6 = new Order(6);
+        Log log1 = new Log(3);
+        Log log2 = new Log(8);
+        Log log3 = new Log(1);
+        Log log4 = new Log(4);
+        Log log5 = new Log(14);
+        Log log6 = new Log(6);
 
-        LinkedList<Order> logs = new LinkedList<Order>();
+        LinkedList<Log> logs = new LinkedList<Log>();
         logs.add(log1);
         logs.add(log2); 
         logs.add(log3);

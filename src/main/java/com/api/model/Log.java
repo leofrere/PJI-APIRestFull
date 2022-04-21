@@ -22,7 +22,8 @@ public class Log {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Order> logs;
 
-    public Log() {
+    public Log(int build) {
+        this.build = build;
     }
 
     public Log(String project, int build, List<Order> logs) {
