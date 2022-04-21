@@ -1,0 +1,69 @@
+Démarré par l'utilisateur Admin
+Running as SYSTEM
+Building in workspace /Users/leofrere/.jenkins/workspace/mavenGL
+The recommended git tool is: NONE
+using credential bbe25792-0c86-4fe1-b870-53eedc698fd8
+ > git rev-parse --resolve-git-dir /Users/leofrere/.jenkins/workspace/mavenGL/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://gitlab.univ-lille.fr/leo.frere.etu/mavengl.git # timeout=10
+Fetching upstream changes from https://gitlab.univ-lille.fr/leo.frere.etu/mavengl.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.32.0 (Apple Git-132)'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://gitlab.univ-lille.fr/leo.frere.etu/mavengl.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision eebb2df8ce3c9e7ecd441c9a789a7d3b4aa58cc2 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f eebb2df8ce3c9e7ecd441c9a789a7d3b4aa58cc2 # timeout=10
+Commit message: "Update CompteEpargne.java"
+ > git rev-list --no-walk 68c97e5aed2f0826fc3fa2e1fef35c34bb6ed7ff # timeout=10
+Parsing POMs
+Established TCP socket on 56385
+[mavenGL] $ java -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss,SSS -Dorg.slf4j.simpleLogger.showDateTime=true -cp /Users/leofrere/.jenkins/plugins/maven-plugin/WEB-INF/lib/maven35-agent-1.13.jar:/Users/leofrere/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.8.5/boot/plexus-classworlds-2.6.0.jar:/Users/leofrere/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.8.5/conf/logging jenkins.maven3.agent.Maven35Main /Users/leofrere/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.8.5 /Users/leofrere/.jenkins/war/WEB-INF/lib/remoting-4.13.jar /Users/leofrere/.jenkins/plugins/maven-plugin/WEB-INF/lib/maven35-interceptor-1.13.jar /Users/leofrere/.jenkins/plugins/maven-plugin/WEB-INF/lib/maven3-interceptor-commons-1.13.jar 56385
+<===[JENKINS REMOTING CAPACITY]===>���channel started
+Executing Maven:  -B -f /Users/leofrere/.jenkins/workspace/mavenGL/pom.xml clean install
+11:26:32,376 [INFO] Scanning for projects...
+11:26:32,794 [INFO] 
+11:26:32,795 [INFO] ------------------------< BankMaven:BankMaven >-------------------------
+11:26:32,795 [INFO] Building BankMaven 0.0.1-SNAPSHOT
+11:26:32,795 [INFO] --------------------------------[ jar ]---------------------------------
+11:26:33,082 [INFO] 
+11:26:33,083 [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ BankMaven ---
+11:26:33,204 [INFO] Deleting /Users/leofrere/.jenkins/workspace/mavenGL/target
+11:26:33,357 [INFO] 
+11:26:33,357 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ BankMaven ---
+11:26:33,708 [INFO] Using 'UTF-8' encoding to copy filtered resources.
+11:26:33,708 [INFO] skip non existing resourceDirectory /Users/leofrere/.jenkins/workspace/mavenGL/src/main/resources
+11:26:33,725 [INFO] 
+11:26:33,725 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ BankMaven ---
+11:26:34,298 [INFO] Changes detected - recompiling the module!
+11:26:34,303 [INFO] Compiling 14 source files to /Users/leofrere/.jenkins/workspace/mavenGL/target/classes
+11:26:35,104 [INFO] -------------------------------------------------------------
+11:26:35,105 [ERROR] COMPILATION ERROR : 
+11:26:35,105 [INFO] -------------------------------------------------------------
+11:26:35,105 [ERROR] /Users/leofrere/.jenkins/workspace/mavenGL/src/main/java/bank/CompteEpargne.java:[11,17] cannot find symbol
+  symbol:   variable thi
+  location: class bank.CompteEpargne
+11:26:35,105 [INFO] 1 error
+11:26:35,105 [INFO] -------------------------------------------------------------
+11:26:35,484 [INFO] ------------------------------------------------------------------------
+11:26:35,485 [INFO] BUILD FAILURE
+11:26:35,485 [INFO] ------------------------------------------------------------------------
+11:26:35,488 [INFO] Total time:  3.147 s
+11:26:35,488 [INFO] Finished at: 2022-04-21T11:26:35+02:00
+11:26:35,489 [INFO] ------------------------------------------------------------------------
+En attente que Jenkins finisse de récupérer les données
+11:26:35,567 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:compile (default-compile) on project BankMaven: Compilation failure
+11:26:35,567 [ERROR] /Users/leofrere/.jenkins/workspace/mavenGL/src/main/java/bank/CompteEpargne.java:[11,17] cannot find symbol
+11:26:35,567 [ERROR] symbol:   variable thi
+11:26:35,567 [ERROR] location: class bank.CompteEpargne
+11:26:35,567 [ERROR] -> [Help 1]
+11:26:35,568 [ERROR] 
+11:26:35,568 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+11:26:35,568 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+11:26:35,568 [ERROR] 
+11:26:35,568 [ERROR] For more information about the errors and possible solutions, please read the following articles:
+11:26:35,568 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[JENKINS] Archiving /Users/leofrere/.jenkins/workspace/mavenGL/pom.xml to BankMaven/BankMaven/0.0.1-SNAPSHOT/BankMaven-0.0.1-SNAPSHOT.pom
+channel stopped
+Finished: FAILURE
