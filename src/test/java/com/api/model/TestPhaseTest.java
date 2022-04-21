@@ -20,12 +20,12 @@ public class TestPhaseTest {
     void creationOfTestTest() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(getClass().getResource("logfile.log").getFile()));
-            CompilePhase compile = new CompilePhase(reader);
+            new CompilePhase(reader);
             TestPhase test = new TestPhase(reader);
             assertEquals("ok", test.getStatus());
             assertEquals(3, test.getNumberOfTestClasses());
             assertEquals("", test.getErrorsTrace());
-            assertEquals("2,46s", compile.getTime());
+            assertEquals("2,45s", test.getTime());
             assertEquals(26, test.getTestsRun());
             assertEquals(0, test.getTestsFailed());
             assertEquals(0, test.getTestsError());
