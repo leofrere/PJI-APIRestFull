@@ -1,7 +1,6 @@
 package com.api.services;
 
 import java.io.BufferedReader;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.api.model.CompilePhase;
@@ -36,7 +35,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public List<Order> getOrderByProject(String project) {
+    //To move in LogService
+    /*public List<Order> getOrderByProject(String project) {
         List<Order> list = orderRepository.findAll();
         LinkedList<Order> OrderOfProject = new LinkedList<Order>();
 
@@ -47,16 +47,17 @@ public class OrderService {
         }
 
         return OrderOfProject;
-    }
+    }*/
 
-    public void addOrder(BufferedReader reader, int buildNumber) {
+    public void addOrder(BufferedReader reader) {
         CompilePhase compilePhase = compileService.addCompilePhase(reader);
         TestPhase testPhase = testService.addTestPhase(reader);
         PackagePhase packagePhase = packageService.addPackagePhase(reader);
-        orderRepository.save(new Order("mavenGL", buildNumber, compilePhase, testPhase, packagePhase));
+        orderRepository.save(new Order(compilePhase, testPhase, packagePhase));
     }
 
-    public boolean buildAlreadyExist(String project, int buildNumber) {
+    //To move in LogService
+   /* public boolean buildAlreadyExist(String project, int buildNumber) {
         List<Order> list = orderRepository.findAll();
         for (Order order : list) {
             if (order.getProject().equals(project) && order.getBuild() == buildNumber) {
@@ -64,7 +65,7 @@ public class OrderService {
             }
         }
         return false;
-    }
+    }*/
 
     public void deleteOrder(long id) {
         Order order = orderRepository.findById(id).get();

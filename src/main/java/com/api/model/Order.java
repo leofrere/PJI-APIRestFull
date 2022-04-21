@@ -1,7 +1,6 @@
 package com.api.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "orders")
@@ -10,12 +9,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @NotNull
-    private String project;
-
-    @NotNull
-    private int build;
 
     @ManyToOne
 	@JoinColumn(name = "compile_id")
@@ -29,13 +22,10 @@ public class Order {
 	@JoinColumn(name = "package_id")
 	private PackagePhase packagePhase;
 
-    public Order(int build) {
-        this.build = build;
+    public Order() {
     }
 
-    public Order(String project, int build, CompilePhase compile, TestPhase test, PackagePhase packag) {
-        this.project = project;
-        this.build = build;
+    public Order(CompilePhase compile, TestPhase test, PackagePhase packag) {
         this.compilePhase = compile;
         this.testPhase = test;
         this.packagePhase = packag;
@@ -47,14 +37,6 @@ public class Order {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getProject() {
-        return project;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
     }
 
     public CompilePhase getCompilePhase() {
@@ -79,14 +61,6 @@ public class Order {
 
     public void setPackagePhase(PackagePhase packag) {
         this.packagePhase = packag;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
     }
 
 }

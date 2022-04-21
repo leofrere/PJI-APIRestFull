@@ -1,29 +1,26 @@
 package com.api.controller;
 
-import java.io.BufferedReader;
-import java.util.List;
-
-import com.api.model.JenkinsBuild;
 import com.api.model.Order;
-import com.api.services.JenkinsBuildService;
 import com.api.services.OrderService;
-import com.api.utils.ReaderBuild;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+//To remove after create the new LogController
 @RestController
 public class OrderController {
 
-    @Autowired
-    private JenkinsBuildService jenkinsBuildService;
+    /*@Autowired
+    private JenkinsBuildService jenkinsBuildService;*/
 
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/log/create")
+    //To move in LogController
+    /*@GetMapping("/log/create")
     public void setLog(@RequestParam(value="pj") String projectName, @RequestParam(value="build") int buildNumber) {
 
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
@@ -38,9 +35,10 @@ public class OrderController {
             e.printStackTrace();
         }
         
-    }
+    }*/
 
-    @GetMapping("/log/creates")
+    //To move in LogController
+    /*@GetMapping("/log/creates")
     public void addLogOfJenkinsBuild(@RequestParam(value="pj") String projectName){
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         try {
@@ -59,17 +57,18 @@ public class OrderController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @GetMapping("/log")
     public Order getLog(@RequestParam(value="id") Long id) {
         return orderService.getOrderById(id);
     }
 
-    @GetMapping("/log/project")
+    //To move in LogController
+    /*@GetMapping("/log/project")
     public List<Order> getLogByProject(@RequestParam(value="project") String project) {
         return orderService.getOrderByProject(project);
-    }
+    }*/
 
     @GetMapping("/log/delete")
     public void deleteLog(@RequestParam(value="id") Long id) {
