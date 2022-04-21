@@ -1,0 +1,77 @@
+Démarré par l'utilisateur Admin
+Running as SYSTEM
+Building in workspace /Users/leofrere/.jenkins/workspace/mavenGL
+The recommended git tool is: NONE
+using credential bbe25792-0c86-4fe1-b870-53eedc698fd8
+ > git rev-parse --resolve-git-dir /Users/leofrere/.jenkins/workspace/mavenGL/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://gitlab.univ-lille.fr/leo.frere.etu/mavengl.git # timeout=10
+Fetching upstream changes from https://gitlab.univ-lille.fr/leo.frere.etu/mavengl.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.32.0 (Apple Git-132)'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://gitlab.univ-lille.fr/leo.frere.etu/mavengl.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 68c97e5aed2f0826fc3fa2e1fef35c34bb6ed7ff (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 68c97e5aed2f0826fc3fa2e1fef35c34bb6ed7ff # timeout=10
+Commit message: "Update CompteTest.java"
+ > git rev-list --no-walk a9f6876e9258368f0d942feeb7b2c2c6d321cb26 # timeout=10
+Parsing POMs
+Established TCP socket on 54833
+[mavenGL] $ java -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss,SSS -Dorg.slf4j.simpleLogger.showDateTime=true -cp /Users/leofrere/.jenkins/plugins/maven-plugin/WEB-INF/lib/maven35-agent-1.13.jar:/Users/leofrere/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.8.5/boot/plexus-classworlds-2.6.0.jar:/Users/leofrere/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.8.5/conf/logging jenkins.maven3.agent.Maven35Main /Users/leofrere/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.8.5 /Users/leofrere/.jenkins/war/WEB-INF/lib/remoting-4.13.jar /Users/leofrere/.jenkins/plugins/maven-plugin/WEB-INF/lib/maven35-interceptor-1.13.jar /Users/leofrere/.jenkins/plugins/maven-plugin/WEB-INF/lib/maven3-interceptor-commons-1.13.jar 54833
+<===[JENKINS REMOTING CAPACITY]===>���channel started
+Executing Maven:  -B -f /Users/leofrere/.jenkins/workspace/mavenGL/pom.xml clean install
+09:10:09,202 [INFO] Scanning for projects...
+09:10:09,412 [INFO] 
+09:10:09,412 [INFO] ------------------------< BankMaven:BankMaven >-------------------------
+09:10:09,412 [INFO] Building BankMaven 0.0.1-SNAPSHOT
+09:10:09,412 [INFO] --------------------------------[ jar ]---------------------------------
+09:10:09,713 [INFO] 
+09:10:09,713 [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ BankMaven ---
+09:10:09,837 [INFO] Deleting /Users/leofrere/.jenkins/workspace/mavenGL/target
+09:10:09,958 [INFO] 
+09:10:09,958 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ BankMaven ---
+09:10:10,239 [INFO] Using 'UTF-8' encoding to copy filtered resources.
+09:10:10,239 [INFO] skip non existing resourceDirectory /Users/leofrere/.jenkins/workspace/mavenGL/src/main/resources
+09:10:10,248 [INFO] 
+09:10:10,248 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ BankMaven ---
+09:10:10,822 [INFO] Changes detected - recompiling the module!
+09:10:10,827 [INFO] Compiling 14 source files to /Users/leofrere/.jenkins/workspace/mavenGL/target/classes
+09:10:11,768 [INFO] 
+09:10:11,768 [INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ BankMaven ---
+09:10:11,793 [INFO] Using 'UTF-8' encoding to copy filtered resources.
+09:10:11,794 [INFO] skip non existing resourceDirectory /Users/leofrere/.jenkins/workspace/mavenGL/src/test/resources
+09:10:11,798 [INFO] 
+09:10:11,798 [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ BankMaven ---
+09:10:11,814 [INFO] Changes detected - recompiling the module!
+09:10:11,814 [INFO] Compiling 3 source files to /Users/leofrere/.jenkins/workspace/mavenGL/target/test-classes
+09:10:12,231 [INFO] -------------------------------------------------------------
+09:10:12,231 [ERROR] COMPILATION ERROR : 
+09:10:12,231 [INFO] -------------------------------------------------------------
+09:10:12,231 [ERROR] /Users/leofrere/.jenkins/workspace/mavenGL/src/test/java/bank/CompteTest.java:[151,31] cannot find symbol
+  symbol:   method adDebit(int)
+  location: variable compte of type bank.Compte
+09:10:12,232 [INFO] 1 error
+09:10:12,232 [INFO] -------------------------------------------------------------
+09:10:12,628 [INFO] ------------------------------------------------------------------------
+09:10:12,628 [INFO] BUILD FAILURE
+09:10:12,628 [INFO] ------------------------------------------------------------------------
+09:10:12,633 [INFO] Total time:  3.449 s
+09:10:12,633 [INFO] Finished at: 2022-04-21T09:10:12+02:00
+09:10:12,633 [INFO] ------------------------------------------------------------------------
+En attente que Jenkins finisse de récupérer les données
+09:10:12,714 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:testCompile (default-testCompile) on project BankMaven: Compilation failure
+09:10:12,715 [ERROR] /Users/leofrere/.jenkins/workspace/mavenGL/src/test/java/bank/CompteTest.java:[151,31] cannot find symbol
+09:10:12,715 [ERROR] symbol:   method adDebit(int)
+09:10:12,715 [ERROR] location: variable compte of type bank.Compte
+09:10:12,715 [ERROR] -> [Help 1]
+09:10:12,715 [ERROR] 
+09:10:12,715 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+09:10:12,715 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+09:10:12,715 [ERROR] 
+09:10:12,715 [ERROR] For more information about the errors and possible solutions, please read the following articles:
+09:10:12,715 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[JENKINS] Archiving /Users/leofrere/.jenkins/workspace/mavenGL/pom.xml to BankMaven/BankMaven/0.0.1-SNAPSHOT/BankMaven-0.0.1-SNAPSHOT.pom
+channel stopped
+Finished: FAILURE
