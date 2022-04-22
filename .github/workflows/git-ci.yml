@@ -10,9 +10,21 @@ on:
     branches: [ master ]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
+    
+    services:
+      mariadb:
+        image: mariadb:lastest
+        ports:
+          - 3306
+        env:
+          MYSQL_USER: pji
+          MYSQL_PASSWORD: pji
+          MYSQL_DATABASE: pji
+          MYSQL_ROOT_PASSWORD: root
 
     steps:
     - uses: actions/checkout@v3
