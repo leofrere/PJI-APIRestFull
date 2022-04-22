@@ -20,11 +20,8 @@ public class LogService {
     @Autowired
     private LogRepository logRepository;
 
-    public void addLog(BufferedReader reader, String projectName, int build) {
-        LinkedList<Order> orders = new LinkedList<Order>();
-        LinkedList<String> ordersName = new LinkedList<String>();
+    public String setOrdersName(BufferedReader reader, List<String> ordersName){
         String line = null;
-
         try {
             while ((line = reader.readLine()) != null) {
                 if(line.contains("Build Order")){
@@ -44,7 +41,24 @@ public class LogService {
                 if(line.contains("[INFO] Building")){
                     break;
                 }
-            }
+            } 
+
+            return line;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ""; 
+    }
+
+    public void addLog(BufferedReader reader, String projectName, int build) {
+        LinkedList<Order> orders = new LinkedList<Order>();
+        LinkedList<String> ordersName = new LinkedList<String>();
+        String line = null;
+
+        try {
+            line = setOrdersName(reader, ordersName);
 
             if(ordersName.size() == 0){
                 String logName = line.split(" ")[3];
