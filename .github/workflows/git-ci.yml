@@ -11,20 +11,19 @@ on:
 
 jobs:
 
+  data:
+    runs-on: ubuntu-lastest
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
+
   build:
 
     runs-on: ubuntu-latest
-    
-    services:
-      mariadb:
-        image: mariadb:lastest
-        ports:
-          - 3306
-        env:
-          MYSQL_USER: pji
-          MYSQL_PASSWORD: pji
-          MYSQL_DATABASE: pji
-          MYSQL_ROOT_PASSWORD: root
 
     steps:
     - uses: actions/checkout@v3
