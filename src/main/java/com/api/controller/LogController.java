@@ -1,7 +1,13 @@
 package com.api.controller;
 
-import com.api.model.Order;
-import com.api.services.OrderService;
+import java.io.BufferedReader;
+import java.util.List;
+
+import com.api.model.JenkinsBuild;
+import com.api.model.Log;
+import com.api.services.JenkinsBuildService;
+import com.api.services.LogService;
+import com.api.utils.ReaderBuild;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,18 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-//To remove after create the new LogController
 @RestController
-public class OrderController {
-
-    /*@Autowired
-    private JenkinsBuildService jenkinsBuildService;*/
+public class LogController {
 
     @Autowired
-    private OrderService orderService;
+    private JenkinsBuildService jenkinsBuildService;
 
-    //To move in LogController
-    /*@GetMapping("/log/create")
+    @Autowired
+    private LogService logService;
+
+    @GetMapping("/log/create")
     public void setLog(@RequestParam(value="pj") String projectName, @RequestParam(value="build") int buildNumber) {
 
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
@@ -30,24 +34,23 @@ public class OrderController {
 
         try {
             BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, buildNumber));
-            orderService.addOrder(reader, buildNumber);
+            logService.addLog(reader, projectName, buildNumber);
         } catch (Exception e) {
             e.printStackTrace();
         }
         
-    }*/
+    }
 
-    //To move in LogController
-    /*@GetMapping("/log/creates")
+    @GetMapping("/log/creates")
     public void addLogOfJenkinsBuild(@RequestParam(value="pj") String projectName){
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         try {
             int lastBuild = ReaderBuild.lastBuild(jenkinsBuild);
             for (int i = 1; i <= lastBuild; i++) {
-                if(!orderService.buildAlreadyExist(projectName, i)){
+                if(!logService.buildAlreadyExist(projectName, i)){
                     try{
                         BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, i));
-                        orderService.addOrder(reader, i);
+                        logService.addLog(reader, projectName ,i);
                     } catch (NullPointerException e) {
                         System.out.println("Build not Exist");
                     }
@@ -57,22 +60,21 @@ public class OrderController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
-
-    @GetMapping("/log")
-    public Order getLog(@RequestParam(value="id") Long id) {
-        return orderService.getOrderById(id);
     }
 
-    //To move in LogController
-    /*@GetMapping("/log/project")
-    public List<Order> getLogByProject(@RequestParam(value="project") String project) {
-        return orderService.getOrderByProject(project);
-    }*/
+    @GetMapping("/log")
+    public Log getLog(@RequestParam(value="id") Long id) {
+        return logService.getLogById(id);
+    }
+
+    @GetMapping("/log/project")
+    public List<Log> getLogByProject(@RequestParam(value="project") String project) {
+        return logService.getLogByProject(project);
+    }
 
     @GetMapping("/log/delete")
     public void deleteLog(@RequestParam(value="id") Long id) {
-        orderService.deleteOrder(id);
+        logService.deleteLog(id);
     }
     
 }

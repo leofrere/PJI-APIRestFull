@@ -1,6 +1,7 @@
 package com.api.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "orders")
@@ -9,6 +10,9 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    private String name;
 
     @ManyToOne
 	@JoinColumn(name = "compile_id")
@@ -25,10 +29,11 @@ public class Order {
     public Order() {
     }
 
-    public Order(CompilePhase compile, TestPhase test, PackagePhase packag) {
+    public Order(CompilePhase compile, TestPhase test, PackagePhase packagePhase, String name) {
         this.compilePhase = compile;
         this.testPhase = test;
-        this.packagePhase = packag;
+        this.packagePhase = packagePhase;
+        this.name = name;
     }
 
     public long getId() {

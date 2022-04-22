@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "logs")
 public class Log {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -20,16 +20,19 @@ public class Log {
     private int build;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Order> logs;
+    private List<Order> orders;
+
+    public Log() {
+    }
 
     public Log(int build) {
         this.build = build;
     }
 
-    public Log(String project, int build, List<Order> logs) {
+    public Log(String project, int build, List<Order> orders) {
         this.project = project;
         this.build = build;
-        this.logs = logs;
+        this.orders = orders;
     }
 
     public long getId() {
@@ -40,12 +43,12 @@ public class Log {
         this.id = id;
     }
 
-    public List<Order> getLogs() {
-        return logs;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setLogs(List<Order> logs) {
-        this.logs = logs;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public String getProject() {

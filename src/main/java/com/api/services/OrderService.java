@@ -35,37 +35,12 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    //To move in LogService
-    /*public List<Order> getOrderByProject(String project) {
-        List<Order> list = orderRepository.findAll();
-        LinkedList<Order> OrderOfProject = new LinkedList<Order>();
-
-        for (Order order : list) {
-            if (order.getProject().equals(project)) {
-                OrderOfProject.add(order);
-            }
-        }
-
-        return OrderOfProject;
-    }*/
-
-    public void addOrder(BufferedReader reader) {
+    public Order addOrder(BufferedReader reader, String name) {
         CompilePhase compilePhase = compileService.addCompilePhase(reader);
         TestPhase testPhase = testService.addTestPhase(reader);
         PackagePhase packagePhase = packageService.addPackagePhase(reader);
-        orderRepository.save(new Order(compilePhase, testPhase, packagePhase));
+        return orderRepository.save(new Order(compilePhase, testPhase, packagePhase, name));
     }
-
-    //To move in LogService
-   /* public boolean buildAlreadyExist(String project, int buildNumber) {
-        List<Order> list = orderRepository.findAll();
-        for (Order order : list) {
-            if (order.getProject().equals(project) && order.getBuild() == buildNumber) {
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     public void deleteOrder(long id) {
         Order order = orderRepository.findById(id).get();
