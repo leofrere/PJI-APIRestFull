@@ -14,15 +14,15 @@ public class Order {
     @NotNull
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "compile_id")
 	private CompilePhase compilePhase;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "test_id")
 	private TestPhase testPhase;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "package_id")
 	private PackagePhase packagePhase;
 

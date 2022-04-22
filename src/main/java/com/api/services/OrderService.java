@@ -42,15 +42,4 @@ public class OrderService {
         return orderRepository.save(new Order(compilePhase, testPhase, packagePhase, name));
     }
 
-    public void deleteOrder(long id) {
-        Order order = orderRepository.findById(id).get();
-        long compileId = order.getCompilePhase().getId();
-        long testId = order.getTestPhase().getId();
-        long packageId = order.getPackagePhase().getId();
-        orderRepository.deleteById(id);
-        compileService.deleteCompilePhase(compileId);
-        testService.deleteTestPhase(testId);
-        packageService.deletePackagePhase(packageId);
-    }
-
 }

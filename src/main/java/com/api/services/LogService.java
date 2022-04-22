@@ -98,11 +98,7 @@ public class LogService {
 
     public void deleteLog(long id) {
         Log log = logRepository.findById(id).get();
-        List<Order> orders = log.getOrders();
         logRepository.delete(log);
-        for (Order order : orders) {
-            orderService.deleteOrder(order.getId());
-        }
     }
 
 }

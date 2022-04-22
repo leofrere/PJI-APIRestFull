@@ -22,8 +22,4 @@ public class TestPhaseService {
         return testRepository.save(new TestPhase(reader));
     }
 
-    public void deleteTestPhase(long id) {
-        testRepository.deleteById(id);
-    }
-
 }

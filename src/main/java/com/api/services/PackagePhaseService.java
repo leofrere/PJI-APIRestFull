@@ -22,8 +22,4 @@ public class PackagePhaseService {
         return packageRepository.save(new PackagePhase(reader));
     }
 
-    public void deletePackagePhase(long id) {
-        packageRepository.deleteById(id);
-    }
-
 }

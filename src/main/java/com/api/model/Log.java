@@ -19,7 +19,7 @@ public class Log {
     @NotNull
     private int build;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Order> orders;
 
     public Log() {
