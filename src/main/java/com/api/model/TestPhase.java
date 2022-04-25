@@ -98,7 +98,7 @@ public class TestPhase {
                         testsSkipped = Integer.parseInt(parts[8]);
                     }
                     if(testClass.length() > 0){
-                        testsByClasse.add(new TestClasse(testClass, time, testsRun, testsFailed, testsSkipped, testsError));
+                        testsByClasse.add(new TestClasse(testClass, parts[11]+"s", testsRun, testsFailed, testsSkipped, testsError));
                         testClass = "";
                     }
                     continue;
