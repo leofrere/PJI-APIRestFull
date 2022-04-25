@@ -1,10 +1,13 @@
 package com.api.model;
 
 import java.io.BufferedReader;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.services.TestClasseService;
 import com.api.utils.Time;
 
 @Entity
@@ -32,6 +35,9 @@ public class TestPhase {
 
     private String errorsTrace = "";
 
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    private List<TestClasse> testsByClasse;
+
     public TestPhase() {
     }
 
@@ -45,11 +51,13 @@ public class TestPhase {
         this.numberOfTestClasses = numberOfTestClasses;
     }
 
-    public TestPhase(BufferedReader reader){
+    public TestPhase(BufferedReader reader, TestClasseService testClasseService) {
         String line = null;
+        testsByClasse = new LinkedList<TestClasse>();
         status = "ko";
         boolean secondErrorLine = false;
         String time1 = "";
+        String testClass = "";
         try {
             while ((line = reader.readLine()) != null) {
 
@@ -75,6 +83,11 @@ public class TestPhase {
                     continue;
                 }
 
+                
+                if(line.contains("Running ")){
+                    testClass = line.split(" ")[1];
+                }
+
                 if(line.contains("Tests run:")){
                     String parts[] = line.split(" ");
                     testsRun = Integer.parseInt(parts[2].substring(0, parts[2].length()-1));
@@ -84,6 +97,11 @@ public class TestPhase {
                         testsSkipped = Integer.parseInt(parts[8].substring(0, parts[8].length()-1));
                     } else {
                         testsSkipped = Integer.parseInt(parts[8]);
+                    }
+                    if(testClass.length() > 0){
+                        TestClasse testClasse = testClasseService.addTestClasse(new TestClasse(testClass, time, testsRun, testsFailed, testsSkipped, testsError));
+                        testsByClasse.add(testClasse);
+                        testClass = "";
                     }
                     continue;
                 }
@@ -164,6 +182,14 @@ public class TestPhase {
 
     public void setErrorsTrace(String errorsTrace) {
         this.errorsTrace = errorsTrace;
+    }
+
+    public List<TestClasse> getTestsByClasse() {
+        return testsByClasse;
+    }
+
+    public void setTestsByClasse(List<TestClasse> testsByClasse) {
+        this.testsByClasse = testsByClasse;
     }
 
 }
