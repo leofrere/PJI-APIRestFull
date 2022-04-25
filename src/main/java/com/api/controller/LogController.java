@@ -70,8 +70,13 @@ public class LogController {
     }
 
     @GetMapping("/log/project/{projectName}")
-    public List<Log> getLogByProject(@PathVariable String projectName) {
+    public List<Log> getLogsByProject(@PathVariable String projectName) {
         return logService.getLogByProject(projectName);
+    }
+
+    @GetMapping("/log/project/{projectName}/{n}")
+    public Log getLogByProject(@PathVariable String projectName, @PathVariable int n) {
+        return logService.getLogByProject(projectName).get(n);
     }
 
 
