@@ -88,19 +88,7 @@ public class TestPhase {
                 }
 
                 if(line.contains("Tests run:")){
-                    String parts[] = line.split(" ");
-                    testsRun = Integer.parseInt(parts[2].substring(0, parts[2].length()-1));
-                    testsFailed = Integer.parseInt(parts[4].substring(0, parts[4].length()-1));
-                    testsError = Integer.parseInt(parts[6].substring(0, parts[6].length()-1));
-                    if(parts[8].contains(",")){
-                        testsSkipped = Integer.parseInt(parts[8].substring(0, parts[8].length()-1));
-                    } else {
-                        testsSkipped = Integer.parseInt(parts[8]);
-                    }
-                    if(testClass.length() > 0){
-                        testsByClasse.add(new TestClasse(testClass, parts[11]+"s", testsRun, testsFailed, testsSkipped, testsError));
-                        testClass = "";
-                    }
+                    testClass = parseTestsInformation(line, testClass);
                     continue;
                 }
                 
@@ -108,6 +96,23 @@ public class TestPhase {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    private String parseTestsInformation(String line, String testClass) {
+        String parts[] = line.split(" ");
+        testsRun = Integer.parseInt(parts[2].substring(0, parts[2].length()-1));
+        testsFailed = Integer.parseInt(parts[4].substring(0, parts[4].length()-1));
+        testsError = Integer.parseInt(parts[6].substring(0, parts[6].length()-1));
+        if(parts[8].contains(",")){
+            testsSkipped = Integer.parseInt(parts[8].substring(0, parts[8].length()-1));
+        } else {
+            testsSkipped = Integer.parseInt(parts[8]);
+        }
+        if(testClass.length() > 0){
+            testsByClasse.add(new TestClasse(testClass, parts[11]+"s", testsRun, testsFailed, testsSkipped, testsError));
+            testClass = "";
+        }
+        return testClass;
     }
 
     public long getId() {
