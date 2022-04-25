@@ -35,4 +35,9 @@ public class AnalyseController {
         return Analyse.increaseOfTimePerPhase(log1, log2, phaseName);
     }
 
+    @GetMapping("/analyse/phase/error/{projectName}")
+    public String phaseWithTheMostError(@PathVariable String projectName) {
+        return Analyse.phaseWithTheMostError(logService.getLogByProject(projectName));
+    }
+
 }
