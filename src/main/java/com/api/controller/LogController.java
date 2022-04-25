@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.api.model.JenkinsBuild;
 import com.api.model.Log;
+import com.api.model.TestClasse;
 import com.api.services.JenkinsBuildService;
 import com.api.services.LogService;
 import com.api.utils.ReaderBuild;
@@ -86,4 +87,9 @@ public class LogController {
         logService.deleteLog(n);
     }
     
+
+    @GetMapping("/log/project/tests/{projectName}/{n}")
+    public List<TestClasse> getTestsClass(@PathVariable String projectName, @PathVariable int n) {
+        return logService.getLogByProject(projectName).get(n).getOrders().get(0).getTestPhase().getTestsByClasse();
+    }
 }
