@@ -1,7 +1,10 @@
 package com.api.services;
 
 import java.io.BufferedReader;
+import java.util.LinkedList;
+import java.util.List;
 
+import com.api.model.TestClasse;
 import com.api.model.TestPhase;
 import com.api.repository.TestRepository;
 
@@ -22,7 +25,14 @@ public class TestPhaseService {
     }
 
     public TestPhase addTestPhase(BufferedReader reader) {
-        return testRepository.save(new TestPhase(reader, testClasseService));
+        TestPhase testPhase = new TestPhase(reader);
+        List<TestClasse> testClasses = testPhase.getTestsByClasse();
+        List<TestClasse> testClassesToSave = new LinkedList<TestClasse>();
+        for(TestClasse testClasse : testClasses) {
+            testClassesToSave.add(testClasseService.addTestClasse(testClasse));
+        }
+        testPhase.setTestsByClasse(testClassesToSave);
+        return testRepository.save(testPhase);
     }
 
 }

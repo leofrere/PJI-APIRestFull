@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = PJIApplication.class)
 public class TestPhaseTest {
     
-    /*@Test
+    @Test
     void creationOfTestTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFile()));
         new CompilePhase(reader);
@@ -103,6 +103,6 @@ public class TestPhaseTest {
         assertEquals(0, test.getTestsFailed());
         assertEquals(0, test.getTestsError());
         assertEquals(26, test.getTestsSkipped());
-    }*/
+    }
 
 }

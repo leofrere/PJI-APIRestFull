@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.api.services.TestClasseService;
 import com.api.utils.Time;
 
 @Entity
@@ -51,7 +50,7 @@ public class TestPhase {
         this.numberOfTestClasses = numberOfTestClasses;
     }
 
-    public TestPhase(BufferedReader reader, TestClasseService testClasseService) {
+    public TestPhase(BufferedReader reader) {
         String line = null;
         testsByClasse = new LinkedList<TestClasse>();
         status = "ko";
@@ -99,8 +98,7 @@ public class TestPhase {
                         testsSkipped = Integer.parseInt(parts[8]);
                     }
                     if(testClass.length() > 0){
-                        TestClasse testClasse = testClasseService.addTestClasse(new TestClasse(testClass, time, testsRun, testsFailed, testsSkipped, testsError));
-                        testsByClasse.add(testClasse);
+                        testsByClasse.add(new TestClasse(testClass, time, testsRun, testsFailed, testsSkipped, testsError));
                         testClass = "";
                     }
                     continue;

@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = PJIApplication.class)
 public class PackageTest {
     
-    /*@Test
+    @Test
     void creationOfPackageTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFile()));
         new CompilePhase(reader);
@@ -24,6 +24,6 @@ public class PackageTest {
         assertEquals("/Users/leofrere/.jenkins/workspace/mavenGL/target/BankMaven-0.0.1-SNAPSHOT.jar", packagePhase.getJarPath());
         assertEquals("", packagePhase.getErrorsTrace());
         assertEquals("0,04s", packagePhase.getTime());
-    }*/
+    }
 
 }
