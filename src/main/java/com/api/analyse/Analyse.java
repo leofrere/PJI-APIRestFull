@@ -6,6 +6,22 @@ import com.api.model.*;
 
 public class Analyse {
 
+    private static Phase getPhase(String phaseName, Order order) {
+        Phase phase;
+        switch(phaseName){
+            case "compile":
+                phase = order.getCompilePhase();
+                break;
+            case "test":
+                phase = order.getTestPhase();
+                break;
+            default:
+                phase = order.getCompilePhase();
+                break;
+        }
+        return phase;
+    }
+
     public static float meanTimeForCompilePhase(List<Log> logs, int moduleNumber, String phaseName){
         float meanTime = 0;
         int cpt = 0;
@@ -14,17 +30,7 @@ public class Analyse {
         for(Log log : logs){
             Order order = log.getOrders().get(moduleNumber);
 
-            switch(phaseName){
-                case "compile":
-                    phase = order.getCompilePhase();
-                    break;
-                case "test":
-                    phase = order.getTestPhase();
-                    break;
-                default:
-                    phase = order.getCompilePhase();
-                    break;
-            }
+            phase = getPhase(phaseName, order);
 
             if(phase.getStatus().equals("ok")) {
                 meanTime +=  Float.parseFloat(phase.getTime().replace(",", ".").replace("s", ""));
@@ -52,6 +58,20 @@ public class Analyse {
 
     public static float increaseOfNumberOfTest(Log log1, Log log2){
         return increaseOfNumberOfTest(log1, log2, 0);
+    }
+
+    public static float increaseOfTimePerPhase(Log log1, Log log2, int moduleNumber, String phaseName){
+        Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+        Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
+
+        float time1 = Float.parseFloat(phase1.getTime().replace(",", ".").replace("s", ""));
+        float time2 = Float.parseFloat(phase2.getTime().replace(",", ".").replace("s", ""));
+
+        return (float) (time2 - time1) / time1;
+    }
+
+    public static float increaseOfTimePerPhase(Log log1, Log log2, String phaseName){
+        return increaseOfTimePerPhase(log1, log2, 0, phaseName);
     }
 
 }

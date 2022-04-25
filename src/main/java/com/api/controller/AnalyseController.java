@@ -28,4 +28,11 @@ public class AnalyseController {
         return Analyse.increaseOfNumberOfTest(log1, log2);
     }
 
+    @GetMapping("/analyse/increase/time/percent/{projectName}/{phaseName}")
+    public float increaseOfTimePerPhase(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
+        Log log1 = logService.getLog(n1);
+        Log log2 = logService.getLog(n2);
+        return Analyse.increaseOfTimePerPhase(log1, log2, phaseName);
+    }
+
 }
