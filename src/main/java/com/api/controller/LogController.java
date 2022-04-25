@@ -11,7 +11,7 @@ import com.api.utils.ReaderBuild;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -24,8 +24,8 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @GetMapping("/log/create")
-    public void setLog(@RequestParam(value="pj") String projectName, @RequestParam(value="build") int buildNumber) {
+    @GetMapping("/log/create/{projectName}/{buildNumber}")
+    public void setLog(@PathVariable String projectName, @PathVariable int buildNumber) {
 
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         if (jenkinsBuild == null) {
@@ -41,8 +41,8 @@ public class LogController {
         
     }
 
-    @GetMapping("/log/creates")
-    public void addLogOfJenkinsBuild(@RequestParam(value="pj") String projectName){
+    @GetMapping("/log/creates/{projectName}")
+    public void addLogOfJenkinsBuild(@PathVariable String projectName){
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         try {
             int lastBuild = ReaderBuild.lastBuild(jenkinsBuild);
@@ -62,19 +62,23 @@ public class LogController {
         }
     }
 
-    @GetMapping("/log")
-    public Log getLog(@RequestParam(value="id") Long id) {
-        return logService.getLogById(id);
+
+
+    @GetMapping("/log/{n}")
+    public Log getLog(@PathVariable int n) {
+        return logService.getLog(n);
     }
 
-    @GetMapping("/log/project")
-    public List<Log> getLogByProject(@RequestParam(value="project") String project) {
-        return logService.getLogByProject(project);
+    @GetMapping("/log/project/{projectName}")
+    public List<Log> getLogByProject(@PathVariable String projectName) {
+        return logService.getLogByProject(projectName);
     }
 
-    @GetMapping("/log/delete")
-    public void deleteLog(@RequestParam(value="id") Long id) {
-        logService.deleteLog(id);
+
+    
+    @GetMapping("/log/delete/{n}")
+    public void deleteLog(@PathVariable int n) {
+        logService.deleteLog(n);
     }
     
 }

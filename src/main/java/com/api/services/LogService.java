@@ -106,12 +106,12 @@ public class LogService {
         return false;
     }
 
-    public Log getLogById(Long id) {
-        return logRepository.findById(id).get();
+    public Log getLog(int n) {
+        return logRepository.findAll().get(n);
     }
 
-    public void deleteLog(long id) {
-        Log log = logRepository.findById(id).get();
+    public void deleteLog(int n) {
+        Log log = logRepository.findAll().get(n);
         logRepository.delete(log);
     }
 
