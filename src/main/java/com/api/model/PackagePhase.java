@@ -9,7 +9,7 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "packages")
-public class PackagePhase {
+public class PackagePhase implements Phase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

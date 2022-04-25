@@ -9,7 +9,7 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
-public class CompilePhase {
+public class CompilePhase implements Phase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

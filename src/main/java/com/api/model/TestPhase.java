@@ -11,7 +11,7 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class TestPhase {
+public class TestPhase implements Phase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
