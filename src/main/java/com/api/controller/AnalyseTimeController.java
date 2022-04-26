@@ -19,7 +19,7 @@ public class AnalyseTimeController {
     private LogService logService;
 
     @GetMapping("/difference/{projectName}/{phaseName}")
-    public float meanTimeForCompilePhase(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2) {
+    public float increaseTimeBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
 
@@ -27,24 +27,24 @@ public class AnalyseTimeController {
     }
 
     @GetMapping("/difference/percent/{projectName}/{phaseName}")
-    public float increaseOfNumberOfTest(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
+    public float increaseTimeBetweenTwoLogsInPercent(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
         return AnalyseTime.increaseTimeBetweenTwoLogsInPercent(log1, log2, phaseName);
     }
 
     @GetMapping("/mean/difference/{projectName}/{phaseName}")
-    public float increaseOfTimePerPhase(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
+    public float increaseMeanTimeBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
         return AnalyseTime.increaseMeanTimeBetween(logService.getLogByProject(projectName), n1, n2, phaseName);
     }
 
     @GetMapping("/mean/difference/percent/{projectName}/{phaseName}")
-    public float increaseOfMeanTimePerPhase(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
-        return AnalyseTime.increaseMeanTimeBetween(logService.getLogByProject(projectName), n1, n2, phaseName);
+    public float increaseMeanTimeBetweenInPercent(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
+        return AnalyseTime.increaseMeanTimeBetweenInPercent(logService.getLogByProject(projectName), n1, n2, phaseName);
     }
 
     @GetMapping("/mean/{projectName}/{phaseName}")
-    public float phaseWithTheMostError(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
+    public float meanTimeBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
         return AnalyseTime.meanTimeBetween(logService.getLogByProject(projectName), n1, n2, phaseName);
     }
 
