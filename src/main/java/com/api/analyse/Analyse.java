@@ -23,32 +23,6 @@ public abstract class Analyse {
     }
 
 
-
-
-    public static float meanTimeForCompilePhase(List<Log> logs, int moduleNumber, String phaseName){
-        float meanTime = 0;
-        int cpt = 0;
-        Phase phase;
-
-        for(Log log : logs){
-            Order order = log.getOrders().get(moduleNumber);
-
-            phase = getPhase(phaseName, order);
-
-            if(phase.getStatus().equals("ok")) {
-                meanTime +=  Float.parseFloat(phase.getTime().replace(",", ".").replace("s", ""));
-                cpt++;
-            }
-           
-        }
-
-        return meanTime/cpt;
-    }
-
-    public static float meanTimeForCompilePhase(List<Log> logs, String phaseName){
-        return meanTimeForCompilePhase(logs, 0, phaseName);
-    }
-
     public static float increaseOfNumberOfTest(Log log1, Log log2, int moduleNumber){
         TestPhase testPhase1 = log1.getOrders().get(moduleNumber).getTestPhase();
         TestPhase testPhase2 = log2.getOrders().get(moduleNumber).getTestPhase();
@@ -61,20 +35,6 @@ public abstract class Analyse {
 
     public static float increaseOfNumberOfTest(Log log1, Log log2){
         return increaseOfNumberOfTest(log1, log2, 0);
-    }
-
-    public static float increaseOfTimePerPhase(Log log1, Log log2, int moduleNumber, String phaseName){
-        Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
-        Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
-
-        float time1 = Float.parseFloat(phase1.getTime().replace(",", ".").replace("s", ""));
-        float time2 = Float.parseFloat(phase2.getTime().replace(",", ".").replace("s", ""));
-
-        return (float) (time2 - time1) / time1;
-    }
-
-    public static float increaseOfTimePerPhase(Log log1, Log log2, String phaseName){
-        return increaseOfTimePerPhase(log1, log2, 0, phaseName);
     }
 
     public static int numberOfErrorOfPhase(List<Log> logs, int moduleNumber, String phaseName){
