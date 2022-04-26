@@ -26,14 +26,14 @@ public class AnalyseTimeController {
         return AnalyseTime.increaseTimeBetweenTwoLogs(log1, log2, phaseName);
     }
 
-    @GetMapping("/mean/difference/{projectName}/{phaseName}")
+    @GetMapping("/difference/percent/{projectName}/{phaseName}")
     public float increaseOfNumberOfTest(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
         return AnalyseTime.increaseTimeBetweenTwoLogsInPercent(log1, log2, phaseName);
     }
 
-    @GetMapping("/difference/percent/{projectName}/{phaseName}")
+    @GetMapping("/mean/difference/{projectName}/{phaseName}")
     public float increaseOfTimePerPhase(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2 ) {
         return AnalyseTime.increaseMeanTimeBetween(logService.getLogByProject(projectName), n1, n2, phaseName);
     }
