@@ -5,11 +5,12 @@ import java.io.BufferedReader;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.interfaces.Compile;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
-public class CompilePhase implements Phase {
+public class CompilePhase implements Phase, Compile {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,6 +114,11 @@ public class CompilePhase implements Phase {
 
     public void setErrorsTrace(String errorsTrace) {
         this.errorsTrace = errorsTrace;
+    }
+
+    @Override
+    public int getCompiledClasses() {
+        return numberOfClasses;
     }
 
 }

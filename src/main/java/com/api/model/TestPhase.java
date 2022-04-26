@@ -7,11 +7,12 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.interfaces.Compile;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class TestPhase implements Phase {
+public class TestPhase implements Phase, Compile {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -193,6 +194,11 @@ public class TestPhase implements Phase {
 
     public void setTestsByClasse(List<TestClasse> testsByClasse) {
         this.testsByClasse = testsByClasse;
+    }
+
+    @Override
+    public int getCompiledClasses() {
+        return numberOfTestClasses;
     }
 
 }
