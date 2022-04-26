@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.api.model.interfaces.Compile;
+import com.api.model.interfaces.Phase;
 import com.api.utils.Time;
 
 @Entity

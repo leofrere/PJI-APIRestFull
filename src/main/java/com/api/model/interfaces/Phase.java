@@ -1,4 +1,4 @@
-package com.api.model;
+package com.api.model.interfaces;
 
 public interface Phase {
     
