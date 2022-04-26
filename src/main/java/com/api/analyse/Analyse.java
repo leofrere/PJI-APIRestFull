@@ -7,19 +7,14 @@ import com.api.model.*;
 public abstract class Analyse {
 
     protected static Phase getPhase(String phaseName, Order order) {
-        Phase phase;
         switch(phaseName){
             case "compile":
-                phase = order.getCompilePhase();
-                break;
+                return order.getCompilePhase();
             case "test":
-                phase = order.getTestPhase();
-                break;
+                return order.getTestPhase();
             default:
-                phase = order.getCompilePhase();
-                break;
+                return order.getCompilePhase();
         }
-        return phase;
     }
 
 
