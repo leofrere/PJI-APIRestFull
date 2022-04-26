@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.api.model.*;
 
-public class Analyse {
+public abstract class Analyse {
 
-    private static Phase getPhase(String phaseName, Order order) {
+    protected static Phase getPhase(String phaseName, Order order) {
         Phase phase;
         switch(phaseName){
             case "compile":
@@ -21,6 +21,9 @@ public class Analyse {
         }
         return phase;
     }
+
+
+
 
     public static float meanTimeForCompilePhase(List<Log> logs, int moduleNumber, String phaseName){
         float meanTime = 0;
