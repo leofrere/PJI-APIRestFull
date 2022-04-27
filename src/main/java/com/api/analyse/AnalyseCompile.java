@@ -31,16 +31,6 @@ public class AnalyseCompile extends Analyse {
     }
 
     /**
-     * @param log1
-     * @param log2
-     * @param phaseName nom de la phase ciblé (compile, test)
-     * @return la différence de nombre de classes compilé entre les deux logs
-     */
-    public static int increaseNumberOfCompileClassBetweenTwoLogs(Log log1, Log log2, String phaseName) {
-        return increaseNumberOfCompileClassBetweenTwoLogs(log1, log2, phaseName, 0);
-    }
-
-    /**
      * @param logs
      * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
      * @param phaseName nom de la phase ciblé (compile, test)
@@ -50,16 +40,6 @@ public class AnalyseCompile extends Analyse {
         Compile compile1 = getCompile(phaseName, log1.getOrders().get(moduleNumber));
         Compile compile2 = getCompile(phaseName, log2.getOrders().get(moduleNumber));
         return (compile2.getCompiledClasses() - compile1.getCompiledClasses()) / (float)compile1.getCompiledClasses();
-    }
-
-    /**
-     * @param logs
-     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
-     * @param phaseName nom de la phase ciblé (compile, test)
-     * @return la différence de nombre de classes compilé entre les deux logs en pourcentage
-     */
-    public static float increaseNumberOfCompileClassInPercentBetweenTwoLogs(Log log1, Log log2, String phaseName) {
-        return increaseNumberOfCompileClassInPercentBetweenTwoLogs(log1, log2, phaseName, 0);
     }
 
     /**
@@ -80,15 +60,6 @@ public class AnalyseCompile extends Analyse {
 
     /**
      * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test)
-     * @return moyenne du nombre de classe compilé entre le log n1 et log n2
-     */
-    public static float increaseMeanNumberOfCompileClassBetween(List<Log> logs, int n1, int n2, String phaseName) {
-        return increaseMeanNumberOfCompileClassBetween(logs, n1, n2, phaseName, 0);
-    }
-
-    /**
-     * @param logs
      * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
      * @param phaseName nom de la phase ciblé (compile, test)
      * @return moyenne du nombre de classe compilé entre le log n1 et log n2 en pourcentage
@@ -101,15 +72,6 @@ public class AnalyseCompile extends Analyse {
             cpt++;
         }
         return sum / cpt;
-    }
-
-    /**
-     * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test)
-     * @return moyenne du nombre de classe compilé entre le log n1 et log n2 en pourcentage
-     */
-    public static float increaseMeanNumberOfCompileClassInPercentBetween(List<Log> logs, int n1, int n2, String phaseName) {
-        return increaseMeanNumberOfCompileClassInPercentBetween(logs, n1, n2, phaseName, 0);
     }
 
     /**
@@ -127,16 +89,5 @@ public class AnalyseCompile extends Analyse {
         }
         return sum / (float) cpt;
     }
-
-    /**
-     * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test)
-     * @return moyenne du nombre de classe compilé entre le log n1 et log n2
-     */
-    public static float meanClassCompiled(List<Log> logs, int n1, int n2, String phaseName) {
-        return meanClassCompiled(logs, n1, n2, phaseName, 0);
-    }
-    
-
 
 }

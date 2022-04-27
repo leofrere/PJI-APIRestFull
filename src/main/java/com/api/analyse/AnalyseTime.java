@@ -29,16 +29,6 @@ public class AnalyseTime extends Analyse {
     }
 
     /**
-     * @param log1 
-     * @param log2
-     * @param phaseName nom de la phase ciblé (compile, test, package)
-     * @return 0 si un des deux log a un time null, sinon la différence de temps entre les deux logs
-     */
-    public static float increaseTimeBetweenTwoLogs(Log log1, Log log2, String phaseName) {
-        return increaseTimeBetweenTwoLogs(log1, log2, phaseName, 0);
-    }
-
-    /**
      * @param logs
      * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
      * @param phaseName nom de la phase ciblé (compile, test, package)
@@ -48,22 +38,13 @@ public class AnalyseTime extends Analyse {
         float sumTime = 0;
         int cpt = 0;
         for(int i = n1+1; i <= n2; i++){
-            float time = increaseTimeBetweenTwoLogs(logs.get(i-1), logs.get(i), phaseName);
+            float time = increaseTimeBetweenTwoLogs(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             if(time != 0) {
                 sumTime += time;
                 cpt++;
             }
         }
         return sumTime / cpt;
-    }
-
-    /**
-     * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test, package)
-     * @return la moyenne des diffénreces entre deux builds consécutif du log n1 au log n2
-     */
-    public static float increaseMeanTimeBetween(List<Log> logs, int n1, int n2, String phaseName){
-        return increaseMeanTimeBetween(logs, n1, n2, phaseName, 0);
     }
 
     /**
@@ -89,15 +70,6 @@ public class AnalyseTime extends Analyse {
     /**
      * @param logs
      * @param phaseName nom de la phase ciblé (compile, test, package)
-     * @return 0 si un des deux log a un time null, sinon la différence de temps entre les deux logs en pourcentage
-     */
-    public static float increaseTimeBetweenTwoLogsInPercent(Log log1, Log log2, String phaseName) {
-        return increaseTimeBetweenTwoLogsInPercent(log1, log2, phaseName, 0);
-    }
-
-    /**
-     * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test, package)
      * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
      * @return la moyenne des diffénrences entre deux builds consécutif du log n1 au log n2 en pourcentage
      */
@@ -112,15 +84,6 @@ public class AnalyseTime extends Analyse {
             }
         }
         return sumPercent / cpt;
-    }
-
-    /**
-     * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test, package)
-     * @return la moyenne des diffénreces entre deux builds consécutif du log n1 au log n2 en pourcentage
-     */
-    public static float increaseMeanTimeBetweenInPercent(List<Log> logs, int n1, int n2, String phaseName){
-        return increaseMeanTimeBetweenInPercent(logs, n1, n2, phaseName, 0);
     }
 
     /**
@@ -143,12 +106,4 @@ public class AnalyseTime extends Analyse {
         return sumTime / cpt;
     }
 
-    /**
-     * @param logs
-     * @param phaseName nom de la phase ciblé (compile, test, package)
-     * @return moyenne du temps pour une phase ciblé
-     */
-    public static float meanTimeBetween(List<Log> logs, int n1, int n2, String phaseName){
-        return meanTimeBetween(logs, n1, n2, phaseName, 0);
-    }
 }
