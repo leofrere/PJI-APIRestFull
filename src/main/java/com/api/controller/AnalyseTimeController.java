@@ -22,7 +22,6 @@ public class AnalyseTimeController {
     public float increaseTimeBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
-
         return AnalyseTime.increaseTimeBetweenTwoLogs(log1, log2, phaseName, module);
     }
 

@@ -46,9 +46,12 @@ public class AnalyseTestsPhase extends AnalyseTests {
     public static float increaseMeanNumberOfTestBetween(List<Log> logs, int n1, int n2, String typeTest, int moduleNumber) {
         List<Test> tests = new LinkedList<Test>();
         for(int i = n1; i <= n2; i++){
-            tests.add(logs.get(i).getOrders().get(moduleNumber).getTestPhase());
+            Test test = logs.get(i).getOrders().get(moduleNumber).getTestPhase();
+            if(test != null){
+                tests.add(test);
+            }
         }
-        return increaseMeanNumberTestBetween(tests, n1, n2, typeTest);
+        return increaseMeanNumberTestBetween(tests, typeTest);
     }
 
     /**
@@ -62,9 +65,12 @@ public class AnalyseTestsPhase extends AnalyseTests {
     public static float increaseMeanNumberOfTestInPercentBetween(List<Log> logs, int n1, int n2, String typeTest, int moduleNumber){
         List<Test> tests = new LinkedList<Test>();
         for(int i = n1; i <= n2; i++){
-            tests.add(logs.get(i).getOrders().get(moduleNumber).getTestPhase());
+            Test test = logs.get(i).getOrders().get(moduleNumber).getTestPhase();
+            if(test != null){
+                tests.add(test);
+            }
         }
-        return increaseMeanNumberOfTestInPercentBetween(tests, n1, n2, typeTest);
+        return increaseMeanNumberOfTestInPercentBetween(tests, typeTest);
     }
 
     /**
@@ -78,9 +84,12 @@ public class AnalyseTestsPhase extends AnalyseTests {
     public static float meanTest(List<Log> logs, int n1, int n2, String typeTest, int moduleNumber){
         List<Test> tests = new LinkedList<Test>();
         for(int i = n1; i <= n2; i++){
-            tests.add(logs.get(i).getOrders().get(moduleNumber).getTestPhase());
+            Test test = logs.get(i).getOrders().get(moduleNumber).getTestPhase();
+            if(test != null){
+                tests.add(test);
+            }
         }
-        return meanTest(tests, n1, n2, typeTest);
+        return meanTest(tests, typeTest);
     }
 
 }

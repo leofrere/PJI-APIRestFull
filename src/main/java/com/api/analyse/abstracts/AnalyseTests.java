@@ -46,10 +46,10 @@ public abstract class AnalyseTests extends Analyse {
      * @param typeTest type de test (run, failed, skipped, error)
      * @return moyenne de la différence du nombre de tests entre le test n1 et le test n2
      */
-    public static float increaseMeanNumberTestBetween(List<Test> tests, int n1, int n2, String typeTest) {
+    public static float increaseMeanNumberTestBetween(List<Test> tests, String typeTest) {
         int cpt = 0;
         int sum = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = 1; i < tests.size(); i++){
             sum += increaseNumberOfTestBetweenTwoTests(tests.get(i-1), tests.get(i), typeTest);
             cpt++;
         }
@@ -63,10 +63,10 @@ public abstract class AnalyseTests extends Analyse {
      * @param typeTest type de test (run, failed, skipped, error)
      * @return moyenne de la différence de nombre de tests entre le test n1 et le test n2 en pourcentage
      */
-    public static float increaseMeanNumberOfTestInPercentBetween(List<Test> tests, int n1, int n2, String typeTest) {
+    public static float increaseMeanNumberOfTestInPercentBetween(List<Test> tests, String typeTest) {
         int cpt = 0;
         float sum = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = 1; i < tests.size(); i++){
             sum += increaseNumberOfTestInPercentBetweenTwoTests(tests.get(i-1), tests.get(i), typeTest);
             cpt++;
         }
@@ -80,11 +80,11 @@ public abstract class AnalyseTests extends Analyse {
      * @param typeTest type de test (run, failed, skipped, error)
      * @return moyenne du nombre de tests entre le test n1 et le test n2
      */
-    public static float meanTest(List<Test> tests, int n1, int n2, String typeTest){
+    public static float meanTest(List<Test> tests, String typeTest){
         int cpt = 0;
         int sum = 0;
-        for(int i = n1+1; i <= n2; i++){
-            sum += getNumberOfTestOfType(typeTest, tests.get(i));
+        for(Test test : tests){
+            sum += getNumberOfTestOfType(typeTest, test);
             cpt++;
         }
         return sum / (float) cpt;

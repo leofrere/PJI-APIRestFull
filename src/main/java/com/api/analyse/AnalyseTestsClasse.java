@@ -14,7 +14,10 @@ public class AnalyseTestsClasse extends AnalyseTests{
     public static Test getTest(Log log, int moduleNumber, String testClasse){
         TestPhase testPhase = log.getOrders().get(moduleNumber).getTestPhase();
         for (TestClasse test : testPhase.getTestsByClasse()) {
-            if(test.getClasse().equals(testClasse)){
+            System.out.println(test.getClasse());
+            System.out.println(testClasse.replace("-", "."));
+            System.out.println(test.getClasse().contains(testClasse.replace("-", ".")));
+            if(test.getClasse().contains(testClasse.replace("-", "."))){
                 return test;
             }
         }
@@ -31,6 +34,9 @@ public class AnalyseTestsClasse extends AnalyseTests{
     public static int increaseNumberOfTestBetweenTwoLogs(Log log1, Log log2, String typeTest, String testClasse, int moduleNumber) {
         Test test1 = getTest(log1, moduleNumber, testClasse);
         Test test2 = getTest(log2, moduleNumber, testClasse);
+        if(test1 == null || test2 == null){
+            return 0;
+        }
         return increaseNumberOfTestBetweenTwoTests(test1, test2, typeTest);
     }
 
@@ -41,9 +47,12 @@ public class AnalyseTestsClasse extends AnalyseTests{
      * @param typeTest type de test (run, failed, skipped, error)
      * @return la différence de nombre de tests entre les deux logs en pourcentage
      */
-    public static float increaseNumberOfTestInPercentBetweenTwoLogs(Log log1, Log log2, String typeTest, int moduleNumber) {
-        Test test1 = getTest(log1, moduleNumber, typeTest);
-        Test test2 = getTest(log2, moduleNumber, typeTest);
+    public static float increaseNumberOfTestInPercentBetweenTwoLogs(Log log1, Log log2, String typeTest, String testClasse, int moduleNumber) {
+        Test test1 = getTest(log1, moduleNumber, testClasse);
+        Test test2 = getTest(log2, moduleNumber, testClasse);
+        if(test1 == null || test2 == null){
+            return 0;
+        }
         return increaseNumberOfTestInPercentBetweenTwoTests(test1, test2, typeTest);
     }
 
@@ -55,12 +64,15 @@ public class AnalyseTestsClasse extends AnalyseTests{
      * @param typeTest type de test (run, failed, skipped, error)
      * @return moyenne de la différence du nombre de tests entre le test n1 et le test n2
      */
-    public static float increaseMeanNumberOfTestBetween(List<Log> logs, int n1, int n2, String typeTest, int moduleNumber) {
+    public static float increaseMeanNumberOfTestBetween(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber) {
         List<Test> tests = new LinkedList<Test>();
         for(int i = n1; i <= n2; i++){
-            tests.add(getTest(logs.get(i), moduleNumber, typeTest));
+            Test test = getTest(logs.get(i), moduleNumber, testClasse);
+            if(test != null){
+                tests.add(test);
+            }
         }
-        return increaseMeanNumberTestBetween(tests, n1, n2, typeTest);
+        return increaseMeanNumberTestBetween(tests, typeTest);
     }
 
     /**
@@ -71,12 +83,15 @@ public class AnalyseTestsClasse extends AnalyseTests{
      * @param typeTest type de test (run, failed, skipped, error)
      * @return moyenne de la différence du nombre de tests entre le test n1 et le test n2 en pourcentage
      */
-    public static float increaseMeanNumberOfTestInPercentBetween(List<Log> logs, int n1, int n2, String typeTest, int moduleNumber){
+    public static float increaseMeanNumberOfTestInPercentBetween(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
         List<Test> tests = new LinkedList<Test>();
         for(int i = n1; i <= n2; i++){
-            tests.add(getTest(logs.get(i), moduleNumber, typeTest));
+            Test test = getTest(logs.get(i), moduleNumber, testClasse);
+            if(test != null){
+                tests.add(test);
+            }
         }
-        return increaseMeanNumberOfTestInPercentBetween(tests, n1, n2, typeTest);
+        return increaseMeanNumberOfTestInPercentBetween(tests, typeTest);
     }
 
     /**
@@ -87,12 +102,15 @@ public class AnalyseTestsClasse extends AnalyseTests{
      * @param typeTest type de test (run, failed, skipped, error)
      * @return moyenne du nombre de tests entre le test n1 et le test n2
      */
-    public static float meanTest(List<Log> logs, int n1, int n2, String typeTest, int moduleNumber){
+    public static float meanTest(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
         List<Test> tests = new LinkedList<Test>();
         for(int i = n1; i <= n2; i++){
-            tests.add(getTest(logs.get(i), moduleNumber, typeTest));
+            Test test = getTest(logs.get(i), moduleNumber, testClasse);
+            if(test != null){
+                tests.add(test);
+            }
         }
-        return meanTest(tests, n1, n2, typeTest);
+        return meanTest(tests, typeTest);
     }
 
 }
