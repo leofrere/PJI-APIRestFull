@@ -19,33 +19,33 @@ public class AnalyseCompileController {
     private LogService logService;
 
     @GetMapping("/difference/{projectName}/{phaseName}")
-    public float increaseNumberOfCompileClassBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int moduleNumber) {
+    public float increaseNumberOfCompileClassBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
 
-        return AnalyseCompile.increaseNumberOfCompileClassBetweenTwoLogs(log1, log2, phaseName, moduleNumber);
+        return AnalyseCompile.increaseNumberOfCompileClassBetweenTwoLogs(log1, log2, phaseName, module);
     }
 
     @GetMapping("/difference/percent/{projectName}/{phaseName}")
-    public float increaseNumberOfCompileClassInPercentBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int moduleNumber) {
+    public float increaseNumberOfCompileClassInPercentBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
-        return AnalyseCompile.increaseNumberOfCompileClassInPercentBetweenTwoLogs(log1, log2, phaseName, moduleNumber);
+        return AnalyseCompile.increaseNumberOfCompileClassInPercentBetweenTwoLogs(log1, log2, phaseName, module);
     }
 
     @GetMapping("/mean/difference/{projectName}/{phaseName}")
-    public float increaseMeanNumberOfCompileClassBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int moduleNumber) {
-        return AnalyseCompile.increaseMeanNumberOfCompileClassBetween(logService.getLogByProject(projectName), n1, n2, phaseName, moduleNumber);
+    public float increaseMeanNumberOfCompileClassBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseCompile.increaseMeanNumberOfCompileClassBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
     }
 
     @GetMapping("/mean/difference/percent/{projectName}/{phaseName}")
-    public float increaseMeanNumberOfCompileClassInPercentBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int moduleNumber) {
-        return AnalyseCompile.increaseMeanNumberOfCompileClassInPercentBetween(logService.getLogByProject(projectName), n1, n2, phaseName, moduleNumber);
+    public float increaseMeanNumberOfCompileClassInPercentBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseCompile.increaseMeanNumberOfCompileClassInPercentBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
     }
 
     @GetMapping("/mean/{projectName}/{phaseName}")
-    public float meanClassCompiled(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int moduleNumber) {
-        return AnalyseCompile.meanClassCompiled(logService.getLogByProject(projectName), n1, n2, phaseName, moduleNumber);
+    public float meanClassCompiled(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseCompile.meanClassCompiled(logService.getLogByProject(projectName), n1, n2, phaseName, module);
     }
 
 }
