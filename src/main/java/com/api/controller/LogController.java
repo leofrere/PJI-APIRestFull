@@ -13,10 +13,12 @@ import com.api.utils.ReaderBuild;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequestMapping("/log")
 public class LogController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @GetMapping("/log/create/{projectName}/{buildNumber}")
+    @GetMapping("/create/{projectName}/{buildNumber}")
     public void setLog(@PathVariable String projectName, @PathVariable int buildNumber) {
 
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
@@ -42,7 +44,7 @@ public class LogController {
         
     }
 
-    @GetMapping("/log/creates/{projectName}")
+    @GetMapping("/creates/{projectName}")
     public void addLogOfJenkinsBuild(@PathVariable String projectName){
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         try {
@@ -65,30 +67,30 @@ public class LogController {
 
 
 
-    @GetMapping("/log/{n}")
+    @GetMapping("/{n}")
     public Log getLog(@PathVariable int n) {
         return logService.getLog(n);
     }
 
-    @GetMapping("/log/project/{projectName}")
+    @GetMapping("/project/{projectName}")
     public List<Log> getLogsByProject(@PathVariable String projectName) {
         return logService.getLogByProject(projectName);
     }
 
-    @GetMapping("/log/project/{projectName}/{n}")
+    @GetMapping("/project/{projectName}/{n}")
     public Log getLogByProject(@PathVariable String projectName, @PathVariable int n) {
         return logService.getLogByProject(projectName).get(n);
     }
 
 
     
-    @GetMapping("/log/delete/{n}")
+    @GetMapping("/delete/{n}")
     public void deleteLog(@PathVariable int n) {
         logService.deleteLog(n);
     }
     
-
-    @GetMapping("/log/project/tests/{projectName}/{n}")
+    //change controller later
+    @GetMapping("/project/tests/{projectName}/{n}")
     public List<TestClasse> getTestsClass(@PathVariable String projectName, @PathVariable int n) {
         return logService.getLogByProject(projectName).get(n).getOrders().get(0).getTestPhase().getTestsByClasse();
     }
