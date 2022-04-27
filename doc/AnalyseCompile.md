@@ -7,6 +7,7 @@
 3. [Log](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/Log.md)
 4. [Analyse Time](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTime.md)
 5. **Analyse Compile**
+6. [Analyse Tests Phase](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTestsPhase.md)
 
 ## Description
 

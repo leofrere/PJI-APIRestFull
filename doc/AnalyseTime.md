@@ -8,6 +8,12 @@
 4. **Analyse Time**
 5. [Analyse Compile](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseCompile.md)
 
+## Description
+
+**Analyse Time** est la partie de l'API qui va permettre d'extraire des tendances sur le temps pour les différentes phase (compilation, test, package).
+
+---
+
 ### Différence de temps entre deux logs
 
 methode : **GET**
@@ -18,12 +24,6 @@ path : `/analyse/time/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&
 - log1 : numéro du premier log
 - log2 : numéro du deuxième log
 - module (optionnel) : numéro du module ciblé par défaut il vaut 0
-
-## Description
-
-**Analyse Time** est la partie de l'API qui va permettre d'extraire des tendances sur le temps pour les différentes phase (compilation, test, package).
-
----
 
 ### Différence de temps entre deux logs en pourcentage
 
