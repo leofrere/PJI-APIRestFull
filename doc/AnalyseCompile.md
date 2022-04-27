@@ -14,48 +14,53 @@
 
 methode : **GET**
 
-path : `/analyse/compile/difference/{projectName}/{phaseName}?log1=<int>&log=<int>`
+path : `/analyse/compile/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
 - log2 : numéro du deuxième log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
 
 ### Différence du nombre de classe compilée entre deux logs en pourcentage
 
 methode : **GET**
 
-path : `/analyse/compile/difference/percent/{projectName}/{phaseName}?log1=<int>&log=<int>`
+path : `/analyse/compile/difference/percent/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
 - log2 : numéro du deuxième log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
 
 ### Différence du nombre de classe compilée en moyenne entre deux logs consécutif
 
 methode : **GET**
 
-path : `/analyse/compile/mean/difference/{projectName}/{phaseName}?log1=<int>&log=<int>`
+path : `/analyse/compile/mean/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
 - log2 : numéro du dernier log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
 
 ### Différence du nombre de classe compilée en moyenne entre deux logs consécutif en pourcentage
 
 methode : **GET**
 
-path : `/analyse/compile/mean/difference/percent/{projectName}/{phaseName}?log1=<int>&log=<int>`
+path : `/analyse/compile/mean/difference/percent/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
 - log2 : numéro du dernier log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
 
 ### Nombre de classe compilée en moyenne
 
 methode : **GET**
 
-path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=<int>&log=<int>`
+path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
 - log2 : numéro du dernier log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
