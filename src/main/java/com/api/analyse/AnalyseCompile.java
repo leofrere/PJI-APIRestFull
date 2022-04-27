@@ -2,6 +2,7 @@ package com.api.analyse;
 
 import java.util.List;
 
+import com.api.analyse.abstracts.Analyse;
 import com.api.model.Log;
 import com.api.model.Order;
 import com.api.model.interfaces.Compile;

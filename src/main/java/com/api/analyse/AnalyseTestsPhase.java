@@ -3,6 +3,7 @@ package com.api.analyse;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.api.analyse.abstracts.AnalyseTests;
 import com.api.model.Log;
 import com.api.model.interfaces.Test;
 

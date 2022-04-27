@@ -1,5 +1,7 @@
 package com.api.analyse;
 
-public class AnalyseTestsClasse extends Analyse{
+import com.api.analyse.abstracts.AnalyseTests;
+
+public class AnalyseTestsClasse extends AnalyseTests{
     
 }

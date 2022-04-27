@@ -1,4 +1,4 @@
-package com.api.analyse;
+package com.api.analyse.abstracts;
 
 import java.util.List;
 
