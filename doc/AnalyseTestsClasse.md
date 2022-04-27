@@ -9,6 +9,7 @@
 5. [Analyse Compile](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseCompile.md)
 6. [Analyse Tests Phase](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTestsPhase.md)
 7. **Analyse Tests Classe**
+8. [Analyse Error](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseError.md)
 
 ## Description
 
@@ -20,7 +21,7 @@
 
 methode : **GET**
 
-path : `/analyse/test/classe/difference/{projectName}/{testType}?log1=<int>&log=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/difference/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -32,7 +33,7 @@ path : `/analyse/test/classe/difference/{projectName}/{testType}?log1=<int>&log=
 
 methode : **GET**
 
-path : `/analyse/test/classe/difference/percent/{projectName}/{testType}?log1=<int>&log=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/difference/percent/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -44,7 +45,7 @@ path : `/analyse/test/classe/difference/percent/{projectName}/{testType}?log1=<i
 
 methode : **GET**
 
-path : `/analyse/test/classe/mean/difference/{projectName}/{testType}?log1=<int>&log=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/mean/difference/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -56,7 +57,7 @@ path : `/analyse/test/classe/mean/difference/{projectName}/{testType}?log1=<int>
 
 methode : **GET**
 
-path : `/analyse/test/classe/mean/difference/percent/{projectName}/{testType}?log1=<int>&log=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/mean/difference/percent/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -68,7 +69,7 @@ path : `/analyse/test/classe/mean/difference/percent/{projectName}/{testType}?lo
 
 methode : **GET**
 
-path : `/analyse/test/classe/mean/{projectName}/{testType}?log1=<int>&log=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/mean/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log

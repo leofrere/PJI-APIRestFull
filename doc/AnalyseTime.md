@@ -9,6 +9,7 @@
 5. [Analyse Compile](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseCompile.md)
 6. [Analyse Tests Phase](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTestsPhase.md)
 7. [Analyse Tests Classe](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTestsClasse.md)
+8. [Analyse Error](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseError.md)
 
 ## Description
 
@@ -20,7 +21,7 @@
 
 methode : **GET**
 
-path : `/analyse/time/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
+path : `/analyse/time/difference/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
@@ -31,7 +32,7 @@ path : `/analyse/time/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&
 
 methode : **GET**
 
-path : `/analyse/time/difference/percent/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
+path : `/analyse/time/difference/percent/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
@@ -42,7 +43,7 @@ path : `/analyse/time/difference/percent/{projectName}/{phaseName}?log1=<int>&lo
 
 methode : **GET**
 
-path : `/analyse/time/mean/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
+path : `/analyse/time/mean/difference/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
@@ -53,7 +54,7 @@ path : `/analyse/time/mean/difference/{projectName}/{phaseName}?log1=<int>&log=<
 
 methode : **GET**
 
-path : `/analyse/time/mean/difference/percent/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
+path : `/analyse/time/mean/difference/percent/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
@@ -64,7 +65,7 @@ path : `/analyse/time/mean/difference/percent/{projectName}/{phaseName}?log1=<in
 
 methode : **GET**
 
-path : `/analyse/time/mean/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
+path : `/analyse/time/mean/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
