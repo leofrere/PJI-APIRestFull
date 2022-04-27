@@ -17,18 +17,18 @@ public class AnalyseError extends Analyse {
      */
     public static float proportionOfBuildError(List<Log> logs, int n1, int n2, int moduleNumber) {
         int nbError = 0;
-        for(Log log : logs){
-            if(log.getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().length() > 0){
+        for(int i = n1; i <= n2; i++){
+            if(logs.get(i).getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().length() > 0){
                 nbError++;
                 continue;
             }
 
-            if(log.getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().length() > 0){
+            if(logs.get(i).getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().length() > 0){
                 nbError++;
                 continue;
             }
 
-            if(log.getOrders().get(moduleNumber).getPackagePhase().getErrorsTrace().length() > 0){
+            if(logs.get(i).getOrders().get(moduleNumber).getPackagePhase().getErrorsTrace().length() > 0){
                 nbError++;
             }
 
@@ -45,9 +45,9 @@ public class AnalyseError extends Analyse {
      */
     public static Map<String, Integer> numberOfErrorPerType(List<Log> logs, int n1, int n2, int moduleNumber) {
         Map<String, Integer> map = new java.util.HashMap<String, Integer>();
-        for(Log log : logs){
-            if(log.getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().length() > 0){
-                String error = log.getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().split("] ")[1];
+        for(int i = n1; i <= n2; i++){
+            if(logs.get(i).getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().length() > 0){
+                String error = logs.get(i).getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().split("] ")[2];
                 if(map.containsKey(error)){
                     map.put(error, map.get(error) + 1);
                 }else{
@@ -56,8 +56,8 @@ public class AnalyseError extends Analyse {
                 continue;
             }
 
-            if(log.getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().length() > 0){
-                String error = log.getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().split("] ")[1];
+            if(logs.get(i).getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().length() > 0){
+                String error = logs.get(i).getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().split("] ")[2];
                 if(map.containsKey(error)){
                     map.put(error, map.get(error) + 1);
                 }else{
@@ -66,8 +66,8 @@ public class AnalyseError extends Analyse {
                 continue;
             }
 
-            if(log.getOrders().get(moduleNumber).getPackagePhase().getErrorsTrace().length() > 0){
-                String error = log.getOrders().get(moduleNumber).getCompilePhase().getErrorsTrace().split("] ")[1];
+            if(logs.get(i).getOrders().get(moduleNumber).getPackagePhase().getErrorsTrace().length() > 0){
+                String error = logs.get(i).getOrders().get(moduleNumber).getPackagePhase().getErrorsTrace().split("] ")[2];
                 if(map.containsKey(error)){
                     map.put(error, map.get(error) + 1);
                 }else{
