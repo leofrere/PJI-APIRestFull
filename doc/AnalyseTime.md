@@ -19,6 +19,12 @@ path : `/analyse/time/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&
 - log2 : numéro du deuxième log
 - module (optionnel) : numéro du module ciblé par défaut il vaut 0
 
+## Description
+
+**Analyse Time** est la partie de l'API qui va permettre d'extraire des tendances sur le temps pour les différentes phase (compilation, test, package).
+
+---
+
 ### Différence de temps entre deux logs en pourcentage
 
 methode : **GET**

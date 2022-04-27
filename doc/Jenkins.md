@@ -9,6 +9,12 @@
 5. [Analyse Compile](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseCompile.md)
 
 
+## Description
+
+Dans l'API, nous avons besoin de pouvoir se connecter à un serveur Jenkins afin d'y récupérer les logs de build Maven. Dans ce but, il existe une entité **JenkinsBuild** stockée dans une base de données pour permettre d'avoir les informations nécessaire, URL, nom de projet, username et password , pour se connecter sur Jenkins et obtenir les données d'un projet.
+
+---
+
 ### Ajouter un projet Jenkins
 
 methode : **GET**

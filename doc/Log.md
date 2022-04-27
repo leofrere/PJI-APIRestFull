@@ -8,6 +8,12 @@
 4. [Analyse Time](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTime.md)
 5. [Analyse Compile](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseCompile.md)
 
+## Description
+
+Pour aider la lecture de build Maven, une entité **Log** permet de synthétyser les informations, sur les phases de compilation, test et package, contenues dans les logs brut Maven.
+
+---
+
 ### Ajouter un log
 
 methode : **GET**

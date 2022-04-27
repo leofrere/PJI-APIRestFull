@@ -8,6 +8,10 @@
 4. [Analyse Time](https://github.com/leofrere/PJI-APIRestFull/blob/master/doc/AnalyseTime.md)
 5. **Analyse Compile**
 
+## Description
+
+**Analyse Compile** est la partie de l'API qui va permettre d'extraire des tendances sur le nombre de fichiers compilés pour les différentes phase (compilation, test, package).
+
 ---
 
 ### Différence du nombre de classe compilée entre deux logs
