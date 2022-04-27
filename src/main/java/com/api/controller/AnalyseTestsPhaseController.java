@@ -18,34 +18,34 @@ public class AnalyseTestsPhaseController {
     @Autowired
     private LogService logService;
 
-    @GetMapping("/difference/{projectName}/{phaseName}")
-    public float increaseNumberOfTestBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+    @GetMapping("/difference/{projectName}/{testType}")
+    public float increaseNumberOfTestBetweenTwoLogs(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
 
-        return AnalyseTestsPhase.increaseNumberOfTestBetweenTwoLogs(log1, log2, phaseName, module);
+        return AnalyseTestsPhase.increaseNumberOfTestBetweenTwoLogs(log1, log2, testType, module);
     }
 
-    @GetMapping("/difference/percent/{projectName}/{phaseName}")
-    public float increaseNumberOfTestInPercentBetweenTwoLogs(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+    @GetMapping("/difference/percent/{projectName}/{testType}")
+    public float increaseNumberOfTestInPercentBetweenTwoLogs(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
         Log log1 = logService.getLogByProject(projectName).get(n1);
         Log log2 = logService.getLogByProject(projectName).get(n2);
-        return AnalyseTestsPhase.increaseNumberOfTestInPercentBetweenTwoLogs(log1, log2, phaseName, module);
+        return AnalyseTestsPhase.increaseNumberOfTestInPercentBetweenTwoLogs(log1, log2, testType, module);
     }
 
-    @GetMapping("/mean/difference/{projectName}/{phaseName}")
-    public float increaseMeanNumberOfTestBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
-        return AnalyseTestsPhase.increaseMeanNumberOfTestBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    @GetMapping("/mean/difference/{projectName}/{testType}")
+    public float increaseMeanNumberOfTestBetween(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTestsPhase.increaseMeanNumberOfTestBetween(logService.getLogByProject(projectName), n1, n2, testType, module);
     }
 
-    @GetMapping("/mean/difference/percent/{projectName}/{phaseName}")
-    public float increaseMeanNumberOfTestInPercentBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
-        return AnalyseTestsPhase.increaseMeanNumberOfTestInPercentBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    @GetMapping("/mean/difference/percent/{projectName}/{testType}")
+    public float increaseMeanNumberOfTestInPercentBetween(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTestsPhase.increaseMeanNumberOfTestInPercentBetween(logService.getLogByProject(projectName), n1, n2, testType, module);
     }
 
-    @GetMapping("/mean/{projectName}/{phaseName}")
-    public float meanTest(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
-        return AnalyseTestsPhase.meanTest(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    @GetMapping("/mean/{projectName}/{testType}")
+    public float meanTest(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTestsPhase.meanTest(logService.getLogByProject(projectName), n1, n2, testType, module);
     }
 
 }
