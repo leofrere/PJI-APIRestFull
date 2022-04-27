@@ -38,7 +38,7 @@ public class AnalyseTime extends Analyse {
     public static float increaseMeanTimeBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
         float sumTime = 0;
         int cpt = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = n1; i <= n2; i++){
             float time = increaseTimeBetweenTwoLogs(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             if(time != 0) {
                 sumTime += time;
@@ -77,7 +77,7 @@ public class AnalyseTime extends Analyse {
     public static float increaseMeanTimeBetweenInPercent(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
         float sumPercent = 0;
         int cpt = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = n1; i <= n2; i++){
             float percent = increaseTimeBetweenTwoLogsInPercent(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             if(percent != 0) {
                 sumPercent += percent;
@@ -96,7 +96,7 @@ public class AnalyseTime extends Analyse {
     public static float meanTimeBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
         float sumTime = 0;
         int cpt = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = n1; i <= n2; i++){
             Phase phase = logs.get(i).getOrders().get(moduleNumber).getCompilePhase();
             String time = phase.getTime();
             if(time != null) {

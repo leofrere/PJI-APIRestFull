@@ -52,7 +52,7 @@ public class AnalyseCompile extends Analyse {
     public static float increaseMeanNumberOfCompileClassBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber) {
         int cpt = 0;
         int sum = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = n1; i <= n2; i++){
             sum += increaseNumberOfCompileClassBetweenTwoLogs(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             cpt++;
         }
@@ -68,7 +68,7 @@ public class AnalyseCompile extends Analyse {
     public static float increaseMeanNumberOfCompileClassInPercentBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber) {
         int cpt = 0;
         float sum = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = n1; i <= n2; i++){
             sum += increaseNumberOfCompileClassInPercentBetweenTwoLogs(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             cpt++;
         }
@@ -84,7 +84,7 @@ public class AnalyseCompile extends Analyse {
     public static float meanClassCompiled(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber) {
         int cpt = 0;
         int sum = 0;
-        for(int i = n1+1; i <= n2; i++){
+        for(int i = n1; i <= n2; i++){
             sum += logs.get(i).getOrders().get(moduleNumber).getCompilePhase().getCompiledClasses();
             cpt++;
         }
