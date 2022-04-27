@@ -33,7 +33,7 @@ public class AnalyseError extends Analyse {
             }
 
         }
-        return nbError / (float) (n2 - n1);
+        return nbError / (float) (n2 - n1 + 1);
     }
 
     /**

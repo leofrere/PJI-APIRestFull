@@ -8,11 +8,7 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 
 import com.api.LogFile;
-import com.api.PJIApplication;
 
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest(classes = PJIApplication.class)
 public class TestPhaseTest {
     
     @Test

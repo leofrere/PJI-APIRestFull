@@ -4,11 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.api.PJIApplication;
-
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest(classes = PJIApplication.class)
 public class TimeTest {
     
     @Test

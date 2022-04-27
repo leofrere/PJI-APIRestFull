@@ -6,12 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedList;
 
-import com.api.PJIApplication;
 import com.api.model.Log;
 
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest(classes = PJIApplication.class)
 public class LogSortTest {
     
     @Test
