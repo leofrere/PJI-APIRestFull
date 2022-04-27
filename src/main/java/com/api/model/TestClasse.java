@@ -3,9 +3,11 @@ package com.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.interfaces.Test;
+
 @Entity
 @Table(name = "tests_classes")
-public class TestClasse {
+public class TestClasse implements Test {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,11 +9,12 @@ import javax.validation.constraints.NotNull;
 
 import com.api.model.interfaces.Compile;
 import com.api.model.interfaces.Phase;
+import com.api.model.interfaces.Test;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class TestPhase implements Phase, Compile {
+public class TestPhase implements Phase, Compile, Test {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
