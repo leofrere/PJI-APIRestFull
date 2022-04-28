@@ -107,4 +107,11 @@ public class PackagePhase implements Phase {
         this.errorsTrace = errorsTrace;
     }
 
+    public float getTimeFloat() {
+        if(time == null){
+            return 0;
+        }
+        return Float.parseFloat(time.replace(",", ".").replace("s", ""));
+    }
+
 }

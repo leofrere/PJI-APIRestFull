@@ -8,4 +8,6 @@ public interface Phase {
 
     public String getErrorsTrace();
 
+    public float getTimeFloat();
+
 }

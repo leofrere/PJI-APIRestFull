@@ -7,6 +7,7 @@ import java.util.List;
 import com.api.model.Log;
 import com.api.model.Order;
 import com.api.repository.LogRepository;
+import com.api.utils.LogSort;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,8 +93,8 @@ public class LogService {
                 logOfProject.add(log);
             }
         }
-
-        return logOfProject;
+        LogSort.sortBuild(logOfProject);
+        return  logOfProject;
     }
 
     public boolean buildAlreadyExist(String project, int buildNumber) {

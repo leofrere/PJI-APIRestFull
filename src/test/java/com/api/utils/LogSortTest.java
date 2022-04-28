@@ -27,7 +27,7 @@ public class LogSortTest {
         logs.add(log5);
         logs.add(log6);
 
-        LogSort.sort(logs);
+        LogSort.sortBuild(logs);
 
         for(int i = 1; i < logs.size(); i++){
             assertTrue(logs.get(i).getBuild() >= logs.get(i-1).getBuild());

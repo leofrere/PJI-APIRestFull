@@ -1,5 +1,6 @@
 package com.api.analyse;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.api.analyse.abstracts.Analyse;
@@ -23,8 +24,8 @@ public class AnalyseTime extends Analyse {
             return 0;
         }
 
-        float time1 = Float.parseFloat(phase1.getTime().replace(",", ".").replace("s", ""));
-        float time2 = Float.parseFloat(phase2.getTime().replace(",", ".").replace("s", ""));
+        float time1 = phase1.getTimeFloat();
+        float time2 = phase2.getTimeFloat();
         
         return time2 - time1;
     }
@@ -62,8 +63,8 @@ public class AnalyseTime extends Analyse {
             return 0;
         }
 
-        float time1 = Float.parseFloat(phase1.getTime().replace(",", ".").replace("s", ""));
-        float time2 = Float.parseFloat(phase2.getTime().replace(",", ".").replace("s", ""));
+        float time1 = phase1.getTimeFloat();
+        float time2 = phase2.getTimeFloat();
         
         return (time2 - time1) / time1;
     }
@@ -100,11 +101,55 @@ public class AnalyseTime extends Analyse {
             Phase phase = getPhase(phaseName, logs.get(i).getOrders().get(moduleNumber));
             String time = phase.getTime();
             if(time != null) {
-                sumTime += Float.parseFloat(time.replace(",", ".").replace("s", ""));
+                sumTime += phase.getTimeFloat();
                 cpt++;
             }
         }
         return sumTime / cpt;
+    }
+
+    /**
+     * @param logs
+     * @param phaseName nom de la phase ciblé (compile, test, package)
+     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
+     * @return temps médian pour une phase ciblé
+     */
+    public static float medianTimeBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
+
+        List<Log> logsWithTime = new LinkedList<Log>();
+        for(int i = n1; i <= n2; i++){
+            Phase phase = getPhase(phaseName, logs.get(i).getOrders().get(moduleNumber));
+            String time = phase.getTime();
+            if(time != null) {
+                logsWithTime.add(logs.get(i));
+            }
+        }
+
+        logsWithTime.sort((Log log1, Log log2) -> {
+            Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+            Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
+            if (phase1.getTimeFloat() > phase2.getTimeFloat()) {
+                return 1;
+            } else if (phase1.getTimeFloat() < phase2.getTimeFloat()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        
+        if(logsWithTime.size() % 2 == 0) {
+            Log log = logsWithTime.get(logsWithTime.size() / 2);
+            Phase phase = getPhase(phaseName, log.getOrders().get(moduleNumber));
+            return phase.getTimeFloat();
+        } else {
+            Log log1 = logsWithTime.get(logsWithTime.size() / 2);
+            Log log2 = logsWithTime.get(logsWithTime.size() / 2 + 1);
+            Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+            Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+        }
+        
+
     }
 
 }
