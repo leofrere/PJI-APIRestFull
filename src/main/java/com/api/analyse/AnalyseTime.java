@@ -38,7 +38,7 @@ public class AnalyseTime extends Analyse {
     public static float increaseMeanTimeBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
         float sumTime = 0;
         int cpt = 0;
-        for(int i = n1; i <= n2; i++){
+        for(int i = n1+1; i <= n2; i++){
             float time = increaseTimeBetweenTwoLogs(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             if(time != 0) {
                 sumTime += time;
@@ -55,8 +55,8 @@ public class AnalyseTime extends Analyse {
      * @return 0 si un des deux log a un time null, sinon la différence de temps entre les deux logs en pourcentage
      */
     public static float increaseTimeBetweenTwoLogsInPercent(Log log1, Log log2, String phaseName, int moduleNumber) {
-        Phase phase1 = log1.getOrders().get(moduleNumber).getCompilePhase();
-        Phase phase2 = log2.getOrders().get(moduleNumber).getCompilePhase();
+        Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+        Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
         
         if(phase1.getTime() == null || phase2.getTime() == null) {
             return 0;
@@ -77,7 +77,7 @@ public class AnalyseTime extends Analyse {
     public static float increaseMeanTimeBetweenInPercent(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
         float sumPercent = 0;
         int cpt = 0;
-        for(int i = n1; i <= n2; i++){
+        for(int i = n1+1; i <= n2; i++){
             float percent = increaseTimeBetweenTwoLogsInPercent(logs.get(i-1), logs.get(i), phaseName, moduleNumber);
             if(percent != 0) {
                 sumPercent += percent;
@@ -97,7 +97,7 @@ public class AnalyseTime extends Analyse {
         float sumTime = 0;
         int cpt = 0;
         for(int i = n1; i <= n2; i++){
-            Phase phase = logs.get(i).getOrders().get(moduleNumber).getCompilePhase();
+            Phase phase = getPhase(phaseName, logs.get(i).getOrders().get(moduleNumber));
             String time = phase.getTime();
             if(time != null) {
                 sumTime += Float.parseFloat(time.replace(",", ".").replace("s", ""));

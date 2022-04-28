@@ -88,4 +88,114 @@ public class AnalyseTimeTest {
         float res = AnalyseTime.increaseTimeBetweenTwoLogs(logs.get(0), logs.get(1), "package", 0);
         assertEquals(0.25, res, 0.01);
     }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsOfCompilePhaseWithTimeNullTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogs(logs.get(2), logs.get(3), "compile", 0);
+        assertEquals(0, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsOfTestPhaseWithTimeNullTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogs(logs.get(1), logs.get(3), "test", 0);
+        assertEquals(0, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsOfPackagePhaseWithTimeNullTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogs(logs.get(0), logs.get(3), "package", 0);
+        assertEquals(0, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsInPercentOfCompilePhaseTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogsInPercent(logs.get(0), logs.get(1), "compile", 0);
+        assertEquals(-0.29, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsInPercentOfTestPhaseTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogsInPercent(logs.get(0), logs.get(1), "test", 0);
+        assertEquals(0.07, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsInPercentOfPackagePhaseTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogsInPercent(logs.get(0), logs.get(1), "package", 0);
+        assertEquals(0.16, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsInPercentOfCompilePhaseWithTimeNullTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogsInPercent(logs.get(2), logs.get(3), "compile", 0);
+        assertEquals(0, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsInPercentOfTestPhaseWithTimeNullTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogsInPercent(logs.get(1), logs.get(3), "test", 0);
+        assertEquals(0, res, 0.01);
+    }
+
+    @Test
+    public void increaseTimeBetweenTwoLogsInPercentOfPackagePhaseWithTimeNullTest(){
+        float res = AnalyseTime.increaseTimeBetweenTwoLogsInPercent(logs.get(0), logs.get(3), "package", 0);
+        assertEquals(0, res, 0.01);
+    }
+
+    @Test
+    public void increaseMeanTimeBetweenOfCompilePhaseTest(){
+        float res = AnalyseTime.increaseMeanTimeBetween(logs, 0, 4, "compile", 0);
+        assertEquals(0.29, res, 0.01);
+    }
+
+    @Test
+    public void increaseMeanTimeBetweenOfTestPhaseTest(){
+        float res = AnalyseTime.increaseMeanTimeBetween(logs, 0, 4, "test", 0);
+        assertEquals(0.15, res, 0.01);
+    }
+
+    @Test
+    public void increaseMeanTimeBetweenOfPackagePhaseTest(){
+        float res = AnalyseTime.increaseMeanTimeBetween(logs,0, 4, "package", 0);
+        assertEquals(0.79, res, 0.01);
+    }
+
+    @Test
+    public void increaseMeanTimeBetweenOfCompilePhaseInPercentTest(){
+        float res = AnalyseTime.increaseMeanTimeBetweenInPercent(logs, 0, 4, "compile", 0);
+        assertEquals(0.22, res, 0.01);
+    }
+
+    @Test
+    public void increaseMeanTimeBetweenOfTestPhaseInPercentTest(){
+        float res = AnalyseTime.increaseMeanTimeBetweenInPercent(logs, 0, 4, "test", 0);
+        assertEquals(0.02, res, 0.01);
+    }
+
+    @Test
+    public void increaseMeanTimeBetweenOfPackagePhaseInPercentTest(){
+        float res = AnalyseTime.increaseMeanTimeBetweenInPercent(logs,0, 4, "package", 0);
+        assertEquals(0.45, res, 0.01);
+    }
+
+    @Test
+    public void meanTimeBetweenOfCompilePhaseTest(){
+        float res = AnalyseTime.meanTimeBetween(logs, 0, 4, "compile", 0);
+        assertEquals(2.53, res, 0.01);
+    }
+
+    @Test
+    public void meanTimeBetweenOfTestPhaseTest(){
+        float res = AnalyseTime.meanTimeBetween(logs, 0, 4, "test", 0);
+        assertEquals(6.60, res, 0.01);
+    }
+
+    @Test
+    public void meanTimeBetweenOfPackagePhaseTest(){
+        float res = AnalyseTime.meanTimeBetween(logs,0, 4, "package", 0);
+        assertEquals(2.28, res, 0.01);
+    }
+
+
 }
