@@ -21,7 +21,7 @@
 
 methode : **GET**
 
-path : `/analyse/error/proportion/{projectName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/error/proportion/{projectName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - log1 : numéro du premier log
 - log2 : numéro du deuxième log
@@ -31,7 +31,7 @@ path : `/analyse/error/proportion/{projectName}?log1=<int>&log2=<int>&module=0|<
 
 methode : **GET**
 
-path : `/analyse/error/types/number/{projectName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/error/types/number/{projectName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - log1 : numéro du premier log
 - log2 : numéro du deuxième log

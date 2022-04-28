@@ -21,7 +21,7 @@
 
 methode : **GET**
 
-path : `/analyse/test/classe/difference/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/difference/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -33,7 +33,7 @@ path : `/analyse/test/classe/difference/{projectName}/{testType}?log1=<int>&log2
 
 methode : **GET**
 
-path : `/analyse/test/classe/difference/percent/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/difference/percent/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -45,7 +45,7 @@ path : `/analyse/test/classe/difference/percent/{projectName}/{testType}?log1=<i
 
 methode : **GET**
 
-path : `/analyse/test/classe/mean/difference/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/mean/difference/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -57,7 +57,7 @@ path : `/analyse/test/classe/mean/difference/{projectName}/{testType}?log1=<int>
 
 methode : **GET**
 
-path : `/analyse/test/classe/mean/difference/percent/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/mean/difference/percent/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -69,7 +69,7 @@ path : `/analyse/test/classe/mean/difference/percent/{projectName}/{testType}?lo
 
 methode : **GET**
 
-path : `/analyse/test/classe/mean/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/mean/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -81,7 +81,7 @@ path : `/analyse/test/classe/mean/{projectName}/{testType}?log1=<int>&log2=<int>
 
 methode : **GET**
 
-path : `/analyse/test/classe/median/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/median/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -93,7 +93,7 @@ path : `/analyse/test/classe/median/{projectName}/{testType}?log1=<int>&log2=<in
 
 methode : **GET**
 
-path : `/analyse/test/classe/quartile/first/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/quartile/first/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log
@@ -105,7 +105,7 @@ path : `/analyse/test/classe/quartile/first/{projectName}/{testType}?log1=<int>&
 
 methode : **GET**
 
-path : `/analyse/test/classe/quartile/third/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+path : `/analyse/test/classe/quartile/third/{projectName}/{testType}?log1=0|<int>&log2=-1|<int>&classe<className>&module=0|<int>`
 - projectName : nom du projet cible
 - testType : nom du type de test ciblé (run, failed, skipped, error)
 - log1 : numéro du premier log

@@ -21,7 +21,7 @@
 
 methode : **GET**
 
-path : `/analyse/error/difference/{projectName}/{phaseName}?log1=<int>&log=<int>&module=0|<int>`
+path : `/analyse/error/difference/{projectName}/{phaseName}?log1=0|<int>&log=<-1|int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -32,7 +32,7 @@ path : `/analyse/error/difference/{projectName}/{phaseName}?log1=<int>&log=<int>
 
 methode : **GET**
 
-path : `/analyse/compile/difference/percent/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/difference/percent/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -43,7 +43,7 @@ path : `/analyse/compile/difference/percent/{projectName}/{phaseName}?log1=<int>
 
 methode : **GET**
 
-path : `/analyse/compile/mean/difference/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/mean/difference/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -54,7 +54,7 @@ path : `/analyse/compile/mean/difference/{projectName}/{phaseName}?log1=<int>&lo
 
 methode : **GET**
 
-path : `/analyse/compile/mean/difference/percent/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/mean/difference/percent/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -65,7 +65,7 @@ path : `/analyse/compile/mean/difference/percent/{projectName}/{phaseName}?log1=
 
 methode : **GET**
 
-path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -76,7 +76,7 @@ path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=<int>&log2=<int>&mo
 
 methode : **GET**
 
-path : `/analyse/compile/median/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/median/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -87,7 +87,7 @@ path : `/analyse/compile/median/{projectName}/{phaseName}?log1=<int>&log2=<int>&
 
 methode : **GET**
 
-path : `/analyse/compile/quartile/first/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/quartile/first/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
@@ -98,7 +98,7 @@ path : `/analyse/compile/quartile/first/{projectName}/{phaseName}?log1=<int>&log
 
 methode : **GET**
 
-path : `/analyse/compile/quartile/third/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/compile/quartile/third/{projectName}/{phaseName}?log1=0|<int>&log2=-1|<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test)
 - log1 : numéro du premier log
