@@ -196,4 +196,76 @@ public class AnalyseTestsClasseTest {
         float res = AnalyseTestsClasse.meanTest(logs, 0, 4, "error", "package2.Class", 0);
         assertEquals(1.66, res, 0.01);
     }
+
+    @Test
+    public void medianRunTestTest(){
+        float res = AnalyseTestsClasse.medianTest(logs, 0, 4, "run", "package.Class", 0);
+        assertEquals(13, res, 0.01);
+    }
+
+    @Test
+    public void medianFailedTestTest(){
+        float res = AnalyseTestsClasse.medianTest(logs, 0, 4, "failed", "package.Class", 0);
+        assertEquals(2, res, 0.01);
+    }
+
+    @Test
+    public void medianSkippedTestTest(){
+        float res = AnalyseTestsClasse.medianTest(logs, 0, 4, "skipped", "package.Class", 0);
+        assertEquals(1, res, 0.01);
+    }
+
+    @Test
+    public void medianErrorTestTest(){
+        float res = AnalyseTestsClasse.medianTest(logs, 0, 4, "error", "package2.Class", 0);
+        assertEquals(2, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileRunTestTest(){
+        float res = AnalyseTestsClasse.firstQuartileTest(logs, 0, 4, "run", "package.Class", 0);
+        assertEquals(13, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileFailedTestTest(){
+        float res = AnalyseTestsClasse.firstQuartileTest(logs, 0, 4, "failed", "package.Class", 0);
+        assertEquals(1.5, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileSkippedTestTest(){
+        float res = AnalyseTestsClasse.firstQuartileTest(logs, 0, 4, "skipped", "package.Class", 0);
+        assertEquals(1, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileErrorTestTest(){
+        float res = AnalyseTestsClasse.firstQuartileTest(logs, 0, 4, "error", "package2.Class", 0);
+        assertEquals(1, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileRunTestTest(){
+        float res = AnalyseTestsClasse.thirdQuartileTest(logs, 0, 4, "run", "package.Class", 0);
+        assertEquals(22, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileFailedTestTest(){
+        float res = AnalyseTestsClasse.thirdQuartileTest(logs, 0, 4, "failed", "package.Class", 0);
+        assertEquals(3.5, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileSkippedTestTest(){
+        float res = AnalyseTestsClasse.thirdQuartileTest(logs, 0, 4, "skipped", "package.Class", 0);
+        assertEquals(3, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileErrorTestTest(){
+        float res = AnalyseTestsClasse.thirdQuartileTest(logs, 0, 4, "error", "package2.Class", 0);
+        assertEquals(1, res, 0.01);
+    }
 }

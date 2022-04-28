@@ -66,12 +66,7 @@ public class AnalyseTestsClasse extends AnalyseTests{
      */
     public static float increaseMeanNumberOfTestBetween(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber) {
         List<Test> tests = new LinkedList<Test>();
-        for(int i = n1; i <= n2; i++){
-            Test test = getTest(logs.get(i), moduleNumber, testClasse);
-            if(test != null){
-                tests.add(test);
-            }
-        }
+        getListOfTest(logs, n1, n2, testClasse, moduleNumber, tests);
         return increaseMeanNumberTestBetween(tests, typeTest);
     }
 
@@ -85,12 +80,7 @@ public class AnalyseTestsClasse extends AnalyseTests{
      */
     public static float increaseMeanNumberOfTestInPercentBetween(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
         List<Test> tests = new LinkedList<Test>();
-        for(int i = n1; i <= n2; i++){
-            Test test = getTest(logs.get(i), moduleNumber, testClasse);
-            if(test != null){
-                tests.add(test);
-            }
-        }
+        getListOfTest(logs, n1, n2, testClasse, moduleNumber, tests);
         return increaseMeanNumberOfTestInPercentBetween(tests, typeTest);
     }
 
@@ -104,13 +94,60 @@ public class AnalyseTestsClasse extends AnalyseTests{
      */
     public static float meanTest(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
         List<Test> tests = new LinkedList<Test>();
+        getListOfTest(logs, n1, n2, testClasse, moduleNumber, tests);
+        return meanTest(tests, typeTest);
+    }
+
+    /**
+     * @param logs
+     * @param n1
+     * @param n2
+     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
+     * @param typeTest type de test (run, failed, skipped, error)
+     * @return mediane du nombre de tests entre le test n1 et le test n2
+     */
+    public static float medianTest(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
+        List<Test> tests = new LinkedList<Test>();
+        getListOfTest(logs, n1, n2, testClasse, moduleNumber, tests);
+        return medianTest(tests, typeTest);
+    }
+
+    /**
+     * @param logs
+     * @param n1
+     * @param n2
+     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
+     * @param typeTest type de test (run, failed, skipped, error)
+     * @return premier quartile du nombre de tests entre le test n1 et le test n2
+     */
+    public static float firstQuartileTest(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
+        List<Test> tests = new LinkedList<Test>();
+        getListOfTest(logs, n1, n2, testClasse, moduleNumber, tests);
+        return firstQuartileBetween(tests, typeTest);
+    }
+
+    /**
+     * @param logs
+     * @param n1
+     * @param n2
+     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
+     * @param typeTest type de test (run, failed, skipped, error)
+     * @return troisième quartile du nombre de tests entre le test n1 et le test n2
+     */
+    public static float thirdQuartileTest(List<Log> logs, int n1, int n2, String typeTest, String testClasse, int moduleNumber){
+        List<Test> tests = new LinkedList<Test>();
+        getListOfTest(logs, n1, n2, testClasse, moduleNumber, tests);
+        return thirdQuartileBetween(tests, typeTest);
+    }
+
+    private static void getListOfTest(List<Log> logs, int n1, int n2, String testClasse, int moduleNumber,
+            List<Test> tests) {
         for(int i = n1; i <= n2; i++){
             Test test = getTest(logs.get(i), moduleNumber, testClasse);
             if(test != null){
                 tests.add(test);
             }
         }
-        return meanTest(tests, typeTest);
     }
 
 }
