@@ -94,4 +94,66 @@ public abstract class AnalyseTests extends Analyse {
         return sum / (float) cpt;
     }
 
+    /**
+     * @param tests
+     * @param typeTest type de test (run, failed, skipped, error)
+     * @return médianne du nombre de tests entre le test n1 et le test n2
+     */
+    public static float medianTest(List<Test> tests, String typeTest){
+        sortTest(tests, typeTest);
+        if(tests.size() % 2 != 0) {
+            return getNumberOfTestOfType(typeTest, tests.get(tests.size() / 2));
+        } else {
+            Test test1 = tests.get(tests.size() / 2 - 1);
+            Test test2 = tests.get(tests.size() / 2);
+            return (getNumberOfTestOfType(typeTest, test1) + getNumberOfTestOfType(typeTest, test2)) / (float) 2;
+        }
+    }
+
+    /**
+     * @param tests
+     * @param typeTest type de test (run, failed, skipped, error)
+     * @return premier quartile du nombre de tests entre le test n1 et le test n2
+     */
+    public static float firstQuartileBetween(List<Test> tests, String typeTest){
+        sortTest(tests, typeTest);
+        if(tests.size() % 4 == 0) {
+            return getNumberOfTestOfType(typeTest, tests.get(tests.size() / 4));
+        } else {
+            Test test1 = tests.get(tests.size() / 4 + 1);
+            Test test2 = tests.get(tests.size() / 4);
+            return (getNumberOfTestOfType(typeTest, test1) + getNumberOfTestOfType(typeTest, test2)) / (float) 2;
+        }
+    }
+
+    /**
+     * @param tests
+     * @param typeTest type de test (run, failed, skipped, error)
+     * @return troisième quartile du nombre de tests entre le test n1 et le test n2
+     */
+    public static float thirdQuartileBetween(List<Test> tests, String typeTest){
+        sortTest(tests, typeTest);
+        if(tests.size() % 4 == 0) {
+            return getNumberOfTestOfType(typeTest, tests.get(tests.size() / 4 * 3));
+        } else {
+            Test test1 = tests.get(tests.size() / 4 * 3 + 1);
+            Test test2 = tests.get(tests.size() / 4 * 3);
+            return (getNumberOfTestOfType(typeTest, test1) + getNumberOfTestOfType(typeTest, test2)) / (float) 2;
+        }
+    }
+
+    private static void sortTest(List<Test> tests, String typeTest){
+        tests.sort((Test test1, Test test2) -> {
+            int nt1 = getNumberOfTestOfType(typeTest, test1);
+            int nt2 = getNumberOfTestOfType(typeTest, test2);
+            if (nt1 > nt2) {
+                return 1;
+            } else if (nt1 < nt2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+    }
+
 }

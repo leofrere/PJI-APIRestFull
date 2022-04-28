@@ -200,4 +200,76 @@ public class AnalyseTestsPhaseTest {
         assertEquals(1.2, res, 0.01);
     }
 
+    @Test
+    public void medianRunTestTest(){
+        float res = AnalyseTestsPhase.medianTest(logs, 0, 4, "run", 0);
+        assertEquals(13, res, 0.01);
+    }
+
+    @Test
+    public void medianFailedTestTest(){
+        float res = AnalyseTestsPhase.medianTest(logs, 0, 4, "failed", 0);
+        assertEquals(2, res, 0.01);
+    }
+
+    @Test
+    public void medianSkippedTestTest(){
+        float res = AnalyseTestsPhase.medianTest(logs, 0, 4, "skipped", 0);
+        assertEquals(1, res, 0.01);
+    }
+
+    @Test
+    public void medianErrorTestTest(){
+        float res = AnalyseTestsPhase.medianTest(logs, 0, 4, "error", 0);
+        assertEquals(1, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileRunTestTest(){
+        float res = AnalyseTestsPhase.firstQuartileTest(logs, 0, 4, "run", 0);
+        assertEquals(13, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileFailedTestTest(){
+        float res = AnalyseTestsPhase.firstQuartileTest(logs, 0, 4, "failed", 0);
+        assertEquals(1.5, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileSkippedTestTest(){
+        float res = AnalyseTestsPhase.firstQuartileTest(logs, 0, 4, "skipped", 0);
+        assertEquals(1, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileErrorTestTest(){
+        float res = AnalyseTestsPhase.firstQuartileTest(logs, 0, 4, "error", 0);
+        assertEquals(0.5, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileRunTestTest(){
+        float res = AnalyseTestsPhase.thirdQuartileTest(logs, 0, 4, "run", 0);
+        assertEquals(22, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileFailedTestTest(){
+        float res = AnalyseTestsPhase.thirdQuartileTest(logs, 0, 4, "failed", 0);
+        assertEquals(3.5, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileSkippedTestTest(){
+        float res = AnalyseTestsPhase.thirdQuartileTest(logs, 0, 4, "skipped", 0);
+        assertEquals(3, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileErrorTestTest(){
+        float res = AnalyseTestsPhase.thirdQuartileTest(logs, 0, 4, "error", 0);
+        assertEquals(2.5, res, 0.01);
+    }
+
 }
