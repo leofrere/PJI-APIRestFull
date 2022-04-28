@@ -116,6 +116,71 @@ public class AnalyseTime extends Analyse {
      */
     public static float medianTimeBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
 
+        List<Log> logsWithTime = sortByTime(logs, n1, n2, phaseName, moduleNumber);
+        
+        if(logsWithTime.size() % 2 == 0) {
+            Log log = logsWithTime.get(logsWithTime.size() / 2);
+            Phase phase = getPhase(phaseName, log.getOrders().get(moduleNumber));
+            return phase.getTimeFloat();
+        } else {
+            Log log1 = logsWithTime.get(logsWithTime.size() / 2);
+            Log log2 = logsWithTime.get(logsWithTime.size() / 2 + 1);
+            Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+            Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+        }
+        
+
+    }
+
+    /**
+     * @param logs
+     * @param phaseName nom de la phase ciblé (compile, test, package)
+     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
+     * @return premier quartile pour le temps d'une phase ciblé
+     */
+    public static float firstQuartileBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
+
+        List<Log> logsWithTime = sortByTime(logs, n1, n2, phaseName, moduleNumber);
+        
+        if(logsWithTime.size() % 4 == 0) {
+            Log log = logsWithTime.get(logsWithTime.size() / 4);
+            Phase phase = getPhase(phaseName, log.getOrders().get(moduleNumber));
+            return phase.getTimeFloat();
+        } else {
+            Log log1 = logsWithTime.get(logsWithTime.size() / 4);
+            Log log2 = logsWithTime.get(logsWithTime.size() / 4 + 1);
+            Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+            Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+        }
+        
+    }
+
+    /**
+     * @param logs
+     * @param phaseName nom de la phase ciblé (compile, test, package)
+     * @param moduleNumber numéro du module dans le cadre d'un projet multi module Maven
+     * @return troisième quartile pour le temps d'une phase ciblé
+     */
+    public static float thirdQuartileBetween(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber){
+
+        List<Log> logsWithTime = sortByTime(logs, n1, n2, phaseName, moduleNumber);
+        
+        if(logsWithTime.size() % 4 == 0) {
+            Log log = logsWithTime.get(logsWithTime.size() * 3 / 4);
+            Phase phase = getPhase(phaseName, log.getOrders().get(moduleNumber));
+            return phase.getTimeFloat();
+        } else {
+            Log log1 = logsWithTime.get(logsWithTime.size() * 3 / 4);
+            Log log2 = logsWithTime.get(logsWithTime.size() * 3 / 4 + 1);
+            Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+            Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+        }
+    }
+
+    private static List<Log> sortByTime(List<Log> logs, int n1, int n2, String phaseName, int moduleNumber) {
         List<Log> logsWithTime = new LinkedList<Log>();
         for(int i = n1; i <= n2; i++){
             Phase phase = getPhase(phaseName, logs.get(i).getOrders().get(moduleNumber));
@@ -136,20 +201,7 @@ public class AnalyseTime extends Analyse {
                 return 0;
             }
         });
-        
-        if(logsWithTime.size() % 2 == 0) {
-            Log log = logsWithTime.get(logsWithTime.size() / 2);
-            Phase phase = getPhase(phaseName, log.getOrders().get(moduleNumber));
-            return phase.getTimeFloat();
-        } else {
-            Log log1 = logsWithTime.get(logsWithTime.size() / 2);
-            Log log2 = logsWithTime.get(logsWithTime.size() / 2 + 1);
-            Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
-            Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
-            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
-        }
-        
-
+        return logsWithTime;
     }
 
 }
