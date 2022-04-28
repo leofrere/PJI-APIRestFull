@@ -14,7 +14,7 @@ public abstract class Analyse {
             case "test":
                 return order.getTestPhase();
             default:
-                return order.getCompilePhase();
+                return order.getPackagePhase();
         }
     }
 

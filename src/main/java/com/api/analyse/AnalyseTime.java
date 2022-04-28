@@ -16,8 +16,8 @@ public class AnalyseTime extends Analyse {
      * @return 0 si un des deux log a un time null, sinon la différence de temps entre les deux logs
      */
     public static float increaseTimeBetweenTwoLogs(Log log1, Log log2, String phaseName, int moduleNumber) {
-        Phase phase1 = log1.getOrders().get(moduleNumber).getCompilePhase();
-        Phase phase2 = log2.getOrders().get(moduleNumber).getCompilePhase();
+        Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
+        Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
         
         if(phase1.getTime() == null || phase2.getTime() == null) {
             return 0;
