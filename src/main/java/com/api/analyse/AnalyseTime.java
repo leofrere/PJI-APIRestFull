@@ -118,13 +118,13 @@ public class AnalyseTime extends Analyse {
 
         List<Log> logsWithTime = sortByTime(logs, n1, n2, phaseName, moduleNumber);
         
-        if(logsWithTime.size() % 2 == 0) {
+        if(logsWithTime.size() % 2 != 0) {
             Log log = logsWithTime.get(logsWithTime.size() / 2);
             Phase phase = getPhase(phaseName, log.getOrders().get(moduleNumber));
             return phase.getTimeFloat();
         } else {
             Log log1 = logsWithTime.get(logsWithTime.size() / 2);
-            Log log2 = logsWithTime.get(logsWithTime.size() / 2 + 1);
+            Log log2 = logsWithTime.get(logsWithTime.size() / 2 - 1);
             Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
             Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
             return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;

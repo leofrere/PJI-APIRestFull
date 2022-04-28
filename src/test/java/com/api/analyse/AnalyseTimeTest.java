@@ -197,5 +197,59 @@ public class AnalyseTimeTest {
         assertEquals(2.28, res, 0.01);
     }
 
+    @Test
+    public void medianTimeBetweenOfCompilePhaseTest(){
+        float res = AnalyseTime.medianTimeBetween(logs, 0, 4, "compile", 0);
+        assertEquals(2.61, res, 0.01);
+    }
+
+    @Test
+    public void medianTimeBetweenOfTestPhaseTest(){
+        float res = AnalyseTime.medianTimeBetween(logs, 0, 4, "test", 0);
+        assertEquals(6.17, res, 0.01);
+    }
+
+    @Test
+    public void medianTimeBetweenOfPackagePhaseTest(){
+        float res = AnalyseTime.medianTimeBetween(logs,0, 4, "package", 0);
+        assertEquals(2.23, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileBetweenCompilePhaseTest(){
+        float res = AnalyseTime.firstQuartileBetween(logs, 0, 4, "compile", 0);
+        assertEquals(2.53, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileBetweenTestPhaseTest(){
+        float res = AnalyseTime.firstQuartileBetween(logs, 0, 4, "test", 0);
+        assertEquals(6.09, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileBetweenPackagePhaseTest(){
+        float res = AnalyseTime.firstQuartileBetween(logs,0, 4, "package", 0);
+        assertEquals(1.78, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileBetweenCompilePhaseTest(){
+        float res = AnalyseTime.thirdQuartileBetween(logs, 0, 4, "compile", 0);
+        assertEquals(3.13, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileBetweenTestPhaseTest(){
+        float res = AnalyseTime.thirdQuartileBetween(logs, 0, 4, "test", 0);
+        assertEquals(8.31, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileBetweenPackagePhaseTest(){
+        float res = AnalyseTime.thirdQuartileBetween(logs,0, 4, "package", 0);
+        assertEquals(3.13, res, 0.01);
+    }
+
 
 }
