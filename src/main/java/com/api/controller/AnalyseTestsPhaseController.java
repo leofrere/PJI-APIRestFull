@@ -48,4 +48,19 @@ public class AnalyseTestsPhaseController {
         return AnalyseTestsPhase.meanTest(logService.getLogByProject(projectName), n1, n2, testType, module);
     }
 
+    @GetMapping("/median/{projectName}/{testType}")
+    public float medianTest(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTestsPhase.medianTest(logService.getLogByProject(projectName), n1, n2, testType, module);
+    }
+
+    @GetMapping("/quartile/first/{projectName}/{testType}")
+    public float firstQuartileTest(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTestsPhase.firstQuartileTest(logService.getLogByProject(projectName), n1, n2, testType, module);
+    }
+
+    @GetMapping("/quartile/third/{projectName}/{testType}")
+    public float thirdQuartileTest(@PathVariable String projectName, @PathVariable String testType, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTestsPhase.thirdQuartileTest(logService.getLogByProject(projectName), n1, n2, testType, module);
+    }
+
 }

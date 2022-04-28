@@ -72,7 +72,7 @@ path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=<int>&log2=<int>&mo
 - log2 : numéro du dernier log
 - module (optionnel) : numéro du module ciblé par défaut il vaut 0
 
-### Médian de classe compilée
+### Médianne de classe compilée
 
 methode : **GET**
 
