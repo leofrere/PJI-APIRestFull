@@ -76,3 +76,39 @@ path : `/analyse/test/classe/mean/{projectName}/{testType}?log1=<int>&log2=<int>
 - log2 : numéro du dernier log
 - classe : nom de la classe de test cible (ex : pour une classe package.ClasseTest le nom à donner sera package-ClasseTest)
 - module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Médianne de tests
+
+methode : **GET**
+
+path : `/analyse/test/classe/median/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+- projectName : nom du projet cible
+- testType : nom du type de test ciblé (run, failed, skipped, error)
+- log1 : numéro du premier log
+- log2 : numéro du dernier log
+- classe : nom de la classe de test cible (ex : pour une classe package.ClasseTest le nom à donner sera package-ClasseTest)
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Premier quartile de tests
+
+methode : **GET**
+
+path : `/analyse/test/classe/quartile/first/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+- projectName : nom du projet cible
+- testType : nom du type de test ciblé (run, failed, skipped, error)
+- log1 : numéro du premier log
+- log2 : numéro du dernier log
+- classe : nom de la classe de test cible (ex : pour une classe package.ClasseTest le nom à donner sera package-ClasseTest)
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Troisième quartile de tests
+
+methode : **GET**
+
+path : `/analyse/test/classe/quartile/third/{projectName}/{testType}?log1=<int>&log2=<int>&classe<className>&module=0|<int>`
+- projectName : nom du projet cible
+- testType : nom du type de test ciblé (run, failed, skipped, error)
+- log1 : numéro du premier log
+- log2 : numéro du dernier log
+- classe : nom de la classe de test cible (ex : pour une classe package.ClasseTest le nom à donner sera package-ClasseTest)
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
