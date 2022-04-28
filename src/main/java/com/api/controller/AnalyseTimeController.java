@@ -47,4 +47,19 @@ public class AnalyseTimeController {
         return AnalyseTime.meanTimeBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
     }
 
+    @GetMapping("median/{projectName}/{phaseName}")
+    public float medianTimeBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTime.medianTimeBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    }
+
+    @GetMapping("/quartile/first/{projectName}/{phaseName}")
+    public float firstQuartileTimeBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTime.firstQuartileBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    }
+
+    @GetMapping("/quartile/third/{projectName}/{phaseName}")
+    public float thirdQuartileTimeBetween(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseTime.thirdQuartileBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    }
+
 }
