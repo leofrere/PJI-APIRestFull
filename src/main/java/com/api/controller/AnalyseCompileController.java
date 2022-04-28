@@ -48,4 +48,19 @@ public class AnalyseCompileController {
         return AnalyseCompile.meanClassCompiled(logService.getLogByProject(projectName), n1, n2, phaseName, module);
     }
 
+    @GetMapping("/median/{projectName}/{phaseName}")
+    public float medianClassCompiled(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseCompile.medianClassCompiled(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    }
+
+    @GetMapping("/quartile/first/{projectName}/{phaseName}")
+    public float firstQuartileClassCompiled(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseCompile.firstQuartileBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    }
+
+    @GetMapping("/quartile/third/{projectName}/{phaseName}")
+    public float thirdQuartileClassCompiled(@PathVariable String projectName, @PathVariable String phaseName, @RequestParam("log1") int n1, @RequestParam("log2") int n2, @RequestParam(defaultValue = "0") int module) {
+        return AnalyseCompile.thirdQuartileBetween(logService.getLogByProject(projectName), n1, n2, phaseName, module);
+    }
+
 }

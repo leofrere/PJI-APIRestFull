@@ -76,7 +76,7 @@ path : `/analyse/time/mean/{projectName}/{phaseName}?log1=<int>&log2=<int>&modul
 
 methode : **GET**
 
-path : `median/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/time/median/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
@@ -87,7 +87,7 @@ path : `median/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 
 methode : **GET**
 
-path : `/quartile/first/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/time/quartile/first/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log
@@ -98,7 +98,7 @@ path : `/quartile/first/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0
 
 methode : **GET**
 
-path : `/quartile/third/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+path : `/analyse/time/quartile/third/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - log1 : numéro du premier log

@@ -71,3 +71,36 @@ path : `/analyse/compile/mean/{projectName}/{phaseName}?log1=<int>&log2=<int>&mo
 - log1 : numéro du premier log
 - log2 : numéro du dernier log
 - module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Médian de classe compilée
+
+methode : **GET**
+
+path : `/analyse/compile/median/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+- projectName : nom du projet cible
+- phaseName : nom de la phase cible (compile, test)
+- log1 : numéro du premier log
+- log2 : numéro du dernier log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Premier quartile de classe compilée
+
+methode : **GET**
+
+path : `/analyse/compile/quartile/first/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+- projectName : nom du projet cible
+- phaseName : nom de la phase cible (compile, test)
+- log1 : numéro du premier log
+- log2 : numéro du dernier log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Troisième quartile de classe compilée
+
+methode : **GET**
+
+path : `/analyse/compile/quartile/third/{projectName}/{phaseName}?log1=<int>&log2=<int>&module=0|<int>`
+- projectName : nom du projet cible
+- phaseName : nom de la phase cible (compile, test)
+- log1 : numéro du premier log
+- log2 : numéro du dernier log
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
