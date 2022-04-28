@@ -36,6 +36,7 @@ public abstract class AnalyseTests extends Analyse {
      * @return la différence de nombre de tests entre les deux logs en pourcentage
      */
     public static float increaseNumberOfTestInPercentBetweenTwoTests(Test test1, Test test2, String typeTest) {
+        if(getNumberOfTestOfType(typeTest, test1) == 0) return 0;
         return (getNumberOfTestOfType(typeTest, test2) - getNumberOfTestOfType(typeTest, test1)) / (float)getNumberOfTestOfType(typeTest, test1);
     }
 
@@ -67,7 +68,10 @@ public abstract class AnalyseTests extends Analyse {
         int cpt = 0;
         float sum = 0;
         for(int i = 1; i < tests.size(); i++){
-            sum += increaseNumberOfTestInPercentBetweenTwoTests(tests.get(i-1), tests.get(i), typeTest);
+            float tmp = increaseNumberOfTestInPercentBetweenTwoTests(tests.get(i-1), tests.get(i), typeTest);
+            if(tmp != 0) {
+                sum += tmp;
+            }
             cpt++;
         }
         return sum / (float) cpt;
