@@ -128,6 +128,42 @@ public class AnalyseCompileTest {
         assertEquals(7.40, res, 0.01);
     }
 
+    @Test
+    public void medianClassCompiledCompilePhaseTest(){
+        float res = AnalyseCompile.medianClassCompiled(logs, 0, 4, "compile", 0);
+        assertEquals(8, res, 0.01);
+    }
+
+    @Test
+    public void medianClassCompiledTestPhaseTest(){
+        float res = AnalyseCompile.medianClassCompiled(logs, 0, 4, "test", 0);
+        assertEquals(7, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileBetweenCompilePhaseTest(){
+        float res = AnalyseCompile.firstQuartileBetween(logs, 0, 4, "compile", 0);
+        assertEquals(7.5, res, 0.01);
+    }
+
+    @Test
+    public void firstQuartileBetweenTestPhaseTest(){
+        float res = AnalyseCompile.firstQuartileBetween(logs, 0, 4, "test", 0);
+        assertEquals(5.5, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileBetweenCompilePhaseTest(){
+        float res = AnalyseCompile.thirdQuartileBetween(logs, 0, 4, "compile", 0);
+        assertEquals(10, res, 0.01);
+    }
+
+    @Test
+    public void thirdQuartileBetweenTestPhaseTest(){
+        float res = AnalyseCompile.thirdQuartileBetween(logs, 0, 4, "test", 0);
+        assertEquals(8, res, 0.01);
+    }
+
 
 
 }

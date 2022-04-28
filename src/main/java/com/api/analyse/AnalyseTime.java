@@ -127,7 +127,7 @@ public class AnalyseTime extends Analyse {
             Log log2 = logsWithTime.get(logsWithTime.size() / 2 - 1);
             Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
             Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
-            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / (float) 2;
         }
         
 
@@ -152,7 +152,7 @@ public class AnalyseTime extends Analyse {
             Log log2 = logsWithTime.get(logsWithTime.size() / 4 + 1);
             Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
             Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
-            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / (float) 2;
         }
         
     }
@@ -176,7 +176,7 @@ public class AnalyseTime extends Analyse {
             Log log2 = logsWithTime.get(logsWithTime.size() * 3 / 4 + 1);
             Phase phase1 = getPhase(phaseName, log1.getOrders().get(moduleNumber));
             Phase phase2 = getPhase(phaseName, log2.getOrders().get(moduleNumber));
-            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / 2;
+            return (phase1.getTimeFloat() + phase2.getTimeFloat()) / (float) 2;
         }
     }
 
