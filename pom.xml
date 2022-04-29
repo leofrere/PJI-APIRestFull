@@ -38,6 +38,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20220320</version>
+		</dependency>
+
+		<dependency>
 			<groupId>io.leangen.graphql</groupId>
 			<artifactId>graphql-spqr-spring-boot-starter</artifactId>
 			<version>0.0.4</version>
