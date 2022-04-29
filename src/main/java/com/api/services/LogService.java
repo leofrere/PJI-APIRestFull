@@ -12,7 +12,12 @@ import com.api.utils.LogSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.leangen.graphql.annotations.GraphQLArgument;
+import io.leangen.graphql.annotations.GraphQLQuery;
+import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
+
 @Service
+@GraphQLApi
 public class LogService {
     
     @Autowired
@@ -84,7 +89,8 @@ public class LogService {
         }
     }
 
-    public List<Log> getLogByProject(String project) {
+    @GraphQLQuery(name = "logs")
+    public List<Log> getLogByProject(@GraphQLArgument(name = "project") String project) {
         List<Log> list = logRepository.findAll();
         LinkedList<Log> logOfProject = new LinkedList<Log>();
 
