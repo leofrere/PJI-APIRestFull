@@ -32,4 +32,28 @@ public class GraphQLRequest {
         return res;
     }
 
+    public static String evolutionOfTestClasseVariable(String project, String variable) throws Exception{
+
+        String res = "";
+        URL url = new URL("http://localhost:8081/graphql");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-Type", "application/json");
+
+        String input="{\"query\":\"{logs(project:\\\""+ project +"\\\"){build,orders{testPhase{testsByClasse{classe,"+ variable +"}}}}}\\n\"}";
+        url.toString();
+
+        OutputStream os = conn.getOutputStream();
+        os.write(input.getBytes());
+        os.flush();
+        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        String line;
+        while ((line = br.readLine()) != null) {
+            res += line;
+        }
+        conn.disconnect();
+        return res;
+    }
+
 }
