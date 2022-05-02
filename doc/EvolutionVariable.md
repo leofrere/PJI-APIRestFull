@@ -20,4 +20,20 @@
 
 ### Evolution d'une variable d'une phase
 
+methode : **GET**
+
+path : `/phase/{projectName}/{phaseName}/{variable}?module=0|<int>`
+- projectName : nom du projet cible
+- phaseName : nom de la phase cible (compile, test, package)
+- - variable : nom de la variable (commune : time, status, errorsTrace | compile : compiledClasses, testsRun, testsError, testsSkipped, testsFailed | test : compiledClasses, | package : jarPath)
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
 ### Evolution d'une varaible d'un TestClasse
+
+methode : **GET**
+
+path : `/test/{projectName}/{classeName}/{variable}?module=0|<int>`
+- projectName : nom du projet cible
+- classeName : nom de la classe cible (ex: package-Class)
+- variable : nom de la variable (testsRun, testsError, testsSkipped, testsFailed, time)
+- module (optionnel) : numéro du module ciblé par défaut il vaut 0
