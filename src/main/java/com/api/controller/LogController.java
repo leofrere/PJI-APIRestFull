@@ -8,11 +8,8 @@ import com.api.model.Log;
 import com.api.model.TestClasse;
 import com.api.services.JenkinsBuildService;
 import com.api.services.LogService;
-import com.api.utils.GraphQLRequest;
 import com.api.utils.ReaderBuild;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,17 +27,6 @@ public class LogController {
 
     @Autowired
     private LogService logService;
-
-    @GetMapping("/test")
-    public String test() throws Exception{
-        JSONObject data = new JSONObject(GraphQLRequest.test());
-        JSONObject logs = new JSONObject(data.get("data").toString());
-        JSONArray tab = logs.getJSONArray("logs");
-        for(int i = 0; i < tab.length(); i++){
-            //récupérer les informations utililes
-        }
-        return logs.getJSONArray("logs").get(0).toString();
-    }
 
     @GetMapping("/create/{projectName}/{buildNumber}")
     public void setLog(@PathVariable String projectName, @PathVariable int buildNumber) {

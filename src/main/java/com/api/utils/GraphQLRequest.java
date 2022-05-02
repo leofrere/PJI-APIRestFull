@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class GraphQLRequest {
     
-    public static String test() throws Exception{
+    public static String evolutionOfPhaseVariable(String project, String phase, String variable) throws Exception{
 
         String res = "";
         URL url = new URL("http://localhost:8081/graphql");
@@ -17,7 +17,7 @@ public class GraphQLRequest {
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-Type", "application/json");
 
-        String input="{\"query\":\"{logs(project:\\\"mavenGL\\\"){build}}\\n\"}";
+        String input="{\"query\":\"{logs(project:\\\""+ project +"\\\"){build,orders{"+ phase +"{"+ variable +"}}}}\\n\"}";
         url.toString();
 
         OutputStream os = conn.getOutputStream();
