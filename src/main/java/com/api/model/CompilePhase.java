@@ -20,6 +20,12 @@ public class CompilePhase implements Phase, Compile {
     @NotNull
     private String status;
 
+    @NotNull
+    private String project;
+
+    @NotNull
+    private int build;
+
     private String time;
 
     private int numberOfClasses;
@@ -115,6 +121,22 @@ public class CompilePhase implements Phase, Compile {
 
     public void setErrorsTrace(String errorsTrace) {
         this.errorsTrace = errorsTrace;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public int getBuild() {
+        return build;
+    }
+
+    public void setBuild(int build) {
+        this.build = build;
     }
 
     @Override

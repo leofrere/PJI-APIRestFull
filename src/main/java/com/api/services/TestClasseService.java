@@ -12,7 +12,9 @@ public class TestClasseService {
     @Autowired
     private TestClasseRepository testClasseRepository;
 
-    public TestClasse addTestClasse(TestClasse testClasse) {
+    public TestClasse addTestClasse(TestClasse testClasse, String projectName, int build) {
+        testClasse.setProject(projectName);
+        testClasse.setBuild(build);
         return testClasseRepository.save(testClasse);
     }
 

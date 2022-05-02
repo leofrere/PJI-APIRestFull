@@ -18,8 +18,11 @@ public class PackagePhaseService {
         return packageRepository.findById(id).get();
     }
 
-    public PackagePhase addPackagePhase(BufferedReader reader) {
-        return packageRepository.save(new PackagePhase(reader));
+    public PackagePhase addPackagePhase(BufferedReader reader, String projectName, int build) {
+        PackagePhase packagePhase = new PackagePhase(reader);
+        packagePhase.setProject(projectName);
+        packagePhase.setBuild(build);
+        return packageRepository.save(packagePhase);
     }
 
 }

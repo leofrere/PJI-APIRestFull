@@ -68,13 +68,13 @@ public class LogService {
 
             if(ordersName.size() == 0){
                 String logName = line.split(" ")[3];
-                Order order = orderService.addOrder(reader, logName);
+                Order order = orderService.addOrder(reader, logName, projectName, build);
                 orders.add(order);
             } else {
                 for (String orderName : ordersName) {
                     while((line = reader.readLine()) != null){
                         if(line.contains("Building " + orderName)){
-                            Order order = orderService.addOrder(reader, orderName);
+                            Order order = orderService.addOrder(reader, orderName, projectName, build);
                             orders.add(order);
                             break;
                         }

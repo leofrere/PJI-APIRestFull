@@ -16,6 +16,12 @@ public class TestClasse implements Test {
     @NotNull
     private String classe;
 
+    @NotNull
+    private String project;
+
+    @NotNull
+    private int build;
+
     private String time;
 
     private int testsRun;
@@ -92,6 +98,22 @@ public class TestClasse implements Test {
 
     public void setTestsError(int testsError) {
         this.testsError = testsError;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public int getBuild() {
+        return build;
+    }
+
+    public void setBuild(int build) {
+        this.build = build;
     }
 
 }

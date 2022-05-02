@@ -49,11 +49,11 @@ public class AnalyseErrorTest {
         List<Order> l4 = new LinkedList<Order>();
         List<Order> l5 = new LinkedList<Order>();
 
-        l1.add(new Order(c1, t1, p1, "errorTest"));
-        l2.add(new Order(c2, t2, p2, "errorTest"));
-        l3.add(new Order(c3, t3, p3, "errorTest"));
-        l4.add(new Order(c4, t4, p4, "errorTest"));
-        l5.add(new Order(c5, t5, p5, "errorTest"));
+        l1.add(new Order(c1, t1, p1, "errorTest", "project", 1));
+        l2.add(new Order(c2, t2, p2, "errorTest", "project", 2));
+        l3.add(new Order(c3, t3, p3, "errorTest", "project", 3));
+        l4.add(new Order(c4, t4, p4, "errorTest", "project", 4));
+        l5.add(new Order(c5, t5, p5, "errorTest", "project", 5));
 
         logs.add(new Log("AnalyseErrorTest", 1, l1));
         logs.add(new Log("AnalyseErrorTest", 2, l2));

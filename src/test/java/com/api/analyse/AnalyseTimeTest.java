@@ -58,11 +58,11 @@ public class AnalyseTimeTest {
         List<Order> l4 = new LinkedList<Order>();
         List<Order> l5 = new LinkedList<Order>();
 
-        l1.add(new Order(c1, t1, p1, "timeTest"));
-        l2.add(new Order(c2, t2, p2, "timeTest"));
-        l3.add(new Order(c3, t3, p3, "timeTest"));
-        l4.add(new Order(c4, t4, p4, "timeTest"));
-        l5.add(new Order(c5, t5, p5, "timeTest"));
+        l1.add(new Order(c1, t1, p1, "timeTest", "project", 1));
+        l2.add(new Order(c2, t2, p2, "timeTest", "project", 2));
+        l3.add(new Order(c3, t3, p3, "timeTest", "project", 3));
+        l4.add(new Order(c4, t4, p4, "timeTest", "project", 4));
+        l5.add(new Order(c5, t5, p5, "timeTest", "project", 5));
 
         logs.add(new Log("AnalyseTimeTest", 1, l1));
         logs.add(new Log("AnalyseTimeTest", 2, l2));

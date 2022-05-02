@@ -64,11 +64,11 @@ public class AnalyseTestsClasseTest {
         List<Order> l4 = new LinkedList<Order>();
         List<Order> l5 = new LinkedList<Order>();
 
-        l1.add(new Order(c1, t1, p1, "compileTest"));
-        l2.add(new Order(c2, t2, p2, "compileTest"));
-        l3.add(new Order(c3, t3, p3, "compileTest"));
-        l4.add(new Order(c4, t4, p4, "compileTest"));
-        l5.add(new Order(c5, t5, p5, "compileTest"));
+        l1.add(new Order(c1, t1, p1, "compileTest", "project", 1));
+        l2.add(new Order(c2, t2, p2, "compileTest", "project", 2));
+        l3.add(new Order(c3, t3, p3, "compileTest", "project", 3));
+        l4.add(new Order(c4, t4, p4, "compileTest", "project", 4));
+        l5.add(new Order(c5, t5, p5, "compileTest", "project", 5));
 
         logs.add(new Log("AnalyseCompileTest", 1, l1));
         logs.add(new Log("AnalyseCompileTest", 2, l2));

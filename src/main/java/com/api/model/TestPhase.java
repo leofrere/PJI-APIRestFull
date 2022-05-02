@@ -23,6 +23,12 @@ public class TestPhase implements Phase, Compile, Test {
     @NotNull
     private String status;
 
+    @NotNull
+    private String project;
+
+    @NotNull
+    private int build;
+
     private String time;
 
     private int testsRun;
@@ -198,6 +204,22 @@ public class TestPhase implements Phase, Compile, Test {
         this.testsByClasse = testsByClasse;
     }
 
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public int getBuild() {
+        return build;
+    }
+
+    public void setBuild(int build) {
+        this.build = build;
+    }
+
     @Override
     public int getCompiledClasses() {
         return numberOfTestClasses;
@@ -209,5 +231,7 @@ public class TestPhase implements Phase, Compile, Test {
         }
         return Float.parseFloat(time.replace(",", ".").replace("s", ""));
     }
+
+
 
 }

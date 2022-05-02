@@ -1,4 +1,4 @@
-package com.api.services;
+package com.api.repository;
 
 public class TestPhaseRepository {
 

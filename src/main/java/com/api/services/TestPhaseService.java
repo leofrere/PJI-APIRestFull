@@ -24,14 +24,16 @@ public class TestPhaseService {
         return testRepository.findById(id).get();
     }
 
-    public TestPhase addTestPhase(BufferedReader reader) {
+    public TestPhase addTestPhase(BufferedReader reader, String projectName, int build) {
         TestPhase testPhase = new TestPhase(reader);
         List<TestClasse> testClasses = testPhase.getTestsByClasse();
         List<TestClasse> testClassesToSave = new LinkedList<TestClasse>();
         for(TestClasse testClasse : testClasses) {
-            testClassesToSave.add(testClasseService.addTestClasse(testClasse));
+            testClassesToSave.add(testClasseService.addTestClasse(testClasse, projectName, build));
         }
         testPhase.setTestsByClasse(testClassesToSave);
+        testPhase.setProject(projectName);
+        testPhase.setBuild(build);
         return testRepository.save(testPhase);
     }
 

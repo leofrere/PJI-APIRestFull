@@ -18,8 +18,11 @@ public class CompilePhaseService {
         return compileRepository.findById(id).get();
     }
 
-    public CompilePhase addCompilePhase(BufferedReader reader) {
-        return compileRepository.save(new CompilePhase(reader));
+    public CompilePhase addCompilePhase(BufferedReader reader, String projectName, int build) {
+        CompilePhase compilePhase = new CompilePhase(reader);
+        compilePhase.setProject(projectName);
+        compilePhase.setBuild(build);
+        return compileRepository.save(compilePhase);
     }
 
     public void deleteCompilePhase(long id) {

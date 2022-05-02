@@ -19,6 +19,12 @@ public class PackagePhase implements Phase {
     @NotNull
     private String status;
 
+    @NotNull
+    private String project;
+
+    @NotNull
+    private int build;
+
     private String time;
 
     private String jarPath;
@@ -105,6 +111,22 @@ public class PackagePhase implements Phase {
 
     public void setErrorsTrace(String errorsTrace) {
         this.errorsTrace = errorsTrace;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public int getBuild() {
+        return build;
+    }
+
+    public void setBuild(int build) {
+        this.build = build;
     }
 
     public float getTimeFloat() {

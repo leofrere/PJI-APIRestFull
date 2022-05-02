@@ -35,11 +35,11 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order addOrder(BufferedReader reader, String name) {
-        CompilePhase compilePhase = compileService.addCompilePhase(reader);
-        TestPhase testPhase = testService.addTestPhase(reader);
-        PackagePhase packagePhase = packageService.addPackagePhase(reader);
-        return orderRepository.save(new Order(compilePhase, testPhase, packagePhase, name));
+    public Order addOrder(BufferedReader reader, String name, String projectName, int build) {
+        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build);
+        TestPhase testPhase = testService.addTestPhase(reader, projectName, build);
+        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build);
+        return orderRepository.save(new Order(compilePhase, testPhase, packagePhase, name, projectName, build));
     }
 
 }
