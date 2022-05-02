@@ -116,4 +116,11 @@ public class TestClasse implements Test {
         this.build = build;
     }
 
+    public float getTimeFloat() {
+        if(time == null){
+            return 0;
+        }
+        return Float.parseFloat(time.replace(",", ".").replace("s", ""));
+    }
+
 }
