@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class RequestController {
     
     @GetMapping("/request")
-    public String request(@RequestParam String data) throws Exception{
-        return GraphQLRequest.sendRequest(data);
+    public String request(@RequestParam String query) throws Exception{
+        return GraphQLRequest.sendRequest(query);
     }
 
 }

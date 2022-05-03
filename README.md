@@ -11,6 +11,7 @@
 7. [Analyse Tests Classe](doc/AnalyseTestsClasse.md)
 8. [Analyse Error](doc/AnalyseError.md)
 9. [Evolution Variable](doc/EvolutionVariable.md)
+10. [GraphQL Request](doc/GraphQLRequest.md)
 
 ## Résumé
 
