@@ -3,17 +3,15 @@ package com.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.api.model.abstracts.Model;
+import com.api.model.abstracts.Time;
 import com.api.model.interfaces.Test;
 
 @Entity
 @Table(name = "tests_classes")
-public class TestClasse extends Model implements Test {
+public class TestClasse extends Time implements Test {
 
     @NotNull
     private String classe;
-
-    private String time;
 
     private int testsRun;
 
@@ -41,14 +39,6 @@ public class TestClasse extends Model implements Test {
 
     public void setClasse(String classe) {
         this.classe = classe;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public int getTestsRun() {
@@ -81,13 +71,6 @@ public class TestClasse extends Model implements Test {
 
     public void setTestsError(int testsError) {
         this.testsError = testsError;
-    }
-
-    public float getTimeFloat() {
-        if(time == null){
-            return 0;
-        }
-        return Float.parseFloat(time.replace(",", ".").replace("s", ""));
     }
 
 }

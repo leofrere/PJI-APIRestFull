@@ -42,20 +42,4 @@ public class Log extends Model {
         this.orders = orders;
     }
 
-    public String getProject() {
-        return project;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
-    }
-
 }
