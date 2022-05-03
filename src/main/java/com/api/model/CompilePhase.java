@@ -4,15 +4,12 @@ import java.io.BufferedReader;
 
 import javax.persistence.*;
 
-import com.api.model.abstracts.Phase;
 import com.api.model.interfaces.Compile;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
-public class CompilePhase extends Phase implements Compile {
-
-    private int numberOfClasses;
+public class CompilePhase extends Compile {
 
     public CompilePhase() {
     }
@@ -20,7 +17,7 @@ public class CompilePhase extends Phase implements Compile {
     public CompilePhase(String status, String time, int numberOfClasses) {
         this.status = status;
         this.time = time;
-        this.numberOfClasses = numberOfClasses;
+        this.numberOfCompiledClasses = numberOfClasses;
     }
 
     public CompilePhase(BufferedReader reader){
@@ -56,26 +53,13 @@ public class CompilePhase extends Phase implements Compile {
 
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
-                    numberOfClasses = Integer.parseInt(parts[3]);
+                    numberOfCompiledClasses = Integer.parseInt(parts[3]);
                     continue;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public int getNumberOfClasses() {
-        return numberOfClasses;
-    }
-
-    public void setNumberOfClasses(int numberOfClasses) {
-        this.numberOfClasses = numberOfClasses;
-    }
-
-    @Override
-    public int getCompiledClasses() {
-        return numberOfClasses;
     }
 
 }

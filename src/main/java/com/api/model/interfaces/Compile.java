@@ -1,7 +1,17 @@
 package com.api.model.interfaces;
 
-public interface Compile {
-    
-    public int getCompiledClasses();
+import com.api.model.abstracts.Phase;
+
+public abstract class Compile extends Phase {
+
+    protected int numberOfCompiledClasses;
+
+    public int getCompiledClasses() {
+        return numberOfCompiledClasses;
+    }
+
+    public void setCompiledClasses(int numberOfCompiledClasses) {
+        this.numberOfCompiledClasses = numberOfCompiledClasses;
+    }
 
 }

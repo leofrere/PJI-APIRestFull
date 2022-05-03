@@ -25,11 +25,11 @@ public class AnalyseCompileTest {
         CompilePhase c4 = new CompilePhase();
         CompilePhase c5 = new CompilePhase();
 
-        c1.setNumberOfClasses(5);
-        c2.setNumberOfClasses(7);
-        c3.setNumberOfClasses(8);
-        c4.setNumberOfClasses(12);
-        c5.setNumberOfClasses(19);
+        c1.setCompiledClasses(5);
+        c2.setCompiledClasses(7);
+        c3.setCompiledClasses(8);
+        c4.setCompiledClasses(12);
+        c5.setCompiledClasses(19);
 
         TestPhase t1 = new TestPhase();
         TestPhase t2 = new TestPhase();
@@ -37,11 +37,11 @@ public class AnalyseCompileTest {
         TestPhase t4 = new TestPhase();
         TestPhase t5 = new TestPhase();
 
-        t1.setNumberOfTestClasses(2);
-        t2.setNumberOfTestClasses(4);
-        t3.setNumberOfTestClasses(7);
-        t4.setNumberOfTestClasses(9);
-        t5.setNumberOfTestClasses(15);
+        t1.setCompiledClasses(2);
+        t2.setCompiledClasses(4);
+        t3.setCompiledClasses(7);
+        t4.setCompiledClasses(9);
+        t5.setCompiledClasses(15);
 
         PackagePhase p1 = new PackagePhase();
         PackagePhase p2 = new PackagePhase();

@@ -6,14 +6,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.api.model.abstracts.Phase;
 import com.api.model.interfaces.Compile;
 import com.api.model.interfaces.Test;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class TestPhase extends Phase implements Compile, Test {
+public class TestPhase extends Compile implements Test {
 
     private int testsRun;
 
@@ -22,8 +21,6 @@ public class TestPhase extends Phase implements Compile, Test {
     private int testsSkipped;
 
     private int testsError;
-
-    private int numberOfTestClasses;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
     private List<TestClasse> testsByClasse;
@@ -38,7 +35,7 @@ public class TestPhase extends Phase implements Compile, Test {
         this.testsFailed = testsFailed;
         this.testsSkipped = testsSkipped;
         this.testsError = testsError;
-        this.numberOfTestClasses = numberOfTestClasses;
+        this.numberOfCompiledClasses = numberOfTestClasses;
     }
 
     public TestPhase(BufferedReader reader) {
@@ -69,7 +66,7 @@ public class TestPhase extends Phase implements Compile, Test {
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
                     time1 = parts[0];
-                    numberOfTestClasses = Integer.parseInt(parts[3]);
+                    numberOfCompiledClasses = Integer.parseInt(parts[3]);
                     continue;
                 }
 
@@ -138,14 +135,6 @@ public class TestPhase extends Phase implements Compile, Test {
         this.testsError = testsError;
     }
 
-    public int getNumberOfTestClasses() {
-        return numberOfTestClasses;
-    }
-
-    public void setNumberOfTestClasses(int numberOfTestClasses) {
-        this.numberOfTestClasses = numberOfTestClasses;
-    }
-
     public List<TestClasse> getTestsByClasse() {
         return testsByClasse;
     }
@@ -153,10 +142,4 @@ public class TestPhase extends Phase implements Compile, Test {
     public void setTestsByClasse(List<TestClasse> testsByClasse) {
         this.testsByClasse = testsByClasse;
     }
-
-    @Override
-    public int getCompiledClasses() {
-        return numberOfTestClasses;
-    }
-
 }
