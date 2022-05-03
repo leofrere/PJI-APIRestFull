@@ -11,7 +11,12 @@ import com.api.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.leangen.graphql.annotations.GraphQLArgument;
+import io.leangen.graphql.annotations.GraphQLQuery;
+import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
+
 @Service
+@GraphQLApi
 public class TestPhaseService {
     
     @Autowired
@@ -20,8 +25,54 @@ public class TestPhaseService {
     @Autowired
     private TestClasseService testClasseService;
 
-    public TestPhase getTestByIdPhase(long id) {
+    @GraphQLQuery(name = "testPhases")
+    public List<TestPhase> getTestPhases() {
+        return testRepository.findAll();
+    }
+
+
+
+    @GraphQLQuery(name = "testPhaseById")
+    public TestPhase getTestByIdPhase(@GraphQLArgument(name = "id") long id) {
         return testRepository.findById(id).get();
+    }
+
+    @GraphQLQuery(name = "testPhaseOfTime")
+    public List<TestPhase> getTestPhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+        List<TestPhase> testPhases = testRepository.findAll();
+        List<TestPhase> testPhaseByTime = new LinkedList<TestPhase>();
+        for (TestPhase testPhase : testPhases) {
+            if (testPhase.getProject().equals(projectName)) {
+                cmpTestPhase(testPhase.getTimeFloat(), Float.parseFloat(time), op, testPhaseByTime, testPhase);
+            }
+            
+        }
+        return testPhaseByTime;
+    }
+
+    @GraphQLQuery(name = "testPhasesOfTest")
+    public List<TestPhase> getTestPhaseByTest(@GraphQLArgument(name = "test") String test, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "nbTest") float nbTest, @GraphQLArgument(name = "project") String projectName) {
+        List<TestPhase> testPhases = testRepository.findAll();
+        List<TestPhase> testPhasesByTest = new LinkedList<TestPhase>();
+        for (TestPhase testPhase : testPhases) {
+            if (testPhase.getProject().equals(projectName)) {
+                switchTypeOfTest(test, op, nbTest, testPhasesByTest, testPhase);
+            }
+            
+        }
+        return testPhasesByTest;
+    }
+
+    @GraphQLQuery(name = "testPhaseByCompiled")
+    public List<TestPhase> getTestPhaseByCompiled(@GraphQLArgument(name = "compiled") int compiled, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+        List<TestPhase> testPhases = testRepository.findAll();
+        List<TestPhase> list = new LinkedList<TestPhase>();
+        for (TestPhase testPhase : testPhases) {
+            if (testPhase.getProject().equals(projectName)){
+                cmpTestPhase((float) compiled,(float) testPhase.getCompiledClasses(), op, list, testPhase);
+            }
+        }
+        return list;
     }
 
     public TestPhase addTestPhase(BufferedReader reader, String projectName, int build) {
@@ -35,6 +86,42 @@ public class TestPhaseService {
         testPhase.setProject(projectName);
         testPhase.setBuild(build);
         return testRepository.save(testPhase);
+    }
+
+    private void cmpTestPhase(Float a, Float b, String op, List<TestPhase> testClasses, TestPhase testClasse) {
+        switch(op) {
+            case ">":
+                if (a > b) {
+                    testClasses.add(testClasse);
+                }
+                break;
+            case "<":
+                if (a < b) {
+                    testClasses.add(testClasse);
+                }
+                break;
+            case "=":
+                if (a == b) {
+                    testClasses.add(testClasse);
+                }
+        }
+    }
+
+    private void switchTypeOfTest(String test, String op, float nbTest, List<TestPhase> testPhasesByTest,
+            TestPhase testPhase) {
+        switch(test) {
+            case "run":
+                cmpTestPhase((float) testPhase.getTestsRun(), nbTest, op, testPhasesByTest, testPhase);
+                break;
+            case "failed":
+                cmpTestPhase((float) testPhase.getTestsFailed(), nbTest, op, testPhasesByTest, testPhase);
+                break;
+            case "skipped":
+                cmpTestPhase((float) testPhase.getTestsSkipped(), nbTest, op, testPhasesByTest, testPhase);
+                break;
+            case "errors":
+                cmpTestPhase((float) testPhase.getTestsError(), nbTest, op, testPhasesByTest, testPhase);
+        }
     }
 
 }
