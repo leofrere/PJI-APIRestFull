@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 
 import javax.persistence.*;
 
-import com.api.model.interfaces.Compile;
+import com.api.model.abstracts.Compile;
 import com.api.utils.Time;
 
 @Entity

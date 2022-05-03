@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.api.model.interfaces.Compile;
+import com.api.model.abstracts.Compile;
 import com.api.model.interfaces.Test;
 import com.api.utils.Time;
 

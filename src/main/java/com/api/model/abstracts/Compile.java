@@ -1,6 +1,4 @@
-package com.api.model.interfaces;
-
-import com.api.model.abstracts.Phase;
+package com.api.model.abstracts;
 
 public abstract class Compile extends Phase {
 
