@@ -98,21 +98,21 @@ public class TestClasseService {
         }
     }
 
-    private void cmpTestClasse(Float a, Float b, String op, List<TestClasse> testClassesByTime, TestClasse testClasse) {
+    private void cmpTestClasse(Float a, Float b, String op, List<TestClasse> testClasses, TestClasse testClasse) {
         switch(op) {
             case ">":
                 if (a > b) {
-                    testClassesByTime.add(testClasse);
+                    testClasses.add(testClasse);
                 }
                 break;
             case "<":
                 if (a < b) {
-                    testClassesByTime.add(testClasse);
+                    testClasses.add(testClasse);
                 }
                 break;
             case "=":
                 if (a == b) {
-                    testClassesByTime.add(testClasse);
+                    testClasses.add(testClasse);
                 }
         }
     }
