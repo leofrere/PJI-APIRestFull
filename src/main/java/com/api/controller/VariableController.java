@@ -20,7 +20,7 @@ public class VariableController {
     @GetMapping("/phase/{projectName}/{phaseName}/{variable}")
     public Map<Integer, String> evolutionOfPhaseVariable(@PathVariable String projectName, @PathVariable String phaseName, @PathVariable String variable, @RequestParam(defaultValue = "0") int module) throws Exception{
         Map<Integer, String> map = new HashMap<Integer, String>();
-        JSONObject data = new JSONObject(GraphQLRequest.evolutionOfPhaseVariable(projectName, phaseName+"Phase", variable));
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{logsByProject(project:\\\""+ projectName +"\\\"){build,orders{"+ phaseName +"Phase{"+ variable +"}}}}\\n\"}"));
         JSONArray tab = getLogs(data);
         for(int i = 0; i < tab.length(); i++){
             int build = tab.getJSONObject(i).getInt("build");
@@ -34,7 +34,7 @@ public class VariableController {
     @GetMapping("/test/{projectName}/{classeName}/{variable}")
     public Map<Integer, String> evolutionOfTestClasseVariable(@PathVariable String projectName, @PathVariable String classeName, @PathVariable String variable, @RequestParam(defaultValue = "0") int module) throws Exception{
         Map<Integer, String> map = new HashMap<Integer, String>();
-        JSONObject data = new JSONObject(GraphQLRequest.evolutionOfTestClasseVariable(projectName, variable));
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{logsByProject(project:\\\""+ projectName +"\\\"){build,orders{testPhase{testsByClasse{classe,"+ variable +"}}}}}\\n\"}"));
         JSONArray tab = getLogs(data);
         for(int i = 0; i < tab.length(); i++){
             int build = tab.getJSONObject(i).getInt("build");
@@ -55,7 +55,7 @@ public class VariableController {
 
     private JSONArray getLogs(JSONObject data) {
         JSONObject logs = new JSONObject(data.get("data").toString());
-        JSONArray tab = logs.getJSONArray("logs");
+        JSONArray tab = logs.getJSONArray("logsByProject");
         return tab;
     }
 
