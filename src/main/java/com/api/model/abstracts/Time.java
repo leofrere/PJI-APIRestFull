@@ -1,5 +1,8 @@
 package com.api.model.abstracts;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Time extends Model {
     
     protected String time;
