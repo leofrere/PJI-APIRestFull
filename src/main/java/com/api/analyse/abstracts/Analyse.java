@@ -3,7 +3,7 @@ package com.api.analyse.abstracts;
 import java.util.List;
 
 import com.api.model.*;
-import com.api.model.interfaces.Phase;
+import com.api.model.abstracts.Phase;
 
 public abstract class Analyse {
 

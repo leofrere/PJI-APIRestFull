@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.api.analyse.abstracts.Analyse;
 import com.api.model.*;
-import com.api.model.interfaces.Phase;
+import com.api.model.abstracts.Phase;
 
 public class AnalyseTime extends Analyse {
     

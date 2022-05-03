@@ -3,24 +3,15 @@ package com.api.model;
 import java.io.BufferedReader;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
-import com.api.model.abstracts.Model;
-import com.api.model.interfaces.Phase;
+import com.api.model.abstracts.Phase;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "packages")
-public class PackagePhase extends Model implements Phase {
-
-    @NotNull
-    private String status;
-
-    private String time;
+public class PackagePhase extends Phase {
 
     private String jarPath;
-
-    private String errorsTrace = "";
 
     public PackagePhase() {
     }
@@ -64,43 +55,12 @@ public class PackagePhase extends Model implements Phase {
         }
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getJarPath() {
         return jarPath;
     }
 
     public void setJarPath(String jarPath) {
         this.jarPath = jarPath;
-    }
-
-    public String getErrorsTrace() {
-        return errorsTrace;
-    }
-
-    public void setErrorsTrace(String errorsTrace) {
-        this.errorsTrace = errorsTrace;
-    }
-
-    public float getTimeFloat() {
-        if(time == null){
-            return 0;
-        }
-        return Float.parseFloat(time.replace(",", ".").replace("s", ""));
     }
 
 }

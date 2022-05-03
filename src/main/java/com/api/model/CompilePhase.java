@@ -3,25 +3,16 @@ package com.api.model;
 import java.io.BufferedReader;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
-import com.api.model.abstracts.Model;
+import com.api.model.abstracts.Phase;
 import com.api.model.interfaces.Compile;
-import com.api.model.interfaces.Phase;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
-public class CompilePhase extends Model implements Phase, Compile {
-
-    @NotNull
-    private String status;
-
-    private String time;
+public class CompilePhase extends Phase implements Compile {
 
     private int numberOfClasses;
-
-    private String errorsTrace = "";
 
     public CompilePhase() {
     }
@@ -74,22 +65,6 @@ public class CompilePhase extends Model implements Phase, Compile {
         }
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public int getNumberOfClasses() {
         return numberOfClasses;
     }
@@ -98,24 +73,9 @@ public class CompilePhase extends Model implements Phase, Compile {
         this.numberOfClasses = numberOfClasses;
     }
 
-    public String getErrorsTrace() {
-        return errorsTrace;
-    }
-
-    public void setErrorsTrace(String errorsTrace) {
-        this.errorsTrace = errorsTrace;
-    }
-
     @Override
     public int getCompiledClasses() {
         return numberOfClasses;
-    }
-
-    public float getTimeFloat() {
-        if(time == null){
-            return 0;
-        }
-        return Float.parseFloat(time.replace(",", ".").replace("s", ""));
     }
 
 }

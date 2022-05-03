@@ -5,22 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
-import com.api.model.abstracts.Model;
+import com.api.model.abstracts.Phase;
 import com.api.model.interfaces.Compile;
-import com.api.model.interfaces.Phase;
 import com.api.model.interfaces.Test;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class TestPhase extends Model implements Phase, Compile, Test {
-
-    @NotNull
-    private String status;
-
-    private String time;
+public class TestPhase extends Phase implements Compile, Test {
 
     private int testsRun;
 
@@ -31,8 +24,6 @@ public class TestPhase extends Model implements Phase, Compile, Test {
     private int testsError;
 
     private int numberOfTestClasses;
-
-    private String errorsTrace = "";
 
     @ManyToMany(cascade = CascadeType.REMOVE)
     private List<TestClasse> testsByClasse;
@@ -115,22 +106,6 @@ public class TestPhase extends Model implements Phase, Compile, Test {
         return testClass;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public int getTestsRun() {
         return testsRun;
     }
@@ -171,14 +146,6 @@ public class TestPhase extends Model implements Phase, Compile, Test {
         this.numberOfTestClasses = numberOfTestClasses;
     }
 
-    public String getErrorsTrace() {
-        return errorsTrace;
-    }
-
-    public void setErrorsTrace(String errorsTrace) {
-        this.errorsTrace = errorsTrace;
-    }
-
     public List<TestClasse> getTestsByClasse() {
         return testsByClasse;
     }
@@ -191,14 +158,5 @@ public class TestPhase extends Model implements Phase, Compile, Test {
     public int getCompiledClasses() {
         return numberOfTestClasses;
     }
-
-    public float getTimeFloat() {
-        if(time == null){
-            return 0;
-        }
-        return Float.parseFloat(time.replace(",", ".").replace("s", ""));
-    }
-
-
 
 }
