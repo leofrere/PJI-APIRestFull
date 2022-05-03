@@ -3,21 +3,12 @@ package com.api.model;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
+import com.api.model.abstracts.Model;
 
 @Entity
 @Table(name = "logs")
-public class Log {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @NotNull
-    private String project;
-
-    @NotNull
-    private int build;
+public class Log extends Model {
 
     @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Order> orders;
@@ -35,7 +26,7 @@ public class Log {
         this.orders = orders;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -3,22 +3,14 @@ package com.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.abstracts.Model;
+
 @Entity
 @Table(name = "orders")
-public class Order {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Order extends Model {
 
     @NotNull
     private String name;
-
-    @NotNull
-    private String project;
-
-    @NotNull
-    private int build;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "compile_id")
@@ -42,14 +34,6 @@ public class Order {
         this.name = name;
         this.project = project;
         this.build = build;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public CompilePhase getCompilePhase() {
@@ -82,22 +66,6 @@ public class Order {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getProject() {
-        return project;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.abstracts.Model;
 import com.api.model.interfaces.Compile;
 import com.api.model.interfaces.Phase;
 import com.api.model.interfaces.Test;
@@ -14,20 +15,10 @@ import com.api.utils.Time;
 
 @Entity
 @Table(name = "tests")
-public class TestPhase implements Phase, Compile, Test {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class TestPhase extends Model implements Phase, Compile, Test {
 
     @NotNull
     private String status;
-
-    @NotNull
-    private String project;
-
-    @NotNull
-    private int build;
 
     private String time;
 
@@ -124,14 +115,6 @@ public class TestPhase implements Phase, Compile, Test {
         return testClass;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -202,22 +185,6 @@ public class TestPhase implements Phase, Compile, Test {
 
     public void setTestsByClasse(List<TestClasse> testsByClasse) {
         this.testsByClasse = testsByClasse;
-    }
-
-    public String getProject() {
-        return project;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
     }
 
     @Override

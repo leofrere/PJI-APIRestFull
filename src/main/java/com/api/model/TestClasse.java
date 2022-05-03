@@ -3,24 +3,15 @@ package com.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.abstracts.Model;
 import com.api.model.interfaces.Test;
 
 @Entity
 @Table(name = "tests_classes")
-public class TestClasse implements Test {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class TestClasse extends Model implements Test {
 
     @NotNull
     private String classe;
-
-    @NotNull
-    private String project;
-
-    @NotNull
-    private int build;
 
     private String time;
 
@@ -42,14 +33,6 @@ public class TestClasse implements Test {
         this.testsFailed = testsFailed;
         this.testsSkipped = testsSkipped;
         this.testsError = testsError;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getClasse() {
@@ -98,22 +81,6 @@ public class TestClasse implements Test {
 
     public void setTestsError(int testsError) {
         this.testsError = testsError;
-    }
-
-    public String getProject() {
-        return project;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
     }
 
     public float getTimeFloat() {

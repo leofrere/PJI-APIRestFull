@@ -5,26 +5,17 @@ import java.io.BufferedReader;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.api.model.abstracts.Model;
 import com.api.model.interfaces.Compile;
 import com.api.model.interfaces.Phase;
 import com.api.utils.Time;
 
 @Entity
 @Table(name = "compiles")
-public class CompilePhase implements Phase, Compile {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class CompilePhase extends Model implements Phase, Compile {
 
     @NotNull
     private String status;
-
-    @NotNull
-    private String project;
-
-    @NotNull
-    private int build;
 
     private String time;
 
@@ -83,14 +74,6 @@ public class CompilePhase implements Phase, Compile {
         }
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -121,22 +104,6 @@ public class CompilePhase implements Phase, Compile {
 
     public void setErrorsTrace(String errorsTrace) {
         this.errorsTrace = errorsTrace;
-    }
-
-    public String getProject() {
-        return project;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
-    }
-
-    public int getBuild() {
-        return build;
-    }
-
-    public void setBuild(int build) {
-        this.build = build;
     }
 
     @Override
