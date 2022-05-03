@@ -17,7 +17,7 @@ public class GraphQLRequest {
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-Type", "application/json");
 
-        String input="{\"query\":\"{logs(project:\\\""+ project +"\\\"){build,orders{"+ phase +"{"+ variable +"}}}}\\n\"}";
+        String input="{\"query\":\"{logsByProject(project:\\\""+ project +"\\\"){build,orders{"+ phase +"{"+ variable +"}}}}\\n\"}";
         url.toString();
 
         OutputStream os = conn.getOutputStream();
@@ -41,7 +41,7 @@ public class GraphQLRequest {
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-Type", "application/json");
 
-        String input="{\"query\":\"{logs(project:\\\""+ project +"\\\"){build,orders{testPhase{testsByClasse{classe,"+ variable +"}}}}}\\n\"}";
+        String input="{\"query\":\"{logsByProject(project:\\\""+ project +"\\\"){build,orders{testPhase{testsByClasse{classe,"+ variable +"}}}}}\\n\"}";
         url.toString();
 
         OutputStream os = conn.getOutputStream();

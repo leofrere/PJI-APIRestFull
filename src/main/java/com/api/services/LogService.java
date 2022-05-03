@@ -90,6 +90,11 @@ public class LogService {
     }
 
     @GraphQLQuery(name = "logs")
+    public List<Log> getAllLog() {
+        return logRepository.findAll();
+    }
+
+    @GraphQLQuery(name = "logsByProject")
     public List<Log> getLogByProject(@GraphQLArgument(name = "project") String project) {
         List<Log> list = logRepository.findAll();
         LinkedList<Log> logOfProject = new LinkedList<Log>();
@@ -113,7 +118,8 @@ public class LogService {
         return false;
     }
 
-    public Log getLog(int n) {
+    @GraphQLQuery(name = "log")
+    public Log getLog(@GraphQLArgument(name = "n") int n) {
         return logRepository.findAll().get(n);
     }
 
