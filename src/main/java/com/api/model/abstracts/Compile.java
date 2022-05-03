@@ -1,5 +1,8 @@
 package com.api.model.abstracts;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Compile extends Phase {
 
     protected int numberOfCompiledClasses;
