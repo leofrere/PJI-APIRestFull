@@ -47,7 +47,7 @@ public class TestPhase extends Compile implements Test {
         String testClass = "";
         try {
             while ((line = reader.readLine()) != null) {
-
+                System.out.println(line);
                 if(line.contains("--- maven-jar-plugin:")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                    status = "ok";
@@ -75,8 +75,13 @@ public class TestPhase extends Compile implements Test {
                     testClass = line.split(" ")[1];
                 }
 
+                if(line.contains("[INFO] Tests run:")){
+                    testClass = parseTestsInformation(line, testClass, 2);
+                    continue;
+                }
+
                 if(line.contains("Tests run:")){
-                    testClass = parseTestsInformation(line, testClass);
+                    testClass = parseTestsInformation(line, testClass, 0);
                     continue;
                 }
                 
@@ -86,18 +91,18 @@ public class TestPhase extends Compile implements Test {
         }
     }
 
-    private String parseTestsInformation(String line, String testClass) {
+    private String parseTestsInformation(String line, String testClass, int offset) {
         String parts[] = line.split(" ");
-        testsRun = Integer.parseInt(parts[2].substring(0, parts[2].length()-1));
-        testsFailed = Integer.parseInt(parts[4].substring(0, parts[4].length()-1));
-        testsError = Integer.parseInt(parts[6].substring(0, parts[6].length()-1));
-        if(parts[8].contains(",")){
-            testsSkipped = Integer.parseInt(parts[8].substring(0, parts[8].length()-1));
+        testsRun = Integer.parseInt(parts[2+offset].substring(0, parts[2+offset].length()-1));
+        testsFailed = Integer.parseInt(parts[4+offset].substring(0, parts[4+offset].length()-1));
+        testsError = Integer.parseInt(parts[6+offset].substring(0, parts[6+offset].length()-1));
+        if(parts[8+offset].contains(",")){
+            testsSkipped = Integer.parseInt(parts[8+offset].substring(0, parts[8+offset].length()-1));
         } else {
-            testsSkipped = Integer.parseInt(parts[8]);
+            testsSkipped = Integer.parseInt(parts[8+offset]);
         }
         if(testClass.length() > 0){
-            testsByClasse.add(new TestClasse(testClass, parts[11]+"s", testsRun, testsFailed, testsSkipped, testsError));
+            testsByClasse.add(new TestClasse(testClass, parts[11+offset]+"s", testsRun, testsFailed, testsSkipped, testsError));
             testClass = "";
         }
         return testClass;
