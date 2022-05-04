@@ -7,16 +7,19 @@ import com.api.utils.GraphQLRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/evolution")
 public class VariableController {
 
+    @CrossOrigin
     @GetMapping("/phase/{projectName}/{phaseName}/{variable}")
     public Map<Integer, String> evolutionOfPhaseVariable(@PathVariable String projectName, @PathVariable String phaseName, @PathVariable String variable, @RequestParam(defaultValue = "0") int module) throws Exception{
         Map<Integer, String> map = new HashMap<Integer, String>();
@@ -31,6 +34,7 @@ public class VariableController {
         return map;
     }
 
+    @CrossOrigin
     @GetMapping("/test/{projectName}/{classeName}/{variable}")
     public Map<Integer, String> evolutionOfTestClasseVariable(@PathVariable String projectName, @PathVariable String classeName, @PathVariable String variable, @RequestParam(defaultValue = "0") int module) throws Exception{
         Map<Integer, String> map = new HashMap<Integer, String>();
