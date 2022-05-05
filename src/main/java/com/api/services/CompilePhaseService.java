@@ -41,7 +41,7 @@ public class CompilePhaseService {
         return compileRepository.findAll();
     }
 
-    @GraphQLQuery(name = "compilePhaseByProject")
+    @GraphQLQuery(name = "compilePhasesByProject")
     public List<CompilePhase> getCompilePhaseByProject(@GraphQLArgument(name = "project") String projectName) {
         List<CompilePhase> compilePhases = compileRepository.findAll();
         List<CompilePhase> list = new LinkedList<CompilePhase>();

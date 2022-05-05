@@ -30,7 +30,17 @@ public class TestPhaseService {
         return testRepository.findAll();
     }
 
-
+    @GraphQLQuery(name = "testPhasesByProject")
+    public List<TestPhase> getTestPhasesByProject(@GraphQLArgument(name = "project") String project) {
+        List<TestPhase> testPhases = testRepository.findAll();
+        List<TestPhase> testPhasesByProject = new LinkedList<TestPhase>();
+        for (TestPhase testPhase : testPhases) {
+            if (testPhase.getProject().equals(project)) {
+                testPhasesByProject.add(testPhase);
+            }
+        }
+        return testPhasesByProject;
+    }
 
     @GraphQLQuery(name = "testPhaseById")
     public TestPhase getTestByIdPhase(@GraphQLArgument(name = "id") long id) {
