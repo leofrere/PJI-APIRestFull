@@ -24,17 +24,18 @@ public class VariableController {
 
     @GetMapping("/regression/{phase}/time")
     public Map<String,Float>[] regressionTime(@PathVariable String phase) throws JSONException, Exception {
-        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhaseByProject(project:\\\"APIRestFull\\\"){build,timeFloat}}\"}"));
+        System.out.println(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhasesByProject(project:\\\"APIRestFull\\\"){build,timeFloat}}\"}"));
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhasesByProject(project:\\\"APIRestFull\\\"){build,timeFloat}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
-        JSONArray tab = logs.getJSONArray(phase+"PhaseByProject");
+        JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
         return SimpleRegression.regressionFloat(tab, "timeFloat");
     }
 
     @GetMapping("/regression/{phase}/{variable}")
     public Map<String,Float>[] regressionInt(@PathVariable String phase, @PathVariable String variable) throws JSONException, Exception {
-        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhaseByProject(project:\\\"APIRestFull\\\"){build,"+ variable +"}}\"}"));
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhasesByProject(project:\\\"APIRestFull\\\"){build,"+ variable +"}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
-        JSONArray tab = logs.getJSONArray(phase+"PhaseByProject");
+        JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
         return SimpleRegression.regressionInt(tab, variable);
     }
 
