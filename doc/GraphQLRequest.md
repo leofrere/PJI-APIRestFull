@@ -31,28 +31,33 @@ path : `/request?query=<query graphQL>`
 ```graphql
 type Query {
   ordersByProject(project: String): [Order]
-  packagePhasesOfTime(op: String, project: String, time: String): [PackagePhase]
-  packagePhasesByProject(project: String): [PackagePhase]
-  compilePhaseByTime(op: String, project: String, time: String): [CompilePhase]
+  packagePhasesOfTime(op: String module: String project: String time: String): [PackagePhase]
+  testPhasesByProject(module: String, project: String): [TestPhase]
+  packagePhasesByProject(module: String, project: String): [PackagePhase]
+  compilePhaseByTime(op: String module: String project: String time: String): [CompilePhase]
   testPhaseById(id: Long!): TestPhase
   log(n: Int!): Log
-  testPhases: [TestPhase]
-  testPhasesOfTest(op: String test: String nbTest: Float! project: String): [TestPhase]
+  testPhasesOfTest(op: String test: String module: String nbTest: Float! project: String): [TestPhase]
   testClasses: [TestClasse]
+  testClassesOfTest(op: String test: String module: String nbTest: Float! project: String): [TestClasse]
+  testClassesOfTime(op: String module: String project: String time: String): [TestClasse]
+  testPhaseByCompiled(op: String compiled: Int! module: String project: String): [TestPhase]
+  testClassesTimeByTest(test: String module: String project: String): [Map_String_FloatScalar]
+  logs: [Log]
+  order(id: Long!): Order
+  testClassesOfClass(module: String project: String class: String): [TestClasse]
+  testPhases: [TestPhase]
+  compilePhasesByProject(module: String, project: String): [CompilePhase]
+  testPhasesTimeByCompiledClass(module: String project: String): [Map_String_FloatScalar]
   compilePhases: [CompilePhase]
-  testClassesOfTest(op: String test: String nbTest: Float! project: String): [TestClasse]
+  testPhasesTimeByTest(test: String module: String project: String): [Map_String_FloatScalar]
   packagePhases: [PackagePhase]
-  testClassesOfTime(op: String, project: String, time: String): [TestClasse]
-  compilePhaseByCompiled(op: String compiled: Int! project: String): [CompilePhase]
-  compilePhaseByProject(project: String): [CompilePhase]
-  testClassesOfProject(project: String): [TestClasse]
-  testPhaseByCompiled(op: String, compiled: Int!, project: String): [TestPhase]
+  compilePhaseByCompiled(op: String compiled: Int! module: String project: String): [CompilePhase]
+  testClassesOfProject(module: String, project: String): [TestClasse]
   logsByProject(project: String): [Log]
   orders: [Order]
-  logs: [Log]
-  testPhaseOfTime(op: String, project: String, time: String): [TestPhase]
-  order(id: Long!): Order
-  testClassesOfClass(project: String, class: String): [TestClasse]
+  compilePhasesTimeByCompiledClass(module: String project: String): [Map_String_FloatScalar]
+  testPhaseOfTime(op: String module: String project: String time: String): [TestPhase]
 }
 ```
 
@@ -80,8 +85,8 @@ type CompilePhase {
   build: Int!
   compiledClasses: Int!
   errorsTrace: String
-  id: Long!
-  numberOfClasses: Int!
+  id: Long
+  module: String
   project: String
   status: String
   time: String
@@ -92,8 +97,8 @@ type TestPhase {
   build: Int!
   compiledClasses: Int!
   errorsTrace: String
-  id: Long!
-  numberOfTestClasses: Int!
+  id: Long
+  module: String
   project: String
   status: String
   testsByClasse: [TestClasse]
@@ -108,8 +113,9 @@ type TestPhase {
 type PackagePhase {
   build: Int!
   errorsTrace: String
-  id: Long!
+  id: Long
   jarPath: String
+  module: String
   project: String
   status: String
   time: String
@@ -119,7 +125,8 @@ type PackagePhase {
 type TestClasse {
   build: Int!
   classe: String
-  id: Long!
+  id: Long
+  module: String
   project: String
   testsError: Int!
   testsFailed: Int!
