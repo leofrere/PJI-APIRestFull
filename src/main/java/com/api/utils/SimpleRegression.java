@@ -13,7 +13,7 @@ public class SimpleRegression {
         for (int i = 0; i < tab.length(); i++) {
             int value = tab.getJSONObject(i).getInt(variable);
             if (value < min) {
-                min = tab.getJSONObject(i).getInt("build");
+                min = value;
             }
         }
         return min;            
@@ -23,9 +23,9 @@ public class SimpleRegression {
         float min = Float.MAX_VALUE;
 
         for (int i = 0; i < tab.length(); i++) {
-            int value = tab.getJSONObject(i).getInt(variable);
+            float value = tab.getJSONObject(i).getFloat(variable);
             if (value < min) {
-                min = tab.getJSONObject(i).getInt("build");
+                min = value;
             }
         }
         return min;            
@@ -61,14 +61,17 @@ public class SimpleRegression {
         float b0 = minFloat(tab, variable);
         int build;;
         float value,sum = 0;
-
+        System.out.println("------------------------------------------------------");
+        System.out.println(b0);
         for (int i = 0; i < tab.length(); i++) {
             build = tab.getJSONObject(i).getInt("build");
-            value = tab.getJSONObject(i).getInt(variable);
+            value = tab.getJSONObject(i).getFloat(variable);
+            System.out.println(value - b0);
             sum += (value - b0) / (float) build;
         }
 
         float b1 =  sum / (float) tab.length();
+        System.out.println(b1);
 
         for (int i = 0; i < tab.length(); i++) {
             map[i] = new HashMap<String,Float>();
