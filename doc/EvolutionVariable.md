@@ -48,7 +48,7 @@ path : `/evolution/regression/{projectName}/{module}/{phase}/time`
 - module : nom du module cible
 - phase : phase cible (compilePhases, testPhases, packagePhases, testClasses)
 
-### Regression linéaire de l'évolution du nombres de tests
+### Regression linéaire de l'évolution du nombres de tests par rapport au temps
 
 methode : **GET**
 
@@ -58,7 +58,7 @@ path : `/evolution/regression/{projectName}/{module}/{phase}/tests/{type}`
 - phase : phase cible (testPhases, testClasses)
 - type : type de test (run, failed, skipped, error)
 
-### Regression linéaire de l'évolution du nombre de classe compilée
+### Regression linéaire de l'évolution du nombre de classe compilée par rapport au temps
 
 methode : **GET**
 
