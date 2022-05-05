@@ -24,11 +24,26 @@ public class VariableController {
 
     @GetMapping("/regression/{projectName}/{module}/{phase}/time")
     public Map<String,Float>[] regressionTime(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase) throws JSONException, Exception {
-        System.out.println("{\"query\":\"{"+ phase +"PhasesByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,timeFloat}}\"}");
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhasesByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,timeFloat}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
         JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
         return SimpleRegression.regressionFloat(tab, "timeFloat");
+    }
+
+    @GetMapping("/regression/{projectName}/{module}/{phase}/tests/{type}")
+    public Map<String,Float>[] regressionTimeByTest(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase, @PathVariable String type) throws JSONException, Exception {
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+phase+"TimeByTest(project: \\\""+ projectName +"\\\",module:\\\""+module+"\\\", test: \\\""+type+"\\\")}\"}"));
+        JSONObject logs = new JSONObject(data.get("data").toString());
+        JSONArray tab = logs.getJSONArray(phase+"TimeByTest");
+        return SimpleRegression.regressionFloat(tab, "time");
+    }
+
+    @GetMapping("/regression/{projectName}/{module}/{phase}/compile")
+    public Map<String,Float>[] regressionTimeByCompiledClass(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase) throws JSONException, Exception {
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+phase+"PhasesTimeByCompiledClass(project: \\\""+projectName+"\\\",module:\\\""+module+"\\\")}\"}"));
+        JSONObject logs = new JSONObject(data.get("data").toString());
+        JSONArray tab = logs.getJSONArray(phase+"PhasesTimeByCompiledClass");
+        return SimpleRegression.regressionFloat(tab, "time");
     }
 
     @GetMapping("/regression/{projectName}/{module}/{phase}/{variable}")
