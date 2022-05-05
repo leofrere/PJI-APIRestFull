@@ -1,8 +1,10 @@
 package com.api.services;
 
 import java.io.BufferedReader;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.api.model.TestClasse;
 import com.api.model.TestPhase;
@@ -83,6 +85,19 @@ public class TestPhaseService {
             }
         }
         return list;
+    }
+
+    @GraphQLQuery(name = "testPhasesTimeByCompiledClass")
+    public Map<String,Float>[] getTestPhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
+        List<TestPhase> compilePhases = getTestPhasesByProject(projectName, module);
+        Map<String,Float>[] map = new HashMap[compilePhases.size()];
+
+        for(int i = 0; i < compilePhases.size(); i++) {
+            map[i] = new HashMap<String,Float>();
+            map[i].put("build", (float) compilePhases.get(i).getBuild());
+            map[i].put("time", (float) compilePhases.get(i).getTimeFloat() / compilePhases.get(i).getCompiledClasses());
+        }
+        return map;
     }
 
     public TestPhase addTestPhase(BufferedReader reader, String projectName, int build, String module) {

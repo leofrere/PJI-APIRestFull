@@ -1,8 +1,10 @@
 package com.api.services;
 
 import java.io.BufferedReader;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.api.model.CompilePhase;
 import com.api.repository.CompileRepository;
@@ -35,6 +37,19 @@ public class CompilePhaseService {
 
     public void deleteCompilePhase(long id) {
         compileRepository.deleteById(id);
+    }
+
+    @GraphQLQuery(name = "compilePhasesTimeByCompiledClass")
+    public Map<String,Float>[] getCompilePhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
+        List<CompilePhase> compilePhases = getCompilePhaseByProject(projectName, module);
+        Map<String,Float>[] map = new HashMap[compilePhases.size()];
+
+        for(int i = 0; i < compilePhases.size(); i++) {
+            map[i] = new HashMap<String,Float>();
+            map[i].put("build", (float) compilePhases.get(i).getBuild());
+            map[i].put("time", (float) compilePhases.get(i).getTimeFloat() / compilePhases.get(i).getCompiledClasses());
+        }
+        return map;
     }
 
     @GraphQLQuery(name = "compilePhases")
