@@ -33,11 +33,11 @@ public class TestClasseService {
     }
 
     @GraphQLQuery(name = "testClassesOfProject")
-    public List<TestClasse> getTestClasseByProject(@GraphQLArgument(name = "project") String projectName) {
+    public List<TestClasse> getTestClasseByProject(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByProject = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getProject().equals(projectName)) {
+            if (testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
                 testClassesByProject.add(testClasse);
             }
         }
@@ -45,11 +45,11 @@ public class TestClasseService {
     }
 
     @GraphQLQuery(name = "testClassesOfClass")
-    public List<TestClasse> getTestClasseByClass(@GraphQLArgument(name = "class") String className, @GraphQLArgument(name = "project") String projectName) {
+    public List<TestClasse> getTestClasseByClass(@GraphQLArgument(name = "class") String className, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByClass = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getClasse().equals(className) && testClasse.getProject().equals(projectName)) {
+            if (testClasse.getClasse().equals(className) && testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
                 testClassesByClass.add(testClasse);
             }
         }
@@ -57,11 +57,11 @@ public class TestClasseService {
     }
 
     @GraphQLQuery(name = "testClassesOfTime")
-    public List<TestClasse> getTestClasseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+    public List<TestClasse> getTestClasseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByTime = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getProject().equals(projectName)) {
+            if (testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
                 cmpTestClasse(testClasse.getTimeFloat(), Float.parseFloat(time), op, testClassesByTime, testClasse);
             }
             
@@ -70,11 +70,11 @@ public class TestClasseService {
     }
 
     @GraphQLQuery(name = "testClassesOfTest")
-    public List<TestClasse> getTestClasseByTest(@GraphQLArgument(name = "test") String test, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "nbTest") float nbTest, @GraphQLArgument(name = "project") String projectName) {
+    public List<TestClasse> getTestClasseByTest(@GraphQLArgument(name = "test") String test, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "nbTest") float nbTest, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByTest = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getProject().equals(projectName)) {
+            if (testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
                 switchTypeOfTest(test, op, nbTest, testClassesByTest, testClasse);
             }
             

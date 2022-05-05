@@ -31,11 +31,11 @@ public class TestPhaseService {
     }
 
     @GraphQLQuery(name = "testPhasesByProject")
-    public List<TestPhase> getTestPhasesByProject(@GraphQLArgument(name = "project") String project) {
+    public List<TestPhase> getTestPhasesByProject(@GraphQLArgument(name = "project") String project, @GraphQLArgument(name = "module") String module) {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> testPhasesByProject = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(project)) {
+            if (testPhase.getProject().equals(project) && testPhase.getModule().equals(module)) {
                 testPhasesByProject.add(testPhase);
             }
         }
@@ -48,11 +48,11 @@ public class TestPhaseService {
     }
 
     @GraphQLQuery(name = "testPhaseOfTime")
-    public List<TestPhase> getTestPhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+    public List<TestPhase> getTestPhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String moduleName) {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> testPhaseByTime = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(projectName)) {
+            if (testPhase.getProject().equals(projectName) && testPhase.getModule().equals(moduleName)) {
                 cmpTestPhase(testPhase.getTimeFloat(), Float.parseFloat(time), op, testPhaseByTime, testPhase);
             }
             
@@ -61,11 +61,11 @@ public class TestPhaseService {
     }
 
     @GraphQLQuery(name = "testPhasesOfTest")
-    public List<TestPhase> getTestPhaseByTest(@GraphQLArgument(name = "test") String test, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "nbTest") float nbTest, @GraphQLArgument(name = "project") String projectName) {
+    public List<TestPhase> getTestPhaseByTest(@GraphQLArgument(name = "test") String test, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "nbTest") float nbTest, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> testPhasesByTest = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(projectName)) {
+            if (testPhase.getProject().equals(projectName) && testPhase.getModule().equals(module)) {
                 switchTypeOfTest(test, op, nbTest, testPhasesByTest, testPhase);
             }
             
@@ -74,11 +74,11 @@ public class TestPhaseService {
     }
 
     @GraphQLQuery(name = "testPhaseByCompiled")
-    public List<TestPhase> getTestPhaseByCompiled(@GraphQLArgument(name = "compiled") int compiled, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+    public List<TestPhase> getTestPhaseByCompiled(@GraphQLArgument(name = "compiled") int compiled, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> list = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(projectName)){
+            if (testPhase.getProject().equals(projectName) && testPhase.getModule().equals(module)) {
                 cmpTestPhase((float) compiled,(float) testPhase.getCompiledClasses(), op, list, testPhase);
             }
         }

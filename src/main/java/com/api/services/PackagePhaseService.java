@@ -39,11 +39,11 @@ public class PackagePhaseService {
     }
 
     @GraphQLQuery(name = "packagePhasesByProject")
-    public List<PackagePhase> getPackagePhaseByProject(@GraphQLArgument(name = "project") String projectName) {
+    public List<PackagePhase> getPackagePhaseByProject(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<PackagePhase> packagePhases = packageRepository.findAll();
         List<PackagePhase> packagePhasesToReturn = new LinkedList<PackagePhase>();
         for (PackagePhase packagePhase : packagePhases) {
-            if (packagePhase.getProject().equals(projectName)) {
+            if (packagePhase.getProject().equals(projectName) && packagePhase.getModule().equals(module)) {
                 packagePhasesToReturn.add(packagePhase);
             }
         }
@@ -51,11 +51,11 @@ public class PackagePhaseService {
     }
 
     @GraphQLQuery(name = "packagePhasesOfTime")
-    public List<PackagePhase> getPackagePhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+    public List<PackagePhase> getPackagePhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<PackagePhase> packagePhases = packageRepository.findAll();
         List<PackagePhase> packagePhasesToReturn = new LinkedList<PackagePhase>();
         for (PackagePhase packagePhase : packagePhases) {
-            if(packagePhase.getProject().equals(projectName)){
+            if(packagePhase.getProject().equals(projectName) && packagePhase.getModule().equals(module)) {
                 cmpPackagePhase(Float.parseFloat(time), packagePhase.getTimeFloat(), op, packagePhasesToReturn, packagePhase);
             }
         }

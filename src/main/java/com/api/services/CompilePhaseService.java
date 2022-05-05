@@ -43,11 +43,11 @@ public class CompilePhaseService {
     }
 
     @GraphQLQuery(name = "compilePhasesByProject")
-    public List<CompilePhase> getCompilePhaseByProject(@GraphQLArgument(name = "project") String projectName) {
+    public List<CompilePhase> getCompilePhaseByProject(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<CompilePhase> compilePhases = compileRepository.findAll();
         List<CompilePhase> list = new LinkedList<CompilePhase>();
         for (CompilePhase compilePhase : compilePhases) {
-            if (compilePhase.getProject().equals(projectName)) {
+            if (compilePhase.getProject().equals(projectName) && compilePhase.getModule().equals(module)) {
                 list.add(compilePhase);
             }
         }
@@ -55,11 +55,11 @@ public class CompilePhaseService {
     }
 
     @GraphQLQuery(name = "compilePhaseByTime")
-    public List<CompilePhase> getCompilePhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+    public List<CompilePhase> getCompilePhaseByTime(@GraphQLArgument(name = "time") String time, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<CompilePhase> compilePhases = compileRepository.findAll();
         List<CompilePhase> list = new LinkedList<CompilePhase>();
         for (CompilePhase compilePhase : compilePhases) {
-            if (compilePhase.getProject().equals(projectName)){
+            if (compilePhase.getProject().equals(projectName) && compilePhase.getModule().equals(module)) {
                 cmpCompile(Float.parseFloat(time), compilePhase.getTimeFloat(), op, list, compilePhase);
             }
         }
@@ -67,11 +67,11 @@ public class CompilePhaseService {
     }
 
     @GraphQLQuery(name = "compilePhaseByCompiled")
-    public List<CompilePhase> getCompilePhaseByCompiled(@GraphQLArgument(name = "compiled") int compiled, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName) {
+    public List<CompilePhase> getCompilePhaseByCompiled(@GraphQLArgument(name = "compiled") int compiled, @GraphQLArgument(name = "op") String op, @GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<CompilePhase> compilePhases = compileRepository.findAll();
         List<CompilePhase> list = new LinkedList<CompilePhase>();
         for (CompilePhase compilePhase : compilePhases) {
-            if (compilePhase.getProject().equals(projectName)){
+            if (compilePhase.getProject().equals(projectName) && compilePhase.getModule().equals(module)) {
                 cmpCompile((float) compiled,(float) compilePhase.getCompiledClasses(), op, list, compilePhase);
             }
         }
