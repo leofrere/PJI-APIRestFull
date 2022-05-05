@@ -3,12 +3,12 @@ package com.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.api.model.abstracts.Time;
+import com.api.model.abstracts.TimeAndModule;
 import com.api.model.interfaces.Test;
 
 @Entity
 @Table(name = "tests_classes")
-public class TestClasse extends Time implements Test {
+public class TestClasse extends TimeAndModule implements Test {
 
     @NotNull
     private String classe;

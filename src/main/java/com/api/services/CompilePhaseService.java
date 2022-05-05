@@ -25,10 +25,11 @@ public class CompilePhaseService {
         return compileRepository.findById(id).get();
     }
 
-    public CompilePhase addCompilePhase(BufferedReader reader, String projectName, int build) {
+    public CompilePhase addCompilePhase(BufferedReader reader, String projectName, int build, String module) {
         CompilePhase compilePhase = new CompilePhase(reader);
         compilePhase.setProject(projectName);
         compilePhase.setBuild(build);
+        compilePhase.setModule(module);
         return compileRepository.save(compilePhase);
     }
 

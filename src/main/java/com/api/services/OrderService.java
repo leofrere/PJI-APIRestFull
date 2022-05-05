@@ -56,9 +56,9 @@ public class OrderService {
     }
 
     public Order addOrder(BufferedReader reader, String name, String projectName, int build) {
-        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build);
-        TestPhase testPhase = testService.addTestPhase(reader, projectName, build);
-        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build);
+        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name);
+        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name);
+        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name);
         return orderRepository.save(new Order(compilePhase, testPhase, packagePhase, name, projectName, build));
     }
 

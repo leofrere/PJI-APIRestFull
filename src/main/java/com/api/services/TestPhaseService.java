@@ -85,16 +85,17 @@ public class TestPhaseService {
         return list;
     }
 
-    public TestPhase addTestPhase(BufferedReader reader, String projectName, int build) {
+    public TestPhase addTestPhase(BufferedReader reader, String projectName, int build, String module) {
         TestPhase testPhase = new TestPhase(reader);
         List<TestClasse> testClasses = testPhase.getTestsByClasse();
         List<TestClasse> testClassesToSave = new LinkedList<TestClasse>();
         for(TestClasse testClasse : testClasses) {
-            testClassesToSave.add(testClasseService.addTestClasse(testClasse, projectName, build));
+            testClassesToSave.add(testClasseService.addTestClasse(testClasse, projectName, build, module));
         }
         testPhase.setTestsByClasse(testClassesToSave);
         testPhase.setProject(projectName);
         testPhase.setBuild(build);
+        testPhase.setModule(module);
         return testRepository.save(testPhase);
     }
 

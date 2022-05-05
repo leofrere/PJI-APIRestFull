@@ -3,9 +3,11 @@ package com.api.model.abstracts;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class Time extends Model {
+public abstract class TimeAndModule extends Model {
     
     protected String time;
+
+    protected String module;
 
     public String getTime() {
         return time;
@@ -13,6 +15,14 @@ public abstract class Time extends Model {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
     }
 
     public float getTimeFloat() {

@@ -3,7 +3,7 @@ package com.api.model.abstracts;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class Phase extends Time {
+public abstract class Phase extends TimeAndModule {
 
     protected String status;
 

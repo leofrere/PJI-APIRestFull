@@ -20,9 +20,10 @@ public class TestClasseService {
     @Autowired
     private TestClasseRepository testClasseRepository;
 
-    public TestClasse addTestClasse(TestClasse testClasse, String projectName, int build) {
+    public TestClasse addTestClasse(TestClasse testClasse, String projectName, int build, String module) {
         testClasse.setProject(projectName);
         testClasse.setBuild(build);
+        testClasse.setModule(module);
         return testClasseRepository.save(testClasse);
     }
 

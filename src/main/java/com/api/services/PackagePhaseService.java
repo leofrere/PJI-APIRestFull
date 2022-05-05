@@ -25,10 +25,11 @@ public class PackagePhaseService {
         return packageRepository.findById(id).get();
     }
 
-    public PackagePhase addPackagePhase(BufferedReader reader, String projectName, int build) {
+    public PackagePhase addPackagePhase(BufferedReader reader, String projectName, int build, String module) {
         PackagePhase packagePhase = new PackagePhase(reader);
         packagePhase.setProject(projectName);
         packagePhase.setBuild(build);
+        packagePhase.setModule(module);
         return packageRepository.save(packagePhase);
     }
 
