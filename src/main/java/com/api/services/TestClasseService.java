@@ -1,9 +1,12 @@
 package com.api.services;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.api.model.TestClasse;
+import com.api.model.interfaces.Test;
 import com.api.repository.TestClasseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +83,36 @@ public class TestClasseService {
             
         }
         return testClassesByTest;
+    }
+
+    @GraphQLQuery(name = "testClassesTimeByTest")
+    public Map<String,Float>[] getCompilePhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module, @GraphQLArgument(name = "test") String test) {
+        List<TestClasse> testClasses = getTestClasseByProject(projectName, module);
+        Map<String,Float>[] map = new HashMap[testClasses.size()];
+
+        for(int i = 0; i < testClasses.size(); i++) {
+            map[i] = new HashMap<String,Float>();
+            map[i].put("build", (float) testClasses.get(i).getBuild());
+            switch (test) {
+                case "run":
+                    if(testClasses.get(i).getTestsRun() == 0) break;
+                    map[i].put("time", (float) testClasses.get(i).getTimeFloat() / testClasses.get(i).getTestsRun());
+                    break;
+                case "failed":
+                    if(testClasses.get(i).getTestsFailed() == 0) break;
+                    map[i].put("time", (float) testClasses.get(i).getTimeFloat() / testClasses.get(i).getTestsFailed());
+                    break;
+                case "skipped":
+                    if(testClasses.get(i).getTestsSkipped() == 0) break;
+                    map[i].put("time", (float) testClasses.get(i).getTimeFloat() / testClasses.get(i).getTestsSkipped());
+                    break;
+                case "error":
+                    if(testClasses.get(i).getTestsError() == 0) break;
+                    map[i].put("time", (float) testClasses.get(i).getTimeFloat() / testClasses.get(i).getTestsError());
+                    break;
+            }
+        }
+        return map;
     }
 
     private void switchTypeOfTest(String test, String op, float nbTest, List<TestClasse> testClassesByTest,

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.api.model.TestClasse;
 import com.api.model.TestPhase;
+import com.api.model.interfaces.Test;
 import com.api.repository.TestRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,36 @@ public class TestPhaseService {
             map[i] = new HashMap<String,Float>();
             map[i].put("build", (float) compilePhases.get(i).getBuild());
             map[i].put("time", (float) compilePhases.get(i).getTimeFloat() / compilePhases.get(i).getCompiledClasses());
+        }
+        return map;
+    }
+
+    @GraphQLQuery(name = "testPhasesTimeByTest")
+    public Map<String,Float>[] getCompilePhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module, @GraphQLArgument(name = "test") String test) {
+        List<TestPhase> testPhases = getTestPhasesByProject(projectName, module);
+        Map<String,Float>[] map = new HashMap[testPhases.size()];
+
+        for(int i = 0; i < testPhases.size(); i++) {
+            map[i] = new HashMap<String,Float>();
+            map[i].put("build", (float) testPhases.get(i).getBuild());
+            switch (test) {
+                case "run":
+                    if(testPhases.get(i).getTestsRun() == 0) break;
+                    map[i].put("time", (float) testPhases.get(i).getTimeFloat() / testPhases.get(i).getTestsRun());
+                    break;
+                case "failed":
+                    if(testPhases.get(i).getTestsFailed() == 0) break;
+                    map[i].put("time", (float) testPhases.get(i).getTimeFloat() / testPhases.get(i).getTestsFailed());
+                    break;
+                case "skipped":
+                    if(testPhases.get(i).getTestsSkipped() == 0) break;
+                    map[i].put("time", (float) testPhases.get(i).getTimeFloat() / testPhases.get(i).getTestsSkipped());
+                    break;
+                case "error":
+                    if(testPhases.get(i).getTestsError() == 0) break;
+                    map[i].put("time", (float) testPhases.get(i).getTimeFloat() / testPhases.get(i).getTestsError());
+                    break;
+            }
         }
         return map;
     }
