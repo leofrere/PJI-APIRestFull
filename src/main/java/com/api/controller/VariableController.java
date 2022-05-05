@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.api.utils.GraphQLRequest;
+import com.api.utils.SimpleRegression;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/evolution")
 public class VariableController {
+
+
+    @GetMapping("/regression/{phase}/time")
+    public Map<String,Float>[] regressionTime(@PathVariable String phase) throws JSONException, Exception {
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhaseByProject(project:\\\"APIRestFull\\\"){build,timeFloat}}\"}"));
+        JSONObject logs = new JSONObject(data.get("data").toString());
+        JSONArray tab = logs.getJSONArray(phase+"PhaseByProject");
+        return SimpleRegression.regressionFloat(tab, "timeFloat");
+    }
+
+    @GetMapping("/regression/{phase}/{variable}")
+    public Map<String,Float>[] regressionInt(@PathVariable String phase, @PathVariable String variable) throws JSONException, Exception {
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"PhaseByProject(project:\\\"APIRestFull\\\"){build,"+ variable +"}}\"}"));
+        JSONObject logs = new JSONObject(data.get("data").toString());
+        JSONArray tab = logs.getJSONArray(phase+"PhaseByProject");
+        return SimpleRegression.regressionInt(tab, variable);
+    }
+
 
     @CrossOrigin
     @GetMapping("/phase/{projectName}/{phaseName}/{variable}")
