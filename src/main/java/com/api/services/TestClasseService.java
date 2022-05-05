@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.api.model.TestClasse;
-import com.api.model.interfaces.Test;
 import com.api.repository.TestClasseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class TestClasseService {
         return testClasseRepository.findAll();
     }
 
-    @GraphQLQuery(name = "testClassesOfProject")
+    @GraphQLQuery(name = "testClassesByProject")
     public List<TestClasse> getTestClasseByProject(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByProject = new LinkedList<TestClasse>();

@@ -8,7 +8,6 @@ import java.util.Map;
 
 import com.api.model.TestClasse;
 import com.api.model.TestPhase;
-import com.api.model.interfaces.Test;
 import com.api.repository.TestRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

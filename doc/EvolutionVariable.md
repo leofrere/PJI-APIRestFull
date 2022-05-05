@@ -23,7 +23,7 @@
 
 methode : **GET**
 
-path : `/phase/{projectName}/{phaseName}/{variable}?module=0|<int>`
+path : `/evolution/phase/{projectName}/{phaseName}/{variable}?module=0|<int>`
 - projectName : nom du projet cible
 - phaseName : nom de la phase cible (compile, test, package)
 - - variable : nom de la variable (commune : time, status, errorsTrace | compile : compiledClasses, testsRun, testsError, testsSkipped, testsFailed | test : compiledClasses, | package : jarPath)
@@ -33,8 +33,46 @@ path : `/phase/{projectName}/{phaseName}/{variable}?module=0|<int>`
 
 methode : **GET**
 
-path : `/test/{projectName}/{classeName}/{variable}?module=0|<int>`
+path : `/evolution/test/{projectName}/{classeName}/{variable}?module=0|<int>`
 - projectName : nom du projet cible
 - classeName : nom de la classe cible (ex: package-Class)
 - variable : nom de la variable (testsRun, testsError, testsSkipped, testsFailed, time)
 - module (optionnel) : numéro du module ciblé par défaut il vaut 0
+
+### Regression linéaire de l'évolution du temps
+
+methode : **GET**
+
+path : `/evolution/regression/{projectName}/{module}/{phase}/time`
+- projectName : nom du projet cible
+- module : nom du module cible
+- phase : phase cible (compilePhases, testPhases, packagePhases, testClasses)
+
+### Regression linéaire de l'évolution du nombres de tests
+
+methode : **GET**
+
+path : `/evolution/regression/{projectName}/{module}/{phase}/tests/{type}`
+- projectName : nom du projet cible
+- module : nom du module cible
+- phase : phase cible (testPhases, testClasses)
+- type : type de test (run, failed, skipped, error)
+
+### Regression linéaire de l'évolution du nombre de classe compilée
+
+methode : **GET**
+
+path : `/evolution/regression/{projectName}/{module}/{phase}/compile`
+- projectName : nom du projet cible
+- module : nom du module cible
+- phase : phase cible (compilePhases, testPhases)
+
+### Regression linéaire de l'évolution de la variable au choix
+
+methode : **GET**
+
+path : `/evolution/regression/{projectName}/{module}/{phase}/{variable}`
+- projectName : nom du projet cible
+- module : nom du module cible
+- phase : phase cible (compilePhases, testPhases, packagePhases, testClasses)
+- variable : variable de la phase voulu
