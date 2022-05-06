@@ -21,7 +21,7 @@ Pour aider la lecture de build Maven, une entité **Log** permet de synthétyser
 
 ### Ajouter un log
 
-methode : **GET**
+methode : **POST**
 
 path : `/log/create/{projectName}/{buildNumber}`
 - projectName : nom du projet cible
@@ -29,7 +29,7 @@ path : `/log/create/{projectName}/{buildNumber}`
 
 ### Ajouter tous les logs manquant
 
-methode : **GET**
+methode : **POST**
 
 path : `/log/creates/{projectName}`
 - projectName : nom du projet où ajouter tous les logs manquant
@@ -58,7 +58,7 @@ path : `/log/project/{projectName}/{n}`
 
 ### Supprimer le n-ème log
 
-methode : **GET**
+methode : **POST**
 
 path : `/log/delete/{n}`
 - n : n-ème log à supprimer

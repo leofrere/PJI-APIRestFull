@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ public class LogController {
     private LogService logService;
 
     @CrossOrigin
-    @GetMapping("/create/{projectName}/{buildNumber}")
+    @PostMapping("/create/{projectName}/{buildNumber}")
     public void setLog(@PathVariable String projectName, @PathVariable int buildNumber) {
 
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
@@ -47,7 +48,7 @@ public class LogController {
     }
 
     @CrossOrigin
-    @GetMapping("/creates/{projectName}")
+    @PostMapping("/creates/{projectName}")
     public void addLogOfJenkinsBuild(@PathVariable String projectName){
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         try {
@@ -88,7 +89,7 @@ public class LogController {
     }
 
     @CrossOrigin
-    @GetMapping("/delete/{n}")
+    @PostMapping("/delete/{n}")
     public void deleteLog(@PathVariable int n) {
         logService.deleteLog(n);
     }

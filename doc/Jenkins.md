@@ -22,7 +22,7 @@ Dans l'API, nous avons besoin de pouvoir se connecter à un serveur Jenkins afin
 
 ### Ajouter un projet Jenkins
 
-methode : **GET**
+methode : **POST**
 
 path : `/jenkins/build/create?url=<url>&pj=<project name>&user=<username>&pass=<password or token of project>`
 - url : url du serveur Jenkins
@@ -32,14 +32,14 @@ path : `/jenkins/build/create?url=<url>&pj=<project name>&user=<username>&pass=<
 
 ### Supprimer un projet Jenkins
 
-methode : **GET**
+methode : **POST**
 
 path : `/jenkins/build/delete/{projectName}`
 - projectName : nom du projet cible sur le serveur Jenkins
 
 ### Changer le mot de passe ou token
 
-methode : **GET**
+methode : **POST**
 
 path : `/jenkins/build/update/password/{projectName}?pass=<password or token of project>`
 - projectName : nom du projet cible sur le serveur Jenkins
@@ -47,7 +47,7 @@ path : `/jenkins/build/update/password/{projectName}?pass=<password or token of 
 
 ### Changer le username
 
-methode : **GET**
+methode : **POST**
 
 path : `/jenkins/build/update/username/{projectName}/{username}`
 - projectName : nom du projet cible sur le serveur Jenkins
@@ -55,7 +55,7 @@ path : `/jenkins/build/update/username/{projectName}/{username}`
 
 ### Changer l'url
 
-methode : **GET**
+methode : **POST**
 
 path : `/jenkins/build/update/url/{projectName}?url=<url>`
 - projectName : nom du projet cible sur le serveur Jenkins
@@ -63,7 +63,7 @@ path : `/jenkins/build/update/url/{projectName}?url=<url>`
 
 ### Changer le nom du projet jenkins
 
-methode : **GET**
+methode : **POST**
 
 path : `/jenkins/build/update/project/{projectName}/{newProjectName}`
 - projectName : nom du projet cible sur le serveur Jenkins
