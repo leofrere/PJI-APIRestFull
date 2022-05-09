@@ -87,6 +87,7 @@ public class TestPhaseService {
         return list;
     }
 
+    @SuppressWarnings("unchecked")
     @GraphQLQuery(name = "testPhasesTimeByCompiledClass")
     public Map<String,Float>[] getTestPhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<TestPhase> compilePhases = getTestPhasesByProject(projectName, module);
@@ -100,6 +101,7 @@ public class TestPhaseService {
         return map;
     }
 
+    @SuppressWarnings("unchecked")
     @GraphQLQuery(name = "testPhasesTimeByTest")
     public Map<String,Float>[] getCompilePhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module, @GraphQLArgument(name = "test") String test) {
         List<TestPhase> testPhases = getTestPhasesByProject(projectName, module);

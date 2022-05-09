@@ -31,6 +31,7 @@ public class MathUtils {
         return min;            
     }
 
+    @SuppressWarnings("unchecked")
     public static Map<String,Float>[] regressionInt(JSONArray tab, String variable) {
         Map<String,Float>[] map = new HashMap[tab.length()];
         int b0 = minInt(tab, variable);
@@ -56,6 +57,7 @@ public class MathUtils {
         
     }
 
+    @SuppressWarnings("unchecked")
     public static Map<String,Float>[] regressionFloat(JSONArray tab, String variable) {
         Map<String,Float>[] map = new HashMap[tab.length()];
         float b0 = minFloat(tab, variable);
@@ -80,6 +82,7 @@ public class MathUtils {
         
     }
 
+    @SuppressWarnings("unchecked")
     public static Map<String,Float>[] coefMul(JSONArray tab, String variable) {
         Map<String,Float>[] map = new HashMap[tab.length()];
         int build;;
@@ -95,6 +98,7 @@ public class MathUtils {
         return map;  
     }
 
+    @SuppressWarnings("unchecked")
     public static Map<String,Float>[] indice(JSONArray tab, String variable) {
         Map<String,Float>[] map = new HashMap[tab.length()];
         int build;;

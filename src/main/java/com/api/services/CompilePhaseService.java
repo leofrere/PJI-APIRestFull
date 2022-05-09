@@ -39,6 +39,7 @@ public class CompilePhaseService {
         compileRepository.deleteById(id);
     }
 
+    @SuppressWarnings("unchecked")
     @GraphQLQuery(name = "compilePhasesTimeByCompiledClass")
     public Map<String,Float>[] getCompilePhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module) {
         List<CompilePhase> compilePhases = getCompilePhaseByProject(projectName, module);

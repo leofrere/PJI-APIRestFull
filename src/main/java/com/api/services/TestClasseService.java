@@ -84,6 +84,7 @@ public class TestClasseService {
         return testClassesByTest;
     }
 
+    @SuppressWarnings("unchecked")
     @GraphQLQuery(name = "testClassesTimeByTest")
     public Map<String,Float>[] getCompilePhasesTimeByCompiledClass(@GraphQLArgument(name = "project") String projectName, @GraphQLArgument(name = "module") String module, @GraphQLArgument(name = "test") String test) {
         List<TestClasse> testClasses = getTestClasseByProject(projectName, module);
