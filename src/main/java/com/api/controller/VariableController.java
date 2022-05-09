@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.api.utils.GraphQLRequest;
-import com.api.utils.SimpleRegression;
+import com.api.utils.MathUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +27,7 @@ public class VariableController {
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"ByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,timeFloat}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
         JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
-        return SimpleRegression.regressionFloat(tab, "timeFloat");
+        return MathUtils.regressionFloat(tab, "timeFloat");
     }
 
     @CrossOrigin
@@ -36,7 +36,7 @@ public class VariableController {
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+phase+"TimeByTest(project: \\\""+ projectName +"\\\",module:\\\""+module+"\\\", test: \\\""+type+"\\\")}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
         JSONArray tab = logs.getJSONArray(phase+"TimeByTest");
-        return SimpleRegression.regressionFloat(tab, "time");
+        return MathUtils.regressionFloat(tab, "time");
     }
 
     @CrossOrigin
@@ -45,7 +45,7 @@ public class VariableController {
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+phase+"PhasesTimeByCompiledClass(project: \\\""+projectName+"\\\",module:\\\""+module+"\\\")}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
         JSONArray tab = logs.getJSONArray(phase+"PhasesTimeByCompiledClass");
-        return SimpleRegression.regressionFloat(tab, "time");
+        return MathUtils.regressionFloat(tab, "time");
     }
 
     @CrossOrigin
@@ -54,7 +54,7 @@ public class VariableController {
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"ByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,"+ variable +"}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
         JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
-        return SimpleRegression.regressionInt(tab, variable);
+        return MathUtils.regressionInt(tab, variable);
     }
 
 
