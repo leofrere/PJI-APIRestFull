@@ -7,7 +7,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.junit.jupiter.api.Test;
 
-public class SimpleRegressionTest {
+public class MathUtilsTest {
     
     @Test
     public void minIntTest(){
