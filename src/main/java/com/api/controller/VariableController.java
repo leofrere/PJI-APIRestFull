@@ -22,11 +22,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class VariableController {
 
     @CrossOrigin
+    @GetMapping("/indice/{projectName}/{module}/{phase}/{variable}")
+    public Map<String,Float>[] indice(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase, @PathVariable String variable) throws JSONException, Exception {
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"ByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,"+ variable +"}}\"}"));
+        JSONObject logs = new JSONObject(data.get("data").toString());
+        JSONArray tab = logs.getJSONArray(phase+"ByProject");
+        return MathUtils.indice(tab, variable);
+    }
+
+    @CrossOrigin
+    @GetMapping("/coef/{projectName}/{module}/{phase}/{variable}")
+    public Map<String,Float>[] coefMul(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase, @PathVariable String variable) throws JSONException, Exception {
+        JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"ByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,"+ variable +"}}\"}"));
+        JSONObject logs = new JSONObject(data.get("data").toString());
+        JSONArray tab = logs.getJSONArray(phase+"ByProject");
+        return MathUtils.coefMul(tab, variable);
+    }
+
+
+
+    @CrossOrigin
     @GetMapping("/regression/{projectName}/{module}/{phase}/time")
     public Map<String,Float>[] regressionTime(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase) throws JSONException, Exception {
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"ByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,timeFloat}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
-        JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
+        JSONArray tab = logs.getJSONArray(phase+"ByProject");
         return MathUtils.regressionFloat(tab, "timeFloat");
     }
 
@@ -53,7 +73,7 @@ public class VariableController {
     public Map<String,Float>[] regressionInt(@PathVariable String projectName, @PathVariable String module, @PathVariable String phase, @PathVariable String variable) throws JSONException, Exception {
         JSONObject data = new JSONObject(GraphQLRequest.sendRequest("{\"query\":\"{"+ phase +"ByProject(project:\\\""+ projectName +"\\\",module:\\\""+ module +"\\\"){build,"+ variable +"}}\"}"));
         JSONObject logs = new JSONObject(data.get("data").toString());
-        JSONArray tab = logs.getJSONArray(phase+"PhasesByProject");
+        JSONArray tab = logs.getJSONArray(phase+"ByProject");
         return MathUtils.regressionInt(tab, variable);
     }
 
