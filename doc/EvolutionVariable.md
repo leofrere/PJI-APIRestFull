@@ -76,3 +76,23 @@ path : `/evolution/regression/{projectName}/{module}/{phase}/{variable}`
 - module : nom du module cible
 - phase : phase cible (compilePhases, testPhases, packagePhases, testClasses)
 - variable : variable de la phase voulu
+
+### Indice de la variable au choix
+
+methode : **GET**
+
+path : `/evolution/indice/{projectName}/{module}/{phase}/{variable}`
+- projectName : nom du projet cible
+- module : nom du module cible
+- phase : phase cible (compilePhases, testPhases, packagePhases, testClasses)
+- variable : variable de la phase voulu
+
+### coefficient multiplicateur de la variable au choix
+
+methode : **GET**
+
+path : `/evolution/coef/{projectName}/{module}/{phase}/{variable}`
+- projectName : nom du projet cible
+- module : nom du module cible
+- phase : phase cible (compilePhases, testPhases, packagePhases, testClasses)
+- variable : variable de la phase voulu

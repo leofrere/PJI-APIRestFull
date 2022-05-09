@@ -53,7 +53,7 @@ type Query {
   testPhasesTimeByTest(test: String module: String project: String): [Map_String_FloatScalar]
   packagePhases: [PackagePhase]
   compilePhaseByCompiled(op: String compiled: Int! module: String project: String): [CompilePhase]
-  testClassesOfProject(module: String, project: String): [TestClasse]
+  testClassesByProject(module: String, project: String): [TestClasse]
   logsByProject(project: String): [Log]
   orders: [Order]
   compilePhasesTimeByCompiledClass(module: String project: String): [Map_String_FloatScalar]
