@@ -49,4 +49,30 @@ public class MathUtilsTest {
         assertEquals(11.55, res[5].get("value").floatValue(), 0.01);
     }
 
+    @Test
+    public void indiceTest(){
+        JSONArray tab = new JSONArray("[{\"build\":1,\"value\":7.6},{\"build\":2,\"value\":4.1},{\"build\":3,\"value\":3.39},{\"build\":4,\"value\":2.86},{\"build\":5,\"value\":1.7},{\"build\":6,\"value\":13.13}]");
+        Map<String,Float>[] res = MathUtils.indice(tab, "value");
+        assertEquals(6, res.length);
+        assertEquals(null, res[0]);
+        assertEquals(1.85, res[1].get("value").floatValue(), 0.01);
+        assertEquals(2.24, res[2].get("value").floatValue(), 0.01);
+        assertEquals(2.65, res[3].get("value").floatValue(), 0.01);
+        assertEquals(4.47, res[4].get("value").floatValue(), 0.01);
+        assertEquals(0.57, res[5].get("value").floatValue(), 0.01);
+    }
+
+    @Test
+    public void coefMulTest(){
+        JSONArray tab = new JSONArray("[{\"build\":1,\"value\":7.6},{\"build\":2,\"value\":4.1},{\"build\":3,\"value\":3.39},{\"build\":4,\"value\":2.86},{\"build\":5,\"value\":1.7},{\"build\":6,\"value\":13.13}]");
+        Map<String,Float>[] res = MathUtils.coefMul(tab, "value");
+        assertEquals(6, res.length);
+        assertEquals(null, res[0]);
+        assertEquals(1.85, res[1].get("value").floatValue(), 0.01);
+        assertEquals(1.2, res[2].get("value").floatValue(), 0.01);
+        assertEquals(1.18, res[3].get("value").floatValue(), 0.01);
+        assertEquals(1.68, res[4].get("value").floatValue(), 0.01);
+
+    }
+
 }
