@@ -14,9 +14,6 @@ public class AnalyseTestsClasse extends AnalyseTests{
     public static Test getTest(Log log, int moduleNumber, String testClasse){
         TestPhase testPhase = log.getOrders().get(moduleNumber).getTestPhase();
         for (TestClasse test : testPhase.getTestsByClasse()) {
-            System.out.println(test.getClasse());
-            System.out.println(testClasse.replace("-", "."));
-            System.out.println(test.getClasse().contains(testClasse.replace("-", ".")));
             if(test.getClasse().contains(testClasse.replace("-", "."))){
                 return test;
             }

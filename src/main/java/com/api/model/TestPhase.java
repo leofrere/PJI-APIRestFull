@@ -47,7 +47,6 @@ public class TestPhase extends Compile implements Test {
         String testClass = "";
         try {
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
                 if(line.contains("--- maven-jar-plugin:")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                    status = "ok";

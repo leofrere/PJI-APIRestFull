@@ -51,7 +51,7 @@ public class MathUtils {
             build = tab.getJSONObject(i).getInt("build");
             map[i].put("build", (float) build);
             value = tab.getJSONObject(i).getInt(variable);
-            map[i].put("value", b0 + b1 * build);
+            map[i].put(variable, b0 + b1 * build);
         }
         return map;
         
@@ -104,7 +104,6 @@ public class MathUtils {
         int build;;
         float ref = tab.getJSONObject(0).getFloat(variable);
         float indice;
-
         for (int i = 1; i < tab.length(); i++) {
             map[i] = new HashMap<String,Float>();
             build = tab.getJSONObject(i).getInt("build");
