@@ -53,15 +53,6 @@ public class TestPhase extends Compile implements Test {
                     break;
                 }
 
-                if(line.contains("[ERROR] ")){
-                    if(secondErrorLine && errorsTrace.length() == 0){
-                        errorsTrace = line;
-                        continue;
-                    }
-                    secondErrorLine = true;
-                    continue;
-                }
-
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
                     time1 = parts[0];
@@ -70,12 +61,21 @@ public class TestPhase extends Compile implements Test {
                 }
 
                 
-                if(line.contains("Running ")){
-                    testClass = line.split(" ")[1];
+                if(line.contains("[INFO] Running ")){
+                    testClass = line.split(" ")[3];
                 }
 
-                if(line.contains("[INFO] Tests run:")){
+                if(line.contains("[INFO] Tests run:") || line.contains("[ERROR] Tests run:")){
                     testClass = parseTestsInformation(line, testClass, 2);
+                    continue;
+                }
+
+                if(line.contains("[ERROR] ")){
+                    if(secondErrorLine && errorsTrace.length() == 0){
+                        errorsTrace = line;
+                        continue;
+                    }
+                    secondErrorLine = true;
                     continue;
                 }
 
