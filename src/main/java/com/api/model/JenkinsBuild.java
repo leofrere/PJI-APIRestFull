@@ -19,19 +19,21 @@ public class JenkinsBuild {
     private String projectName;
 
     @NotNull
+    private String path;
+
     private String username;
 
-    @NotNull
     private String password;
 
     public JenkinsBuild() {
     }
 
-    public JenkinsBuild(String url, String projectName, String username, String password) {
+    public JenkinsBuild(String url, String projectName, String username, String password, String path) {
         this.url = url;
         this.projectName = projectName;
         this.username = username;
         this.password = password;
+        this.path = path;
     }
 
     public long getId() {
@@ -72,6 +74,14 @@ public class JenkinsBuild {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
 }

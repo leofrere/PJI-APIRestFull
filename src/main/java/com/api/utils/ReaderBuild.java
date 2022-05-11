@@ -15,32 +15,37 @@ public class ReaderBuild {
     
     public static BufferedReader readBuild(JenkinsBuild jenkinsBuild, int buildNumber) throws Exception {
         try {
-            URL url = new URL(jenkinsBuild.getUrl() + "/job/" + jenkinsBuild.getProjectName() + "/" + String.valueOf(buildNumber) + "/consoleText");
+            URL url = new URL(jenkinsBuild.getUrl() + "/job/" + jenkinsBuild.getPath() + "/" + String.valueOf(buildNumber) + "/consoleText");
             String authStr = jenkinsBuild.getUsername() + ":" + jenkinsBuild.getPassword();
             String encoding = Base64.getEncoder().encodeToString(authStr.getBytes("utf-8"));
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("GET");
             connection.setDoOutput(true);
-            connection.setRequestProperty("Authorization", "Basic " + encoding);
+            if(!jenkinsBuild.getUsername().equals("") && !jenkinsBuild.getPassword().equals("")){
+                connection.setRequestProperty("Authorization", "Basic " + encoding);
+            }
             InputStream content = connection.getInputStream();
             return new BufferedReader(new InputStreamReader(content));
         } catch (Exception e) {
             System.out.println("URL: " + jenkinsBuild.getUrl() + "/job/" + jenkinsBuild.getProjectName() + "/" + String.valueOf(buildNumber) + "/consoleText not exist");
+            e.printStackTrace();
         }
         return null;
     }
 
     public static int lastBuild(JenkinsBuild jenkinsBuild) throws Exception {
         try {
-            URL url = new URL(jenkinsBuild.getUrl() + "/job/" + jenkinsBuild.getProjectName() + "/lastBuild/");
+            URL url = new URL(jenkinsBuild.getUrl() + "/job/" + jenkinsBuild.getPath() + "/lastBuild/");
             String authStr = jenkinsBuild.getUsername() + ":" + jenkinsBuild.getPassword();
             String encoding = Base64.getEncoder().encodeToString(authStr.getBytes("utf-8"));
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("GET");
             connection.setDoOutput(true);
-            connection.setRequestProperty("Authorization", "Basic " + encoding);
+            if(!jenkinsBuild.getUsername().equals("") && !jenkinsBuild.getPassword().equals("")){
+                connection.setRequestProperty("Authorization", "Basic " + encoding);
+            }
             InputStream content = connection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(content));
             String line = null;

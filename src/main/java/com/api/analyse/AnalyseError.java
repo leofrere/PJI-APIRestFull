@@ -57,7 +57,13 @@ public class AnalyseError extends Analyse {
             }
 
             if(logs.get(i).getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().length() > 0){
-                String error = logs.get(i).getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().split("] ")[2];
+                String error = "";
+                String[] strings = logs.get(i).getOrders().get(moduleNumber).getTestPhase().getErrorsTrace().split("] ");
+                if(strings.length > 2){
+                    error = strings[2];
+                }else{
+                    error = strings[1];
+                }
                 if(map.containsKey(error)){
                     map.put(error, map.get(error) + 1);
                 }else{
