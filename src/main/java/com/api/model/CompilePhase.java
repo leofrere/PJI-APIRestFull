@@ -36,7 +36,7 @@ public class CompilePhase extends Compile {
 
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("--- maven-resources-plugin:")){
+                if(line.contains("--- maven-resources-plugin:") && line.contains("test")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     status = "ok";
                     break;
@@ -53,6 +53,7 @@ public class CompilePhase extends Compile {
 
                 if(line.contains("[INFO] Compiling")){
                     String parts[] = line.split(" ");
+                    System.out.println(parts);
                     numberOfCompiledClasses = Integer.parseInt(parts[3]);
                     continue;
                 }

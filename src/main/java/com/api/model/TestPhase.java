@@ -49,7 +49,7 @@ public class TestPhase extends Compile implements Test {
             while ((line = reader.readLine()) != null) {
                 if(line.contains("--- maven-jar-plugin:")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
-                   status = "ok";
+                    status = "ok";
                     break;
                 }
 
