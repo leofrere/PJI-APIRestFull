@@ -39,7 +39,7 @@ public class TestClasseService {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByProject = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
+            if (testClasse.getProject().equals(projectName) && (testClasse.getModule().equals(module) || module.equals(""))) {
                 testClassesByProject.add(testClasse);
             }
         }
@@ -51,7 +51,7 @@ public class TestClasseService {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByClass = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getClasse().equals(className) && testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
+            if (testClasse.getClasse().equals(className) && testClasse.getProject().equals(projectName) && (testClasse.getModule().equals(module) || module.equals(""))) {
                 testClassesByClass.add(testClasse);
             }
         }
@@ -63,7 +63,7 @@ public class TestClasseService {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByTime = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
+            if (testClasse.getProject().equals(projectName) && (testClasse.getModule().equals(module) || module.equals(""))) {
                 cmpTestClasse(testClasse.getTimeFloat(), Float.parseFloat(time), op, testClassesByTime, testClasse);
             }
             
@@ -76,7 +76,7 @@ public class TestClasseService {
         List<TestClasse> testClasses = testClasseRepository.findAll();
         List<TestClasse> testClassesByTest = new LinkedList<TestClasse>();
         for (TestClasse testClasse : testClasses) {
-            if (testClasse.getProject().equals(projectName) && testClasse.getModule().equals(module)) {
+            if (testClasse.getProject().equals(projectName) && (testClasse.getModule().equals(module) || module.equals(""))) {
                 switchTypeOfTest(test, op, nbTest, testClassesByTest, testClasse);
             }
             

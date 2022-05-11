@@ -63,7 +63,7 @@ public class CompilePhaseService {
         List<CompilePhase> compilePhases = compileRepository.findAll();
         List<CompilePhase> list = new LinkedList<CompilePhase>();
         for (CompilePhase compilePhase : compilePhases) {
-            if (compilePhase.getProject().equals(projectName) && compilePhase.getModule().equals(module)) {
+            if (compilePhase.getProject().equals(projectName) && (compilePhase.getModule().equals(module) || module.equals(""))) {
                 list.add(compilePhase);
             }
         }

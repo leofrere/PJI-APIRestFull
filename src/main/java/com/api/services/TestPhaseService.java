@@ -37,7 +37,7 @@ public class TestPhaseService {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> testPhasesByProject = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(project) && testPhase.getModule().equals(module)) {
+            if (testPhase.getProject().equals(project) && (testPhase.getModule().equals(module) || module.equals(""))) {
                 testPhasesByProject.add(testPhase);
             }
         }
@@ -67,7 +67,7 @@ public class TestPhaseService {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> testPhasesByTest = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(projectName) && testPhase.getModule().equals(module)) {
+            if (testPhase.getProject().equals(projectName) && (testPhase.getModule().equals(module) || module.equals(""))) {
                 switchTypeOfTest(test, op, nbTest, testPhasesByTest, testPhase);
             }
             
@@ -80,7 +80,7 @@ public class TestPhaseService {
         List<TestPhase> testPhases = testRepository.findAll();
         List<TestPhase> list = new LinkedList<TestPhase>();
         for (TestPhase testPhase : testPhases) {
-            if (testPhase.getProject().equals(projectName) && testPhase.getModule().equals(module)) {
+            if (testPhase.getProject().equals(projectName) && (testPhase.getModule().equals(module) || module.equals(""))) {
                 cmpTestPhase((float) compiled,(float) testPhase.getCompiledClasses(), op, list, testPhase);
             }
         }

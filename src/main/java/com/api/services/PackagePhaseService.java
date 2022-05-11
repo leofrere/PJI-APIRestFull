@@ -43,7 +43,7 @@ public class PackagePhaseService {
         List<PackagePhase> packagePhases = packageRepository.findAll();
         List<PackagePhase> packagePhasesToReturn = new LinkedList<PackagePhase>();
         for (PackagePhase packagePhase : packagePhases) {
-            if (packagePhase.getProject().equals(projectName) && packagePhase.getModule().equals(module)) {
+            if (packagePhase.getProject().equals(projectName) && (packagePhase.getModule().equals(module) || module.equals(""))) {
                 packagePhasesToReturn.add(packagePhase);
             }
         }
@@ -55,7 +55,7 @@ public class PackagePhaseService {
         List<PackagePhase> packagePhases = packageRepository.findAll();
         List<PackagePhase> packagePhasesToReturn = new LinkedList<PackagePhase>();
         for (PackagePhase packagePhase : packagePhases) {
-            if(packagePhase.getProject().equals(projectName) && packagePhase.getModule().equals(module)) {
+            if(packagePhase.getProject().equals(projectName) && (packagePhase.getModule().equals(module) || module.equals(""))) {
                 cmpPackagePhase(Float.parseFloat(time), packagePhase.getTimeFloat(), op, packagePhasesToReturn, packagePhase);
             }
         }
