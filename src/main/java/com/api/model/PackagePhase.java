@@ -25,17 +25,18 @@ public class PackagePhase extends Phase {
     public PackagePhase(BufferedReader reader){
         String line = null;
         status = "ko";
+        int offset = 0;
         boolean secondErrorLine = false;
         String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
-                if(line.contains("--- maven-install-plugin:")){
+                if(line.contains("maven-install-plugin:") || line.contains("BUILD SUCCESS")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     status = "ok";
                     break;
                 }
 
-                if(line.contains("[ERROR] ")){
+                if(line.contains("ERROR ")){
                     if(secondErrorLine && errorsTrace.length() == 0){
                         errorsTrace = line;
                         continue;
@@ -46,7 +47,7 @@ public class PackagePhase extends Phase {
 
                 if (line.contains("Building jar:")) {
                     time1 = line.split(" ")[0];
-                    jarPath = line.split(" ")[4];
+                    jarPath = line.split(" ")[3 + offset];
                     continue;
                 }
             }

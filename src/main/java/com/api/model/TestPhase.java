@@ -39,6 +39,7 @@ public class TestPhase extends Compile implements Test {
     }
 
     public TestPhase(BufferedReader reader) {
+        int offset = 0;
         String line = null;
         testsByClasse = new LinkedList<TestClasse>();
         status = "ko";
@@ -47,30 +48,30 @@ public class TestPhase extends Compile implements Test {
         String testClass = "";
         try {
             while ((line = reader.readLine()) != null) {
-                if(line.contains("--- maven-jar-plugin:")){
+                if(line.contains("maven-jar-plugin:")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     status = "ok";
                     break;
                 }
 
-                if(line.contains("[INFO] Compiling")){
+                if(line.contains("Compiling") && line.contains("INFO")){
                     String parts[] = line.split(" ");
                     time1 = parts[0];
-                    numberOfCompiledClasses = Integer.parseInt(parts[3]);
+                    numberOfCompiledClasses = Integer.parseInt(parts[2 + offset]);
                     continue;
                 }
 
                 
-                if(line.contains("[INFO] Running ")){
-                    testClass = line.split(" ")[3];
+                if(line.contains("Running ")){
+                    testClass = line.split(" ")[1 + offset];
                 }
 
-                if(line.contains("[INFO] Tests run:") || line.contains("[ERROR] Tests run:")){
+                if(line.contains("Tests run:")  && (line.contains("INFO") || line.contains("ERROR"))){
                     testClass = parseTestsInformation(line, testClass, 2);
                     continue;
                 }
 
-                if(line.contains("[ERROR] ")){
+                if(line.contains("ERROR ")){
                     if(secondErrorLine && errorsTrace.length() == 0){
                         errorsTrace = line;
                         continue;
