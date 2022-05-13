@@ -62,6 +62,8 @@ public class LogService {
         LinkedList<Order> orders = new LinkedList<Order>();
         LinkedList<String> ordersName = new LinkedList<String>();
         String line = null;
+        int offset = 0;
+        float finalTime = 0;
 
         try {
             line = setOrdersName(reader, ordersName);
@@ -82,7 +84,16 @@ public class LogService {
                 }
             }
 
-            logRepository.save(new Log(projectName, build, orders));
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+                if(line.contains("Total time:") && line.contains("INFO")){
+                    System.out.println(line.split(" ")[4]);
+                    finalTime = timeOfBuild(line.split(" ")[5 + offset],line.split(" ")[4 + offset]);
+                    break;
+                }
+            }
+
+            logRepository.save(new Log(projectName, build, orders, finalTime));
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,6 +137,26 @@ public class LogService {
     public void deleteLog(int n) {
         Log log = logRepository.findAll().get(n);
         logRepository.delete(log);
+    }
+
+    private float timeOfBuild(String typeOfTime, String time){
+        float res = 0;
+        
+        if(typeOfTime.equals("min")){
+            String[] parts = time.split(":");
+            int minutes = Integer.parseInt(parts[0]);
+            int seconds = Integer.parseInt(parts[1]);
+            res = seconds + minutes * 60;
+        } else if(typeOfTime.equals("h")){
+            String[] parts = time.split(":");
+            int hours = Integer.parseInt(parts[0]);
+            int minutes = Integer.parseInt(parts[1]);
+            res = minutes * 60 + hours * 3600;
+        } else{
+            res = Float.parseFloat(time);
+        }
+
+        return res;
     }
 
 }

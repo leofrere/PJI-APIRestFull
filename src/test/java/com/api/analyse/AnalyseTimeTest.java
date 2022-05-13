@@ -64,11 +64,11 @@ public class AnalyseTimeTest {
         l4.add(new Order(c4, t4, p4, "timeTest", "project", 4));
         l5.add(new Order(c5, t5, p5, "timeTest", "project", 5));
 
-        logs.add(new Log("AnalyseTimeTest", 1, l1));
-        logs.add(new Log("AnalyseTimeTest", 2, l2));
-        logs.add(new Log("AnalyseTimeTest", 3, l3));
-        logs.add(new Log("AnalyseTimeTest", 4, l4));
-        logs.add(new Log("AnalyseTimeTest", 5, l5));
+        logs.add(new Log("AnalyseTimeTest", 1, l1, 0));
+        logs.add(new Log("AnalyseTimeTest", 2, l2, 0));
+        logs.add(new Log("AnalyseTimeTest", 3, l3, 0));
+        logs.add(new Log("AnalyseTimeTest", 4, l4, 0));
+        logs.add(new Log("AnalyseTimeTest", 5, l5, 0));
     }
 
     @Test
