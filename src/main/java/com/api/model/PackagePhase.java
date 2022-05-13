@@ -31,9 +31,14 @@ public class PackagePhase extends Phase {
         try {
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("maven-install-plugin:") || line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                if(line.contains("maven-install-plugin:") || line.contains("BUILD SUCCESS")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
-                    status = "ok";
+                    if (line.contains("BUILD SUCCESS")) {
+                        status = "success";
+                    }
+                    if(line.contains("BUILD FAILURE")){
+                        status = "failure";
+                    }
                     break;
                 }
 

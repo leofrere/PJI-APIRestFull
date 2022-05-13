@@ -39,7 +39,7 @@ public class TestPhase extends Compile implements Test {
     }
 
     public TestPhase(BufferedReader reader) {
-        int offset = 1;
+        int offset = 0;
         String line = null;
         testsByClasse = new LinkedList<TestClasse>();
         status = "ko";
@@ -49,9 +49,9 @@ public class TestPhase extends Compile implements Test {
         try {
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") ){
                     status = "finished";
-                    time = "0s";
+                    time = Time.differenceBetween(time1, line.split(" ")[0]);
                     break;
                 }
 

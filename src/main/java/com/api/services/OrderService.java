@@ -86,10 +86,26 @@ public class OrderService {
             return orderRepository.save(order);
     }
 
+    public Order addOrderModule(BufferedReader reader, String name, String projectName, int build) {
+        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name);
+        if(compilePhase.getStatus().equals("finished")){
+            TestPhase testPhase = testRepository.save(new TestPhase("no information", "0s", 0, 0, 0, 0, 0, 0));
+            PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
+            return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
+        }
+        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name);
+        if(testPhase.getStatus().equals("finished")){
+            PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
+            return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
+        }
+        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name);
+        return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
+    }
+
     private float finalTime(BufferedReader reader){
         String line = "";
         float finalTime = 0;
-        int offset = 1;
+        int offset = 0;
         try {
             while((line = reader.readLine()) != null){
                 if(line.contains("Total time:") && line.contains("INFO")){

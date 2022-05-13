@@ -21,7 +21,7 @@ public class CompilePhase extends Compile {
     }
 
     public CompilePhase(BufferedReader reader){
-        int offset = 1;
+        int offset = 0;
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;
@@ -42,9 +42,9 @@ public class CompilePhase extends Compile {
 
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--")){
                     status = "finished";
-                    time = "0s";
+                    time = Time.differenceBetween(time1, line.split(" ")[0]);
                     break;
                 }
 

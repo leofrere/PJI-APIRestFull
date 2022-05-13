@@ -15,6 +15,8 @@ public class Log extends Model {
 
     private float timeOfBuild;
 
+    private String status = "aborted";
+
     public Log() {
     }
 
@@ -22,11 +24,12 @@ public class Log extends Model {
         this.build = build;
     }
 
-    public Log(String project, int build, List<Order> orders, float timeOfBuild) {
+    public Log(String project, int build, List<Order> orders, float timeOfBuild, String status) {
         this.project = project;
         this.build = build;
         this.orders = orders;
         this.timeOfBuild = timeOfBuild;
+        this.status = status;
     }
 
     public Long getId() {
@@ -51,6 +54,14 @@ public class Log extends Model {
 
     public void setTimeOfBuild(float timeOfBuild) {
         this.timeOfBuild = timeOfBuild;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

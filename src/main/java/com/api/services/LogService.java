@@ -7,6 +7,7 @@ import java.util.List;
 import com.api.model.Log;
 import com.api.model.Order;
 import com.api.repository.LogRepository;
+import com.api.repository.OrderRepository;
 import com.api.utils.LogSort;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class LogService {
 
     @Autowired
     private LogRepository logRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     public String setOrdersName(BufferedReader reader, List<String> ordersName){
         String line = null;
@@ -62,23 +66,46 @@ public class LogService {
         LinkedList<Order> orders = new LinkedList<Order>();
         LinkedList<String> ordersName = new LinkedList<String>();
         String line = null;
-        int offset = 1;
+        int offset = 0;
+        String statusTmp = "";
 
         try {
 
             if(type.equals("multiBuilds") || type.equals("singleBuild")){
                 while ((line = reader.readLine()) != null) {
                     if(line.contains("Building") && !line.contains("jar") && line.contains("INFO")){
-                        System.out.println(line);
                         String orderName = line.split(" ")[2 + offset];
                         Order order = orderService.addOrder(reader, orderName, projectName, build);
 
                         orders.add(order);
+                        continue;
+                    }
+                    if(line.contains("Finished:") && !line.contains("INFO")){
+                        statusTmp = line.split(" ")[1 + offset];
                     }
                 }
-                logRepository.save(new Log(projectName, build, orders, orders.size()));
+                logRepository.save(new Log(projectName, build, orders, orders.size(), statusTmp));
             } else {
-                //multi module
+                List<Order> finalOrders = new LinkedList<Order>();
+                line = setOrdersName(reader, ordersName);
+                for (String orderName : ordersName) {
+                    for(String name : ordersName){
+                            Order order = orderService.addOrderModule(reader, name, projectName, build);
+                            orders.add(order);
+                    }
+                    for(int i =0; i < orders.size(); i++){
+                        while((line = reader.readLine()) != null){
+                            if(line.contains(ordersName.get(i)) && line.contains("INFO")) break;
+                            String[] parts = line.split(" ");
+                            orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
+                        }
+                    }
+                    
+                    for(Order order : orders){
+                        finalOrders.add(orderRepository.save(order));
+                    }
+                }
+                logRepository.save(new Log(projectName, build, finalOrders, ordersName.size(), ""));
             }
 
 
@@ -86,7 +113,7 @@ public class LogService {
 
 
 
-            /*line = setOrdersName(reader, ordersName);
+            /*
 
             if(ordersName.size() == 0){
                 String logName = line.split(" ")[3];
@@ -159,5 +186,25 @@ public class LogService {
     public void deleteLog(int n) {
         Log log = logRepository.findAll().get(n);
         logRepository.delete(log);
+    }
+
+    private float timeOfBuild(String typeOfTime, String time){
+        float res = 0;
+        System.out.println(typeOfTime + " " + time);
+        if(typeOfTime.equals("min")){
+            String[] parts = time.split(":");
+            int minutes = Integer.parseInt(parts[0]);
+            int seconds = Integer.parseInt(parts[1]);
+            res = seconds + minutes * 60;
+        } else if(typeOfTime.equals("h")){
+            String[] parts = time.split(":");
+            int hours = Integer.parseInt(parts[0]);
+            int minutes = Integer.parseInt(parts[1]);
+            res = minutes * 60 + hours * 3600;
+        } else{
+            res = Float.parseFloat(time);
+        }
+
+        return res;
     }
 }
