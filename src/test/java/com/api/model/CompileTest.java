@@ -25,10 +25,10 @@ public class CompileTest {
     void creationOfCompileWithErrorInLogTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogfileWithCompileError()));
         CompilePhase compile = new CompilePhase(reader);
-        assertEquals("ko", compile.getStatus());
+        assertEquals("finished", compile.getStatus());
         assertEquals(14, compile.getCompiledClasses());
-        assertEquals("11:26:35,105 [ERROR] /Users/leofrere/.jenkins/workspace/mavenGL/src/main/java/bank/CompteEpargne.java:[11,17] cannot find symbol", compile.getErrorsTrace());
-        assertEquals(null, compile.getTime());
+        assertEquals("", compile.getErrorsTrace());
+        assertEquals("0s", compile.getTime());
     }
 
 }
