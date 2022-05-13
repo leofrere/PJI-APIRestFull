@@ -25,12 +25,13 @@ public class PackagePhase extends Phase {
     public PackagePhase(BufferedReader reader){
         String line = null;
         status = "ko";
-        int offset = 0;
+        int offset = 1;
         boolean secondErrorLine = false;
         String time1 = "";
         try {
             while ((line = reader.readLine()) != null) {
-                if(line.contains("maven-install-plugin:") || line.contains("BUILD SUCCESS")){
+
+                if(line.contains("maven-install-plugin:") || line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     status = "ok";
                     break;

@@ -58,15 +58,35 @@ public class LogService {
         return ""; 
     }
 
-    public void addLog(BufferedReader reader, String projectName, int build) {
+    public void addLog(BufferedReader reader, String projectName, int build, String type) {
         LinkedList<Order> orders = new LinkedList<Order>();
         LinkedList<String> ordersName = new LinkedList<String>();
         String line = null;
-        int offset = 0;
-        float finalTime = 0;
+        int offset = 1;
 
         try {
-            line = setOrdersName(reader, ordersName);
+
+            if(type.equals("multiBuilds") || type.equals("singleBuild")){
+                while ((line = reader.readLine()) != null) {
+                    if(line.contains("Building") && !line.contains("jar") && line.contains("INFO")){
+                        System.out.println(line);
+                        String orderName = line.split(" ")[2 + offset];
+                        Order order = orderService.addOrder(reader, orderName, projectName, build);
+
+                        orders.add(order);
+                    }
+                }
+                logRepository.save(new Log(projectName, build, orders, orders.size()));
+            } else {
+                //multi module
+            }
+
+
+
+
+
+
+            /*line = setOrdersName(reader, ordersName);
 
             if(ordersName.size() == 0){
                 String logName = line.split(" ")[3];
@@ -88,12 +108,14 @@ public class LogService {
                 System.out.println(line);
                 if(line.contains("Total time:") && line.contains("INFO")){
                     System.out.println(line.split(" ")[4]);
-                    finalTime = timeOfBuild(line.split(" ")[5 + offset],line.split(" ")[4 + offset]);
+                    String parts[] = line.split(" ");
+                    if(parts.length == 6) offset++;
+                    finalTime = timeOfBuild(parts[4 + offset],parts[3 + offset]);
                     break;
                 }
             }
 
-            logRepository.save(new Log(projectName, build, orders, finalTime));
+            logRepository.save(new Log(projectName, build, orders, finalTime));*/
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,25 +160,4 @@ public class LogService {
         Log log = logRepository.findAll().get(n);
         logRepository.delete(log);
     }
-
-    private float timeOfBuild(String typeOfTime, String time){
-        float res = 0;
-        
-        if(typeOfTime.equals("min")){
-            String[] parts = time.split(":");
-            int minutes = Integer.parseInt(parts[0]);
-            int seconds = Integer.parseInt(parts[1]);
-            res = seconds + minutes * 60;
-        } else if(typeOfTime.equals("h")){
-            String[] parts = time.split(":");
-            int hours = Integer.parseInt(parts[0]);
-            int minutes = Integer.parseInt(parts[1]);
-            res = minutes * 60 + hours * 3600;
-        } else{
-            res = Float.parseFloat(time);
-        }
-
-        return res;
-    }
-
 }

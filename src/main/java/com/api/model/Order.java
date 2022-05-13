@@ -12,6 +12,8 @@ public class Order extends Model {
     @NotNull
     private String name;
 
+    private float timeOfBuild;
+
     @ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "compile_id")
 	private CompilePhase compilePhase;
@@ -66,6 +68,14 @@ public class Order extends Model {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getTimeOfBuild() {
+        return timeOfBuild;
+    }
+
+    public void setTimeOfBuild(float timeOfBuild) {
+        this.timeOfBuild = timeOfBuild;
     }
 
 }

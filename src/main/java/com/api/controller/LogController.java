@@ -1,6 +1,7 @@
 package com.api.controller;
 
 import java.io.BufferedReader;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.api.model.JenkinsBuild;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -40,7 +42,7 @@ public class LogController {
 
         try {
             BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, buildNumber));
-            logService.addLog(reader, projectName, buildNumber);
+            logService.addLog(reader, projectName, buildNumber, jenkinsBuild.getBuildType());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,15 +51,15 @@ public class LogController {
 
     @CrossOrigin
     @PostMapping("/creates/{projectName}")
-    public void addLogOfJenkinsBuild(@PathVariable String projectName){
+    public void addLogOfJenkinsBuild(@PathVariable String projectName, @RequestParam(name="begin", defaultValue = "1") int begin){
         JenkinsBuild jenkinsBuild = jenkinsBuildService.getJenkinsBuildByProjectName(projectName);
         try {
             int lastBuild = ReaderBuild.lastBuild(jenkinsBuild);
-            for (int i = 1; i <= lastBuild; i++) {
+            for (int i = begin; i <= lastBuild; i++) {
                 if(!logService.buildAlreadyExist(projectName, i)){
                     try{
                         BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, i));
-                        logService.addLog(reader, projectName ,i);
+                        logService.addLog(reader, projectName ,i, jenkinsBuild.getBuildType());
                     } catch (NullPointerException e) {
                         System.out.println("Build not Exist");
                     }
@@ -79,7 +81,12 @@ public class LogController {
     @CrossOrigin
     @GetMapping("/project/{projectName}")
     public List<Log> getLogsByProject(@PathVariable String projectName) {
-        return logService.getLogByProject(projectName);
+        List<Log> logs = logService.getLogByProject(projectName);
+        List<Log> test = new LinkedList<Log>();
+        for(int i = 0; i < 1200; i++){
+            test.add(logs.get(i));
+        }
+        return test;
     }
 
     @CrossOrigin

@@ -21,7 +21,7 @@ public class CompilePhase extends Compile {
     }
 
     public CompilePhase(BufferedReader reader){
-        int offset = 0;
+        int offset = 1;
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;
@@ -29,6 +29,11 @@ public class CompilePhase extends Compile {
         try {
             // pass validate phase
             while ((line = reader.readLine()) != null) {
+
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                    break;
+                }
+
                 if(line.contains("maven-resources-plugin:")){
                     time1 = line.split(" ")[0];
                     break;
@@ -36,6 +41,12 @@ public class CompilePhase extends Compile {
             }
 
             while ((line = reader.readLine()) != null) {
+
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                    status = "finished";
+                    time = "0s";
+                    break;
+                }
 
                 if(line.contains("maven-resources-plugin:") && line.contains("test")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);

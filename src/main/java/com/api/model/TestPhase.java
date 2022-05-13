@@ -39,7 +39,7 @@ public class TestPhase extends Compile implements Test {
     }
 
     public TestPhase(BufferedReader reader) {
-        int offset = 0;
+        int offset = 1;
         String line = null;
         testsByClasse = new LinkedList<TestClasse>();
         status = "ko";
@@ -48,6 +48,13 @@ public class TestPhase extends Compile implements Test {
         String testClass = "";
         try {
             while ((line = reader.readLine()) != null) {
+
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                    status = "finished";
+                    time = "0s";
+                    break;
+                }
+
                 //System.out.println(line);
                 if(line.contains("maven-jar-plugin:")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
