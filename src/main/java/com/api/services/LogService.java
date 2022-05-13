@@ -66,9 +66,9 @@ public class LogService {
         LinkedList<Order> orders = new LinkedList<Order>();
         LinkedList<String> ordersName = new LinkedList<String>();
         String line = null;
-        int offset = 0;
+        int offset = 1;
         String statusTmp = "ABORTED";
-        List<Order> finalOrders = new LinkedList<Order>();;
+        LinkedList<Order> finalOrders = new LinkedList<Order>();
 
         try {
 
@@ -88,35 +88,37 @@ public class LogService {
                 logRepository.save(new Log(projectName, build, orders, orders.size(), statusTmp));
             } else {
                 line = setOrdersName(reader, ordersName);
-                for (String orderName : ordersName) {
-                    for(String name : ordersName){
-                            Order order = orderService.addOrderModule(reader, name, projectName, build);
-                            orders.add(order);
-                    }
-                    for(int i =0; i < orders.size(); i++){
-                        while((line = reader.readLine()) != null){
-                            if(line.contains(ordersName.get(i)) && line.contains("INFO") && line.contains("......")){
-                                String[] parts = line.split(" ");
-                                System.out.println(line);
-                                orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
-                            }
+                for(String name : ordersName){
+                        Order order = orderService.addOrderModule(reader, name, projectName, build);
+                        orders.add(order);
+                }
 
-                            if(line.contains("BUILD SUCCESS")) break;
-        
+                for(int i =0; i < orders.size(); i++){
+                    while((line = reader.readLine()) != null){
+                        if(line.contains(ordersName.get(i)) && line.contains("INFO") && line.contains("......")){
+                            String[] parts = line.split(" ");
+                            System.out.println(line);
+                            orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
                         }
-                    }
 
-
-                    System.out.println(finalOrders.size());
-                    
-
-                    for(Order order : orders){
-                        finalOrders.add(orderRepository.save(order));
+                        if(line.contains("Finished:") && !line.contains("INFO")){
+                            statusTmp = line.split(" ")[1];
+                        }
+        
                     }
                 }
-                logRepository.save(new Log(projectName, build, finalOrders, ordersName.size(), ""));
+
+
+                System.out.println(finalOrders.size());
+                    
+
+                for(Order order : orders){
+                    finalOrders.add(orderRepository.save(order));
+                }
+                logRepository.save(new Log(projectName, build, finalOrders, orders.size(), statusTmp)); 
             }
-            
+
+                           
         } catch (Exception e) {
             e.printStackTrace();
         }

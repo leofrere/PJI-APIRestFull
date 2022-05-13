@@ -39,7 +39,7 @@ public class TestPhase extends Compile implements Test {
     }
 
     public TestPhase(BufferedReader reader) {
-        int offset = 0;
+        int offset = 1;
         String line = null;
         testsByClasse = new LinkedList<TestClasse>();
         status = "ko";

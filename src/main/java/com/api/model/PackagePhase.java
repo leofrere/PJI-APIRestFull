@@ -25,7 +25,7 @@ public class PackagePhase extends Phase {
     public PackagePhase(BufferedReader reader){
         String line = null;
         status = "ko";
-        int offset = 0;
+        int offset = 1;
         boolean secondErrorLine = false;
         String time1 = "";
         try {

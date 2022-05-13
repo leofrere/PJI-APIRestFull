@@ -21,7 +21,7 @@ public class CompilePhase extends Compile {
     }
 
     public CompilePhase(BufferedReader reader){
-        int offset = 0;
+        int offset = 1;
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;
