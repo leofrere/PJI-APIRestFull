@@ -93,19 +93,19 @@ public class LogService {
                         orders.add(order);
                 }
 
-                for(int i =0; i < orders.size(); i++){
-                    while((line = reader.readLine()) != null){
-                        if(line.contains(ordersName.get(i)) && line.contains("INFO") && line.contains("......")){
-                            String[] parts = line.split(" ");
-                            System.out.println(line);
-                            orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
-                        }
-
-                        if(line.contains("Finished:") && !line.contains("INFO")){
-                            statusTmp = line.split(" ")[1];
-                        }
-        
+                int i = 0;
+                while((line = reader.readLine()) != null){
+                    if(line.contains(ordersName.get(i)) && line.contains("INFO") && line.contains("......")){
+                        String[] parts = line.split(" ");
+                        orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
                     }
+
+                    if(line.contains("Finished:") && !line.contains("INFO")){
+                        statusTmp = line.split(" ")[1];
+                    }
+
+                    if(i+1 < orders.size()) i++;
+        
                 }
 
 
