@@ -42,7 +42,7 @@ public class CompilePhase extends Compile {
 
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--")){
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--") || (line.contains("Summary") && line.contains("INFO"))){
                     status = "finished";
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     break;

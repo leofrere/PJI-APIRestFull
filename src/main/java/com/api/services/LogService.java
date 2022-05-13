@@ -67,7 +67,8 @@ public class LogService {
         LinkedList<String> ordersName = new LinkedList<String>();
         String line = null;
         int offset = 0;
-        String statusTmp = "";
+        String statusTmp = "ABORTED";
+        List<Order> finalOrders = new LinkedList<Order>();;
 
         try {
 
@@ -81,12 +82,11 @@ public class LogService {
                         continue;
                     }
                     if(line.contains("Finished:") && !line.contains("INFO")){
-                        statusTmp = line.split(" ")[1 + offset];
+                        statusTmp = line.split(" ")[1];
                     }
                 }
                 logRepository.save(new Log(projectName, build, orders, orders.size(), statusTmp));
             } else {
-                List<Order> finalOrders = new LinkedList<Order>();
                 line = setOrdersName(reader, ordersName);
                 for (String orderName : ordersName) {
                     for(String name : ordersName){
@@ -95,54 +95,27 @@ public class LogService {
                     }
                     for(int i =0; i < orders.size(); i++){
                         while((line = reader.readLine()) != null){
-                            if(line.contains(ordersName.get(i)) && line.contains("INFO")) break;
-                            String[] parts = line.split(" ");
-                            orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
+                            if(line.contains(ordersName.get(i)) && line.contains("INFO") && line.contains("......")){
+                                String[] parts = line.split(" ");
+                                System.out.println(line);
+                                orders.get(i).setTimeOfBuild(timeOfBuild(parts[7 + offset], parts[6 + offset]));
+                            }
+
+                            if(line.contains("BUILD SUCCESS")) break;
+        
                         }
                     }
+
+
+                    System.out.println(finalOrders.size());
                     
+
                     for(Order order : orders){
                         finalOrders.add(orderRepository.save(order));
                     }
                 }
                 logRepository.save(new Log(projectName, build, finalOrders, ordersName.size(), ""));
             }
-
-
-
-
-
-
-            /*
-
-            if(ordersName.size() == 0){
-                String logName = line.split(" ")[3];
-                Order order = orderService.addOrder(reader, logName, projectName, build);
-                orders.add(order);
-            } else {
-                for (String orderName : ordersName) {
-                    while((line = reader.readLine()) != null){
-                        if(line.contains("Building " + orderName)){
-                            Order order = orderService.addOrder(reader, orderName, projectName, build);
-                            orders.add(order);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            while((line = reader.readLine()) != null){
-                System.out.println(line);
-                if(line.contains("Total time:") && line.contains("INFO")){
-                    System.out.println(line.split(" ")[4]);
-                    String parts[] = line.split(" ");
-                    if(parts.length == 6) offset++;
-                    finalTime = timeOfBuild(parts[4 + offset],parts[3 + offset]);
-                    break;
-                }
-            }
-
-            logRepository.save(new Log(projectName, build, orders, finalTime));*/
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -190,7 +163,7 @@ public class LogService {
 
     private float timeOfBuild(String typeOfTime, String time){
         float res = 0;
-        System.out.println(typeOfTime + " " + time);
+        System.out.println(time);
         if(typeOfTime.equals("min")){
             String[] parts = time.split(":");
             int minutes = Integer.parseInt(parts[0]);

@@ -15,7 +15,7 @@ public class Log extends Model {
 
     private float timeOfBuild;
 
-    private String status = "aborted";
+    private String status = "ABORTED";
 
     public Log() {
     }

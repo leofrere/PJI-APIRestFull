@@ -49,7 +49,7 @@ public class TestPhase extends Compile implements Test {
         try {
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") ){
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--") || (line.contains("Summary") && line.contains("INFO"))){
                     status = "finished";
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     break;
@@ -69,14 +69,13 @@ public class TestPhase extends Compile implements Test {
                     continue;
                 }
 
-                
-                if(line.contains("Running ")){
-                    testClass = line.split(" ")[1 + offset];
-                }
-
                 if(line.contains("Tests run:")  && (line.contains("INFO") || line.contains("ERROR"))){
                     testClass = parseTestsInformation(line, testClass, 2);
                     continue;
+                }
+
+                if(line.contains("Running ")&& (line.contains("INFO") || line.contains("ERROR"))){
+                    testClass = line.split(" ")[2 + offset];
                 }
 
                 if(line.contains("ERROR ")){
@@ -88,6 +87,10 @@ public class TestPhase extends Compile implements Test {
                     continue;
                 }
 
+                if(line.contains("Running ")){
+                    testClass = line.split(" ")[1];
+                }
+
                 if(line.contains("Tests run:")){
                     testClass = parseTestsInformation(line, testClass, 0);
                     continue;
@@ -95,7 +98,7 @@ public class TestPhase extends Compile implements Test {
                 
             }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

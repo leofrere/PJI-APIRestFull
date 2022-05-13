@@ -55,11 +55,11 @@ public class AnalyseErrorTest {
         l4.add(new Order(c4, t4, p4, "errorTest", "project", 4));
         l5.add(new Order(c5, t5, p5, "errorTest", "project", 5));
 
-        logs.add(new Log("AnalyseErrorTest", 1, l1, 0));
-        logs.add(new Log("AnalyseErrorTest", 2, l2, 0));
-        logs.add(new Log("AnalyseErrorTest", 3, l3, 0));
-        logs.add(new Log("AnalyseErrorTest", 4, l4, 0));
-        logs.add(new Log("AnalyseErrorTest", 5, l5, 0));
+        logs.add(new Log("AnalyseErrorTest", 1, l1, 0, null));
+        logs.add(new Log("AnalyseErrorTest", 2, l2, 0, null));
+        logs.add(new Log("AnalyseErrorTest", 3, l3, 0, null));
+        logs.add(new Log("AnalyseErrorTest", 4, l4, 0, null));
+        logs.add(new Log("AnalyseErrorTest", 5, l5, 0, null));
     }
 
     @Test
