@@ -11,11 +11,11 @@ import com.api.LogFile;
 
 public class TestPhaseTest {
     
-   /* @Test
+    @Test
     void creationOfTestTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFile()));
-        new CompilePhase(reader);
-        TestPhase test = new TestPhase(reader);
+        new CompilePhase(reader, true);
+        TestPhase test = new TestPhase(reader, true);
         assertEquals("ok", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());
@@ -24,7 +24,7 @@ public class TestPhaseTest {
         assertEquals(0, test.getTestsFailed());
         assertEquals(0, test.getTestsError());
         assertEquals(0, test.getTestsSkipped());
-    }*/
+    }
 
     @Test
     void creationOfTestPhaseWithErrorInLogTest() {
@@ -34,18 +34,18 @@ public class TestPhaseTest {
         assertEquals("finished", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());
-        assertEquals("0s", test.getTime());
+        assertEquals("0,81s", test.getTime());
         assertEquals(0, test.getTestsRun());
         assertEquals(0, test.getTestsFailed());
         assertEquals(0, test.getTestsError());
         assertEquals(0, test.getTestsSkipped());
     }
 
-   /* @Test
+    @Test
     void creationOfTestWithAllTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFileWithDifferentResultForTest()));
-        new CompilePhase(reader);
-        TestPhase test = new TestPhase(reader);
+        new CompilePhase(reader, true);
+        TestPhase test = new TestPhase(reader, true);
         assertEquals("ok", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());
@@ -59,8 +59,8 @@ public class TestPhaseTest {
     @Test
     void creationOfTestWithFailedTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFileWithAllTestFailed()));
-        new CompilePhase(reader);
-        TestPhase test = new TestPhase(reader);
+        new CompilePhase(reader, true);
+        TestPhase test = new TestPhase(reader, true);
         assertEquals("ok", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());
@@ -74,8 +74,8 @@ public class TestPhaseTest {
     @Test
     void creationOfTestWithErrorTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFileWithAllTestError()));
-        new CompilePhase(reader);
-        TestPhase test = new TestPhase(reader);
+        new CompilePhase(reader, true);
+        TestPhase test = new TestPhase(reader, true);
         assertEquals("ok", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());
@@ -89,8 +89,8 @@ public class TestPhaseTest {
     @Test
     void creationOfTestWithSkippedTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFileWithAllTestSkipped()));
-        new CompilePhase(reader);
-        TestPhase test = new TestPhase(reader);
+        new CompilePhase(reader, true);
+        TestPhase test = new TestPhase(reader, true);
         assertEquals("ok", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());
@@ -99,6 +99,6 @@ public class TestPhaseTest {
         assertEquals(0, test.getTestsFailed());
         assertEquals(0, test.getTestsError());
         assertEquals(26, test.getTestsSkipped());
-    }*/
+    }
 
 }
