@@ -45,8 +45,10 @@ path : `/log/{n}`
 
 methode : **GET**
 
-path : `/log/project/{projectName}`
+path : `/log/project/{projectName}?begin=<integer>&end=<integer>`
 - projectName : nom du project à afficher les logs
+- begin : index du premier log valeur par défaut 0
+- end : index du dernier log à récupérer valeur par défault le dernier logs du projet
 
 ### Afficher le n-ème log d'un projet
 

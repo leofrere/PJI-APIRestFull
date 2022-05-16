@@ -24,11 +24,13 @@ Dans l'API, nous avons besoin de pouvoir se connecter à un serveur Jenkins afin
 
 methode : **POST**
 
-path : `/jenkins/build/create?url=<url>&pj=<project name>&user=<username>&pass=<password or token of project>`
+path : `/jenkins/build/create?url=<url>&pj=<project name>&user=<username>&pass=<password or token of project>&type=<type of project>&time<boolean>`
 - url : url du serveur Jenkins
 - pj : nom du projet cible sur le serveur Jenkins
-- user : username pour se connecter au projet
-- pass : mot de passe ou le token pour se connecter au projet
+- user : username pour se connecter au projet (optionnel)
+- pass : mot de passe ou le token pour se connecter au projet (optionnel)
+- type : type de build maven (singleBuild, multiBuilds et multiModules)
+- time : vrie si le temps est affiché sinon faux
 
 ### Supprimer un projet Jenkins
 
