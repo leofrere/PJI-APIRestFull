@@ -27,16 +27,19 @@ public class JenkinsBuild {
 
     private String password;
 
+    private boolean timeIsSet;
+
     public JenkinsBuild() {
     }
 
-    public JenkinsBuild(String url, String projectName, String username, String password, String path, String buildType) {
+    public JenkinsBuild(String url, String projectName, String username, String password, String path, String buildType, boolean timeIsSet) {
         this.url = url;
         this.projectName = projectName;
         this.username = username;
         this.password = password;
         this.path = path;
         this.buildType = buildType;
+        this.timeIsSet = timeIsSet;
     }
 
     public long getId() {
@@ -93,6 +96,14 @@ public class JenkinsBuild {
 
     public void setBuildType(String buildType) {
         this.buildType = buildType;
+    }
+
+    public boolean getTimeIsSet() {
+        return timeIsSet;
+    }
+
+    public void setTimeIsSet(boolean timeIsSet) {
+        this.timeIsSet = timeIsSet;
     }
 
 }

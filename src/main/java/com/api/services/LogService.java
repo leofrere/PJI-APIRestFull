@@ -62,11 +62,12 @@ public class LogService {
         return ""; 
     }
 
-    public void addLog(BufferedReader reader, String projectName, int build, String type) {
+    public void addLog(BufferedReader reader, String projectName, int build, String type, boolean timeIsSet) {
+        int offset = 0;
+        if(timeIsSet) offset = 1;
         LinkedList<Order> orders = new LinkedList<Order>();
         LinkedList<String> ordersName = new LinkedList<String>();
         String line = null;
-        int offset = 1;
         String statusTmp = "ABORTED";
         LinkedList<Order> finalOrders = new LinkedList<Order>();
 
@@ -76,7 +77,7 @@ public class LogService {
                 while ((line = reader.readLine()) != null) {
                     if(line.contains("Building") && !line.contains("jar") && line.contains("INFO")){
                         String orderName = line.split(" ")[2 + offset];
-                        Order order = orderService.addOrder(reader, orderName, projectName, build);
+                        Order order = orderService.addOrder(reader, orderName, projectName, build, timeIsSet);
 
                         orders.add(order);
                         continue;

@@ -22,8 +22,9 @@ public class JenkinsBuildController {
     
     @CrossOrigin
     @PostMapping("/create")
-    public void setJenkinsBuild(@RequestParam(value="path") String path, @RequestParam(value="url") String url, @RequestParam(value="pj") String projectName, @RequestParam(value="user", defaultValue = "") String username, @RequestParam(value="pass", defaultValue = "") String password, @RequestParam(value="type", defaultValue = "") String buildType) {
-        jenkinsBuildService.addJenkinsBuild(new JenkinsBuild(url, projectName, username, password, path, buildType));
+    public void setJenkinsBuild(@RequestParam(value="path") String path, @RequestParam(value="url") String url, @RequestParam(value="pj") String projectName,
+        @RequestParam(value="user", defaultValue = "") String username, @RequestParam(value="pass", defaultValue = "") String password, @RequestParam(value="type", defaultValue = "") String buildType, @RequestParam(value="time", defaultValue = "false") boolean timeIsSet) {
+        jenkinsBuildService.addJenkinsBuild(new JenkinsBuild(url, projectName, username, password, path, buildType, timeIsSet));
     }
 
     @CrossOrigin

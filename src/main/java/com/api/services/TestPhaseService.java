@@ -132,8 +132,8 @@ public class TestPhaseService {
         return map;
     }
 
-    public TestPhase addTestPhase(BufferedReader reader, String projectName, int build, String module) {
-        TestPhase testPhase = new TestPhase(reader);
+    public TestPhase addTestPhase(BufferedReader reader, String projectName, int build, String module, boolean timeIsSet) {
+        TestPhase testPhase = new TestPhase(reader, timeIsSet);
         List<TestClasse> testClasses = testPhase.getTestsByClasse();
         List<TestClasse> testClassesToSave = new LinkedList<TestClasse>();
         for(TestClasse testClasse : testClasses) {

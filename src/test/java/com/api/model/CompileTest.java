@@ -14,7 +14,7 @@ public class CompileTest {
     @Test
     void creationOfCompileTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFile()));
-        CompilePhase compile = new CompilePhase(reader);
+        CompilePhase compile = new CompilePhase(reader, true);
         assertEquals("ok", compile.getStatus());
         assertEquals(14, compile.getCompiledClasses());
         assertEquals("", compile.getErrorsTrace());
@@ -24,7 +24,7 @@ public class CompileTest {
     @Test
     void creationOfCompileWithErrorInLogTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogfileWithCompileError()));
-        CompilePhase compile = new CompilePhase(reader);
+        CompilePhase compile = new CompilePhase(reader, true);
         assertEquals("finished", compile.getStatus());
         assertEquals(14, compile.getCompiledClasses());
         assertEquals("", compile.getErrorsTrace());

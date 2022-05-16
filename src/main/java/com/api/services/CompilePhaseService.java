@@ -27,8 +27,8 @@ public class CompilePhaseService {
         return compileRepository.findById(id).get();
     }
 
-    public CompilePhase addCompilePhase(BufferedReader reader, String projectName, int build, String module) {
-        CompilePhase compilePhase = new CompilePhase(reader);
+    public CompilePhase addCompilePhase(BufferedReader reader, String projectName, int build, String module, boolean timeIsSet) {
+        CompilePhase compilePhase = new CompilePhase(reader, timeIsSet);
         compilePhase.setProject(projectName);
         compilePhase.setBuild(build);
         compilePhase.setModule(module);

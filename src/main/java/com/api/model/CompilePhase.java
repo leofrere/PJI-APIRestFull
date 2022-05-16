@@ -20,8 +20,9 @@ public class CompilePhase extends Compile {
         this.numberOfCompiledClasses = numberOfClasses;
     }
 
-    public CompilePhase(BufferedReader reader){
-        int offset = 1;
+    public CompilePhase(BufferedReader reader, boolean timeIsSet) {
+        int offset = 0;
+        if(timeIsSet) offset = 1;
         String line = null;
         status = "ko";
         boolean secondErrorLine = false;

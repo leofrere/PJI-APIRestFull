@@ -22,10 +22,11 @@ public class PackagePhase extends Phase {
         this.jarPath = jarPath;
     }
 
-    public PackagePhase(BufferedReader reader){
+    public PackagePhase(BufferedReader reader, boolean timeIsSet) {
+        int offset = 0;
+        if(timeIsSet) offset = 1;
         String line = null;
         status = "ko";
-        int offset = 1;
         boolean secondErrorLine = false;
         String time1 = "";
         try {

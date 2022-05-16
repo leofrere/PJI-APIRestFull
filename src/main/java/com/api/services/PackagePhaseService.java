@@ -25,8 +25,8 @@ public class PackagePhaseService {
         return packageRepository.findById(id).get();
     }
 
-    public PackagePhase addPackagePhase(BufferedReader reader, String projectName, int build, String module) {
-        PackagePhase packagePhase = new PackagePhase(reader);
+    public PackagePhase addPackagePhase(BufferedReader reader, String projectName, int build, String module, boolean timeIsSet) {
+        PackagePhase packagePhase = new PackagePhase(reader, timeIsSet);
         packagePhase.setProject(projectName);
         packagePhase.setBuild(build);
         packagePhase.setModule(module);

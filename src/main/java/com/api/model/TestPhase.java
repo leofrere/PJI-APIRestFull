@@ -38,8 +38,9 @@ public class TestPhase extends Compile implements Test {
         this.numberOfCompiledClasses = numberOfTestClasses;
     }
 
-    public TestPhase(BufferedReader reader) {
-        int offset = 1;
+    public TestPhase(BufferedReader reader, boolean timeIsSet) {
+        int offset = 0;
+        if(timeIsSet) offset = 1;        
         String line = null;
         testsByClasse = new LinkedList<TestClasse>();
         status = "ko";

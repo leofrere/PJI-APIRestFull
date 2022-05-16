@@ -63,9 +63,9 @@ public class OrderService {
         return ordersByProject;
     }
 
-    public Order addOrder(BufferedReader reader, String name, String projectName, int build) {
+    public Order addOrder(BufferedReader reader, String name, String projectName, int build, boolean timeIsSet) {
         Order order;
-        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name);
+        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name, timeIsSet);
         if(compilePhase.getStatus().equals("finished")){
             TestPhase testPhase = testRepository.save(new TestPhase("no information", "0s", 0, 0, 0, 0, 0, 0));
             PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
@@ -73,32 +73,32 @@ public class OrderService {
             order.setTimeOfBuild(finalTime(reader));
             return orderRepository.save(order);
         }
-        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name);
+        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name, timeIsSet);
         if(testPhase.getStatus().equals("finished")){
             PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
             order = new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
             order.setTimeOfBuild(finalTime(reader));
             return orderRepository.save(order);
         }
-        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name);
+        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name, timeIsSet);
         order = new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
             order.setTimeOfBuild(finalTime(reader));
             return orderRepository.save(order);
     }
 
     public Order addOrderModule(BufferedReader reader, String name, String projectName, int build) {
-        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name);
+        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name, false);
         if(compilePhase.getStatus().equals("finished")){
             TestPhase testPhase = testRepository.save(new TestPhase("no information", "0s", 0, 0, 0, 0, 0, 0));
             PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
             return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
         }
-        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name);
+        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name, false);
         if(testPhase.getStatus().equals("finished")){
             PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
             return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
         }
-        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name);
+        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name, false);
         return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
     }
 

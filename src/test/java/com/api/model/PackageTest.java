@@ -14,9 +14,9 @@ public class PackageTest {
     @Test
     void creationOfPackageTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogFile()));
-        new CompilePhase(reader);
-        new TestPhase(reader);
-        PackagePhase packagePhase = new PackagePhase(reader);
+        new CompilePhase(reader, true);
+        new TestPhase(reader, true);
+        PackagePhase packagePhase = new PackagePhase(reader, true);
         assertEquals("ok", packagePhase.getStatus());
         assertEquals("/Users/leofrere/.jenkins/workspace/mavenGL/target/BankMaven-0.0.1-SNAPSHOT.jar", packagePhase.getJarPath());
         assertEquals("", packagePhase.getErrorsTrace());

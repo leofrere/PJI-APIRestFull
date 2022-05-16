@@ -29,8 +29,8 @@ public class TestPhaseTest {
     @Test
     void creationOfTestPhaseWithErrorInLogTest() {
         BufferedReader reader = new BufferedReader(new StringReader(LogFile.getLogfileWithTestError()));
-        new CompilePhase(reader);
-        TestPhase test = new TestPhase(reader);
+        new CompilePhase(reader, true);
+        TestPhase test = new TestPhase(reader, true);
         assertEquals("finished", test.getStatus());
         assertEquals(3, test.getCompiledClasses());
         assertEquals("", test.getErrorsTrace());

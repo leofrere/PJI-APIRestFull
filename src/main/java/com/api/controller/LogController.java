@@ -42,7 +42,7 @@ public class LogController {
 
         try {
             BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, buildNumber));
-            logService.addLog(reader, projectName, buildNumber, jenkinsBuild.getBuildType());
+            logService.addLog(reader, projectName, buildNumber, jenkinsBuild.getBuildType(), jenkinsBuild.getTimeIsSet());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class LogController {
                 if(!logService.buildAlreadyExist(projectName, i)){
                     try{
                         BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, i));
-                        logService.addLog(reader, projectName ,i, jenkinsBuild.getBuildType());
+                        logService.addLog(reader, projectName ,i, jenkinsBuild.getBuildType(), jenkinsBuild.getTimeIsSet());
                     } catch (NullPointerException e) {
                         System.out.println("Build not Exist");
                     }
