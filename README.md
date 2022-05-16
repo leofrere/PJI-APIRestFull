@@ -19,6 +19,10 @@ L'intégration continue (CI/CD, pour Continuous Integration /Continuous Delivery
 
 Mots Clés : continuous integration, microservice, REST, software engineering
 
+## Projet Maven dans Jenkins
+
+Pour avoir le temps par phase mettez `-Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss,SSS -Dorg.slf4j.simpleLogger.showDateTime=true` comme option de build.
+
 ## Dependances
 
 ![Dependances logo](picture/dependencies-logo.png)
