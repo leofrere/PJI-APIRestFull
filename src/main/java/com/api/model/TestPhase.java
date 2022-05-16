@@ -70,13 +70,14 @@ public class TestPhase extends Compile implements Test {
                     continue;
                 }
 
-                if(line.contains("Tests run:")  && (line.contains("INFO") || line.contains("ERROR"))){
+                if(line.contains("Tests run:")  && ((line.contains("INFO") || line.contains("ERROR")))){
                     testClass = parseTestsInformation(line, testClass, 2);
                     continue;
                 }
 
-                if(line.contains("Running ")&& (line.contains("INFO") || line.contains("ERROR"))){
+                if(line.contains("Running ")&& ((line.contains("INFO") || line.contains("ERROR")))){
                     testClass = line.split(" ")[2 + offset];
+                    continue;
                 }
 
                 if(line.contains("ERROR ")){
@@ -89,7 +90,8 @@ public class TestPhase extends Compile implements Test {
                 }
 
                 if(line.contains("Running ")){
-                    testClass = line.split(" ")[1];
+                    testClass = line.split(" ")[1 + offset];
+                    continue;
                 }
 
                 if(line.contains("Tests run:")){
