@@ -85,7 +85,7 @@ public class LogService {
                         statusTmp = line.split(" ")[1];
                     }
                 }
-                logRepository.save(new Log(projectName, build, orders, orders.size(), statusTmp));
+                logRepository.save(new Log(projectName, build, orders, statusTmp));
             } else {
                 line = setOrdersName(reader, ordersName);
                 for(String name : ordersName){
@@ -115,7 +115,7 @@ public class LogService {
                 for(Order order : orders){
                     finalOrders.add(orderRepository.save(order));
                 }
-                logRepository.save(new Log(projectName, build, finalOrders, orders.size(), statusTmp)); 
+                logRepository.save(new Log(projectName, build, finalOrders, statusTmp)); 
             }
 
                            

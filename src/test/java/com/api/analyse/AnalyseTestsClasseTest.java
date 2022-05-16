@@ -70,11 +70,11 @@ public class AnalyseTestsClasseTest {
         l4.add(new Order(c4, t4, p4, "compileTest", "project", 4));
         l5.add(new Order(c5, t5, p5, "compileTest", "project", 5));
 
-        logs.add(new Log("AnalyseCompileTest", 1, l1, 0, null));
-        logs.add(new Log("AnalyseCompileTest", 2, l2, 0, null));
-        logs.add(new Log("AnalyseCompileTest", 3, l3, 0, null));
-        logs.add(new Log("AnalyseCompileTest", 4, l4, 0, null));
-        logs.add(new Log("AnalyseCompileTest", 5, l5, 0, null));
+        logs.add(new Log("AnalyseCompileTest", 1, l1, null));
+        logs.add(new Log("AnalyseCompileTest", 2, l2, null));
+        logs.add(new Log("AnalyseCompileTest", 3, l3, null));
+        logs.add(new Log("AnalyseCompileTest", 4, l4, null));
+        logs.add(new Log("AnalyseCompileTest", 5, l5, null));
     }
 
     @Test
