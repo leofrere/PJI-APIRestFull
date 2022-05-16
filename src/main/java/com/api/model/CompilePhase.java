@@ -31,7 +31,7 @@ public class CompilePhase extends Compile {
             // pass validate phase
             while ((line = reader.readLine()) != null) {
 
-                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE")){
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--")){
                     break;
                 }
 
@@ -66,7 +66,7 @@ public class CompilePhase extends Compile {
 
                 if(line.contains("Compiling") && line.contains("INFO")){
                     String parts[] = line.split(" ");
-                    System.out.println(parts);
+                    System.out.println("debug"+parts[2 + offset]);
                     numberOfCompiledClasses = Integer.parseInt(parts[2 + offset]);
                     continue;
                 }

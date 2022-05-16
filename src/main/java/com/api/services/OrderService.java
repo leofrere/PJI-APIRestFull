@@ -86,19 +86,19 @@ public class OrderService {
             return orderRepository.save(order);
     }
 
-    public Order addOrderModule(BufferedReader reader, String name, String projectName, int build) {
-        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name, false);
+    public Order addOrderModule(BufferedReader reader, String name, String projectName, int build, boolean timeIsSet) {
+        CompilePhase compilePhase = compileService.addCompilePhase(reader, projectName, build, name, timeIsSet);
         if(compilePhase.getStatus().equals("finished")){
             TestPhase testPhase = testRepository.save(new TestPhase("no information", "0s", 0, 0, 0, 0, 0, 0));
             PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
             return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
         }
-        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name, false);
+        TestPhase testPhase = testService.addTestPhase(reader, projectName, build, name, timeIsSet);
         if(testPhase.getStatus().equals("finished")){
             PackagePhase packagePhase = packageRepository.save(new PackagePhase("no information", "0s", ""));
             return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
         }
-        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name, false);
+        PackagePhase packagePhase = packageService.addPackagePhase(reader, projectName, build, name, timeIsSet);
         return new Order(compilePhase, testPhase, packagePhase, name, projectName, build);
     }
 

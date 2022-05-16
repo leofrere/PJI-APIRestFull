@@ -90,7 +90,7 @@ public class TestPhase extends Compile implements Test {
                 }
 
                 if(line.contains("Running ")){
-                    testClass = line.split(" ")[1 + offset];
+                    testClass = line.split(" ")[1];
                     continue;
                 }
 

@@ -89,8 +89,11 @@ public class LogService {
                 logRepository.save(new Log(projectName, build, orders, statusTmp));
             } else {
                 line = setOrdersName(reader, ordersName);
+                while((line = reader.readLine()) != null){
+                    if(line.contains(ordersName.get(0)) && line.contains("Building")) break;
+                }
                 for(String name : ordersName){
-                        Order order = orderService.addOrderModule(reader, name, projectName, build);
+                        Order order = orderService.addOrderModule(reader, name, projectName, build, timeIsSet);
                         orders.add(order);
                 }
 
