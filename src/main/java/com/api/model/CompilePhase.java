@@ -30,18 +30,14 @@ public class CompilePhase extends Compile {
         try {
             // pass validate phase
             while ((line = reader.readLine()) != null) {
-
-                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--")){
-                    break;
-                }
-
-                if(line.contains("maven-resources-plugin:")){
-                    time1 = line.split(" ")[0];
+                if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--") || line.contains("maven-resources-plugin:")){
                     break;
                 }
             }
 
             while ((line = reader.readLine()) != null) {
+
+                if(line.contains("maven-compiler-plugin:")) time1 = line.split(" ")[0];
 
                 if(line.contains("BUILD SUCCESS") || line.contains("BUILD FAILURE") || line.contains("--[ jar ]--") || (line.contains("Summary") && line.contains("INFO"))){
                     status = "finished";

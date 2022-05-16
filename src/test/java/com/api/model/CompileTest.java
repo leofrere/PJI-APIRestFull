@@ -18,7 +18,7 @@ public class CompileTest {
         assertEquals("ok", compile.getStatus());
         assertEquals(14, compile.getCompiledClasses());
         assertEquals("", compile.getErrorsTrace());
-        assertEquals("2,46s", compile.getTime());
+        assertEquals("2,15s", compile.getTime());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class CompileTest {
         assertEquals("finished", compile.getStatus());
         assertEquals(14, compile.getCompiledClasses());
         assertEquals("", compile.getErrorsTrace());
-        assertEquals("0s", compile.getTime());
+        assertEquals("1,76s", compile.getTime());
     }
 
 }
