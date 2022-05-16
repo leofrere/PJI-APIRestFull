@@ -17,7 +17,7 @@ public class PackageTest {
         new CompilePhase(reader, true);
         new TestPhase(reader, true);
         PackagePhase packagePhase = new PackagePhase(reader, true);
-        assertEquals("ok", packagePhase.getStatus());
+        assertEquals("finished", packagePhase.getStatus());
         assertEquals("/Users/leofrere/.jenkins/workspace/mavenGL/target/BankMaven-0.0.1-SNAPSHOT.jar", packagePhase.getJarPath());
         assertEquals("", packagePhase.getErrorsTrace());
         assertEquals("0,04s", packagePhase.getTime());

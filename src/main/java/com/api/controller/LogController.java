@@ -80,10 +80,12 @@ public class LogController {
 
     @CrossOrigin
     @GetMapping("/project/{projectName}")
-    public List<Log> getLogsByProject(@PathVariable String projectName) {
+    public List<Log> getLogsByProject(@PathVariable String projectName, @RequestParam(name="begin", defaultValue = "0") int begin, @RequestParam(name="end", defaultValue = "-1") int end) {
         List<Log> logs = logService.getLogByProject(projectName);
+        int size = end;
+        if(end == -1 || end > logs.size()) size = logs.size();
         List<Log> test = new LinkedList<Log>();
-        for(int i = 0; i < 1200; i++){
+        for(int i = begin; i < size; i++){
             test.add(logs.get(i));
         }
         return test;
