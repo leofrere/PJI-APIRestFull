@@ -57,7 +57,7 @@ public class TestPhase extends Compile implements Test {
                 }
 
                 //System.out.println(line);
-                if(line.contains("maven-jar-plugin:")){
+                if(line.contains("maven-jar-plugin:") || line.contains("maven-source-plugin:")){
                     time = Time.differenceBetween(time1, line.split(" ")[0]);
                     status = "ok";
                     break;
