@@ -40,6 +40,8 @@ public class LogController {
             return ;
         }
 
+        if(logService.buildAlreadyExist(projectName, buildNumber)) return;
+
         try {
             BufferedReader reader = new BufferedReader(ReaderBuild.readBuild(jenkinsBuild, buildNumber));
             logService.addLog(reader, projectName, buildNumber, jenkinsBuild.getBuildType(), jenkinsBuild.getTimeIsSet());
