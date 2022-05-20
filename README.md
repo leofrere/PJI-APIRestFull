@@ -23,6 +23,15 @@ Mots Clés : continuous integration, microservice, REST, software engineering
 
 Pour avoir le temps par phase mettez `-Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss,SSS -Dorg.slf4j.simpleLogger.showDateTime=true` comme option de build.
 
+## Build jar
+
+Pour build le jar éxcuter la commande suivante `mvn clean package`
+
+## Dockerfile pour le deploiement
+
+À la racine du projet vous avez un Dockerfile pour le deploiement.
+/!\\ Ne pas oublié dans le fichier `application.properties de mettre le bon serveur mysql`
+
 ## Dependances
 
 ![Dependances logo](picture/dependencies-logo.png)

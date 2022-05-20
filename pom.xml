@@ -15,6 +15,7 @@
 	<description>APIRestfull to analyse Maven logs from build git on jenkins</description>
 	<properties>
 		<java.version>11</java.version>
+		<mainClass>com.api.PJIApplication</mainClass>
 	</properties>
 	<dependencies>
 		<dependency>
